@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 //			e.printStackTrace();
 //		}
 		if(Math.random()>0.5) {
-			throw new RuntimeException();
+			throw new RuntimeException("iohfwkfhk");
 		}
 		return Arrays.asList(address1,address2);
 	}
