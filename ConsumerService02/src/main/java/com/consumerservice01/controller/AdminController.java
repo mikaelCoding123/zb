@@ -2,6 +2,7 @@ package com.consumerservice01.controller;
 
 import com.consumerservice01.service.AdminServiceImpl;
 import com.response.ServiceResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,9 @@ public class AdminController {
     public ServiceResult setAdmin() {
         String s = UUID.randomUUID().toString().replaceAll("-", "");
         HashMap<String, Object> hashMap = new HashMap<>();
-        return adminServiceImpl.setAdmin(hashMap);
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultMsg(s);
+        return serviceResult ;
     }
 
 

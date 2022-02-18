@@ -3,6 +3,7 @@ package com.bean;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private final static long serialVersionUID = 1L;
     private String pokid;
     private String username;
     private String password;

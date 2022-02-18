@@ -1,4 +1,4 @@
-package com.common;
+package com;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;

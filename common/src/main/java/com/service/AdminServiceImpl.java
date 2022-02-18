@@ -4,7 +4,7 @@ import com.response.ServiceResult;
 
 import java.util.HashMap;
 
-public interface AdminService {
+public interface AdminServiceImpl {
     ServiceResult getAdmin(String uuid);
     ServiceResult setAdmin(HashMap<String, Object> paramsMap);
 }
