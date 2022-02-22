@@ -16,7 +16,7 @@ public class Consumer {
 //    record变量代表消息本身，可以通过ConsumerRecord<?,?>类型的record变量来打印接收的消息的各种信息
     public void listen (ConsumerRecord<?, ?> record, Acknowledgment ack) throws Exception {
         long timestamp = record.timestamp();
-
+//        int i=1/0;
         System.out.printf("topic = %s, offset = %d, value = %s \n", record.topic(), record.offset(), record.value());
 
         try {
