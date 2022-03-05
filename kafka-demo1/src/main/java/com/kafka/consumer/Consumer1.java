@@ -8,7 +8,7 @@ import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Consumer {
+public class Consumer1 {
 
     @KafkaListener(topics = "test_topic")
      //定义此消费者接收topic为“test_topic”的消息
@@ -17,7 +17,7 @@ public class Consumer {
     public void listen (ConsumerRecord<?, ?> record, Acknowledgment ack) throws Exception {
         long timestamp = record.timestamp();
 //        int i=1/0;
-        System.out.printf("topic = %s, offset = %d, value = %s \n", record.topic(), record.offset(), record.value());
+        System.out.printf("topic1 = %s, offset = %d, value = %s \n", record.topic(), record.offset(), record.value());
 
         try {
             ack.acknowledge();

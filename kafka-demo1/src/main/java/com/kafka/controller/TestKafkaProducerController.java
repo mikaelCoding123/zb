@@ -2,6 +2,7 @@ package com.kafka.controller;
 
 import com.bean.User;
 import com.google.gson.Gson;
+import org.apache.commons.logging.LogFactory;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("kafka")
 public class TestKafkaProducerController {
     private static final Logger logger = LoggerFactory.getLogger(TestKafkaProducerController.class);
-  private static final   ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(12, 12, 100, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(100));
+    private static final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(12, 12, 100, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(100));
 
     @Resource
 //    定义一个kafka模板
@@ -38,13 +39,16 @@ public class TestKafkaProducerController {
         user.setPassword("fkshfkjhksjhkfhksjhfuekjhd");
         Gson gson = new Gson();
         String s = gson.toJson(user);
-
+        logger.info("1231312313213==>{}");
+        kafkaTemplate.send("test_topic", s);
+        kafkaTemplate.send("test_topic2", s);
         return "success";
     }
 
-    public void sender(String s){
+    public void sender(String s) {
 
-        ListenableFuture<SendResult<String, String>> test_topic = kafkaTemplate.send("test_topic","1", s);//使用kafka模板发送信息
+
+        ListenableFuture<SendResult<String, String>> test_topic = kafkaTemplate.send("test_topic", "1", s);//使用kafka模板发送信息
         test_topic.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onFailure(Throwable ex) {

@@ -8,6 +8,15 @@ public class User implements Serializable {
     private String username;
     private String password;
 
+    public User(String pokid, String username, String password) {
+        this.pokid = pokid;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
     public String getPokid() {
         return pokid;
     }

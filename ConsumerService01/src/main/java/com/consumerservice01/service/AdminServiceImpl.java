@@ -5,15 +5,13 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.bean.User;
 import com.response.ServiceResult;
 import com.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 
 @Service
 public class AdminServiceImpl implements com.service.AdminServiceImpl {
 
-    @Reference(check = false,stub = "")
+    @Reference(version = "1.0.0",check = false,stub = "",async = true)
     AdminService adminService;
 
     @Override
@@ -32,7 +30,21 @@ public class AdminServiceImpl implements com.service.AdminServiceImpl {
         hashMap.put("4", "abc");
         hashMap.put("6", user);
         adminService.setAdmin(hashMap);
+
         return null;
+    }
+
+    @Override
+    public ServiceResult asyncAdmin(String uuid) {
+        adminService.getAdmin(uuid);
+        adminService.asyncAdmin(uuid);
+        return null;
+    }
+
+    @Override
+    public ServiceResult setUser(User user) {
+        ServiceResult serviceResult = adminService.setUser(user);
+        return serviceResult;
     }
 
 

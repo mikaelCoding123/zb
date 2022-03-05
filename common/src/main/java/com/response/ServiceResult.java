@@ -3,7 +3,7 @@ package com.response;
 import java.io.Serializable;
 
 public class ServiceResult implements Serializable {
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2316358134496498970L;
     private String resultCode = "000000";
     private String resultMsg = "";
     private Object resultObj = null;
