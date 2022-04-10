@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProviderService01Application {
 
     public static void main(String[] args) {
+
+        
         SpringApplication.run(ProviderService01Application.class, args);
     }
 

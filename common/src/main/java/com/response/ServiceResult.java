@@ -1,9 +1,10 @@
 package com.response;
 
+import javax.jws.Oneway;
 import java.io.Serializable;
 
 public class ServiceResult implements Serializable {
-    private static final long serialVersionUID = -2316358134496498970L;
+    private static final long serialVersionUID = -16358134496498970L;
     private String resultCode = "000000";
     private String resultMsg = "";
     private Object resultObj = null;
@@ -21,9 +22,21 @@ public class ServiceResult implements Serializable {
     }
 
     public ServiceResult(String code, String message, Object ret_obj) {
-        this.resultCode = code;
-        this.resultMsg = message;
-        this.resultObj = ret_obj;
+    }
+
+    public ServiceResult error(String msg, Object object) {
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultMsg(msg);
+        serviceResult.setResultCode("999999");
+        serviceResult.setResultObj(object);
+        return serviceResult;
+    }
+    public ServiceResult success() {
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultMsg("success");
+        serviceResult.setResultCode("000000");
+        serviceResult.setResultObj("");
+        return serviceResult;
     }
 
     public ServiceResult(Object ret_obj) {

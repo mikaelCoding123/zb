@@ -1,5 +1,6 @@
 package com.providerservice01.service;
 
+import cn.hutool.core.util.IdUtil;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bean.User;
 import com.response.ServiceResult;
