@@ -1,0 +1,10 @@
+spring:
+  rabbitmq:
+    password: hua
+    username: hua
+    port: 5672
+    listener:
+      direct:
+        acknowledge-mode: manual
+
+

@@ -1,6 +1,5 @@
 package com.response;
 
-import javax.jws.Oneway;
 import java.io.Serializable;
 
 public class ServiceResult implements Serializable {
