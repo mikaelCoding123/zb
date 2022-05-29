@@ -12,12 +12,12 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
-@Service(version = "1.0.0",async = true)
+@Service(version = "1.0.0")
 public class AdminServiceImpl implements AdminService {
     private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     public ServiceResult getAdmin(String uuid) {
-        logger.info(" provoder service01 uuid");
+        logger.info(" provoder service01 uuid==》"+uuid);
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setResultObj(uuid);
         return serviceResult;

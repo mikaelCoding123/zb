@@ -1,11 +1,5 @@
 package com.response;
 
-import org.apache.tomcat.util.http.ResponseUtil;
-import org.springframework.http.HttpStatus;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 public enum ResponEnum {
 
 
@@ -27,9 +21,9 @@ public enum ResponEnum {
     }
     public static void main(String[] args) {
         System.out.println(ResponEnum.success);
-        System.out.println(HttpStatus.ACCEPTED.toString());//202 ACCEPTED
-        System.out.println(HttpStatus.ACCEPTED.value());//202
-        System.out.println(HttpStatus.ACCEPTED.name());//ACCEPTED
+//        System.out.println(HttpStatus.ACCEPTED.toString());//202 ACCEPTED
+//        System.out.println(HttpStatus.ACCEPTED.value());//202
+//        System.out.println(HttpStatus.ACCEPTED.name());//ACCEPTED
     }
 }
 

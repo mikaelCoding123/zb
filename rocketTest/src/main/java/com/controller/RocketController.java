@@ -78,4 +78,12 @@ public class RocketController {
         System.out.println("sequential==》"+sequential.toString());
 
     }
+    /**
+     * 用事务
+     */
+    @PostMapping("transaction01")
+    public void transaction01(){
+//        MessageBuilder<String> messageBuilder = MessageBuilder.withPayload("");
+//        rocketMQTemplate.sendMessageInTransaction("producer", "transaction01", messageBuilder, "01");
+    }
 }

@@ -8,15 +8,16 @@ import com.service.AdminService;
 
 import java.util.HashMap;
 
-@Service
+@Service(version = "1.1.0")
 public class AdminServiceImpl implements com.service.AdminServiceImpl {
 
-    @Reference(version = "1.0.0",check = false,stub = "",async = true)
+    @Reference(version = "1.0.0",check = false,stub = "")
     AdminService adminService;
 
     @Override
     public ServiceResult getAdmin(String uuid) {
-        return adminService.getAdmin(uuid);
+        ServiceResult admin = adminService.getAdmin(uuid);
+        return  admin;
     }
 
     @Override

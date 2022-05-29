@@ -21,10 +21,6 @@ public class User implements Serializable {
         return pokid;
     }
 
-    public void setPokid(String pokid) {
-        this.pokid = pokid;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -39,5 +35,8 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setPokid(String s) {
     }
 }

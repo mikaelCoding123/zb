@@ -19,7 +19,8 @@ public class AdminController {
     @GetMapping("getadmin")
     public ServiceResult getAdmin() {
         String s = UUID.randomUUID().toString().replaceAll("-", "");
-        return adminServiceImpl.getAdmin(s);
+        ServiceResult admin = adminServiceImpl.getAdmin(s);
+        return admin;
     }
 
     @GetMapping("setadmin")
