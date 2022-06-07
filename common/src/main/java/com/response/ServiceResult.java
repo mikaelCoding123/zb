@@ -1,5 +1,6 @@
 package com.response;
 
+
 import java.io.Serializable;
 
 public class ServiceResult implements Serializable {
@@ -7,6 +8,16 @@ public class ServiceResult implements Serializable {
     private String resultCode = "000000";
     private String resultMsg = "";
     private Object resultObj = null;
+    private boolean flag = false;//返回的信息是否展示，true 前端要展示resultMsg
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
 
     public ServiceResult() {
     }
@@ -30,6 +41,7 @@ public class ServiceResult implements Serializable {
         serviceResult.setResultObj(object);
         return serviceResult;
     }
+
     public ServiceResult success() {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setResultMsg("success");
