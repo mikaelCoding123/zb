@@ -17,4 +17,5 @@ public interface HttpStates {
     int Parameter_error = 300;
     int Request_failed = 520;
     int Busy_service = 530;
+    int Server_Error_Msg=501;
 }

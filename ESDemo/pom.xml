@@ -17,17 +17,17 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-<!--    es版本必须与安装版本一致-->
-<!--        <dependency>-->
-<!--            <groupId>org.elasticsearch</groupId>-->
-<!--            <artifactId>elasticsearch</artifactId>-->
-<!--            <version>7.16.3</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.elasticsearch.client</groupId>-->
-<!--            <artifactId>elasticsearch-rest-high-level-client</artifactId>-->
-<!--            <version>7.16.3</version>-->
-<!--        </dependency>-->
+        <!--    es版本必须与安装版本一致-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.elasticsearch</groupId>-->
+        <!--            <artifactId>elasticsearch</artifactId>-->
+        <!--            <version>7.16.3</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.elasticsearch.client</groupId>-->
+        <!--            <artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+        <!--            <version>7.16.3</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>

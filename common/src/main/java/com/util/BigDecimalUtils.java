@@ -2,6 +2,9 @@ package com.util;
 
 import java.math.BigDecimal;
 
+/**
+ * @Description: BigDecimal计算工具类
+ */
 public class BigDecimalUtils {
     public static BigDecimal doubleAdd(double v1, double v2) {
         BigDecimal b1 = new BigDecimal(Double.toString(v1));

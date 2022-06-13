@@ -1,6 +1,7 @@
 package com.web.demo.controller;
 
 import com.bean.User;
+import com.exception.ServiceException;
 import com.response.ServiceResult;
 import com.web.demo.bo.DemoBo;
 import com.web.demo.service.DemoService;
@@ -53,6 +54,18 @@ public class HelloController {
     public ServiceResult postBoVoid(@RequestBody DemoBo demo){
 
         System.out.println(demo.getPokid()+"-------");
+        return null;
+    }
+
+    @PostMapping("exception")
+    public ServiceResult postException(@RequestBody DemoBo demo) throws ServiceException {
+
+        try {
+            int i =1/0;
+        }catch (Exception e){
+            throw new ServiceException("错误"+e.getMessage());
+        }
+
         return null;
     }
 

@@ -3,7 +3,7 @@ package com.util;
 import java.math.BigDecimal;
 
 /**
- * 数字转化成汉字大写
+ * @Description: 数字转化成汉字大写
  */
 public class ConvertUtil {
 
@@ -117,7 +117,7 @@ public class ConvertUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(moneyToChinese(new BigDecimal(12.124)));
+        System.out.println(moneyToChinese(new BigDecimal(12.00)));
     }
 
 }
