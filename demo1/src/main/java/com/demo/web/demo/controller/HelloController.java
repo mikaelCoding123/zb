@@ -1,23 +1,20 @@
-package com.web.demo.controller;
+package com.demo.web.demo.controller;
 
 import com.bean.User;
+import com.demo.web.demo.bo.DemoBo;
+import com.demo.web.demo.service.DemoService;
 import com.exception.ServiceException;
-import com.google.gson.JsonObject;
 import com.response.ServiceResult;
-import com.web.demo.bo.DemoBo;
-import com.web.demo.service.DemoService;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController

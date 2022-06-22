@@ -1,11 +1,13 @@
 package com.esdemo.demo.controller;
 
 import com.esdemo.bean.Book;
+import com.esdemo.util.ESQueryHelper;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.ElasticsearchClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.eql.EqlSearchRequest;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -61,12 +63,17 @@ public class DemoController {
         NativeSearchQuery query=builder.withQuery(QueryBuilders.queryStringQuery("三"))
                 .withPageable(pageable)
                 .build();
-
         SearchHits<Book> search = restTemplate.search(query, Book.class);
         search.forEach(value->{
             System.out.println(value.toString());
         });
 
         return search;
+    }
+    @PostMapping("ESQuery/gt")
+    public void gt(){
+        NativeSearchQuery gt = (NativeSearchQuery)ESQueryHelper.gt("book", "2");
+
+        System.out.println("======");
     }
 }

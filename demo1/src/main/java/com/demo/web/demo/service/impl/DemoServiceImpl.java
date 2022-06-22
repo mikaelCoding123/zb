@@ -1,14 +1,13 @@
-package com.web.demo.service.impl;
+package com.demo.web.demo.service.impl;
 
+import com.demo.web.demo.dao.DemoDao;
+import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
-import com.web.demo.dao.DemoDao;
-import com.web.demo.service.DemoService;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
 import java.util.Map;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 public class DemoServiceImpl implements DemoService {

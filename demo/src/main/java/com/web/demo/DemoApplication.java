@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.web.*.dao",""})
+@MapperScan({"com.web.*.dao"})
 public class DemoApplication {
 
     public static void main(String[] args) {
