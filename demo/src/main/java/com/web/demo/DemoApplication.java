@@ -13,6 +13,7 @@ public class DemoApplication {
         SpringApplication app = new SpringApplication(DemoApplication.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
+
     }
 
 }
