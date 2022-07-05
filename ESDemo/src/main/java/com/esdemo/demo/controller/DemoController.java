@@ -32,6 +32,8 @@ public class DemoController {
     @Resource
     private ElasticsearchRestTemplate restTemplate;
 
+
+
     @PostMapping("/es")
     public Object get() {
 //  查看book索引是否存在

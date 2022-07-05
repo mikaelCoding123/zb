@@ -11,7 +11,7 @@ import java.util.HashMap;
 @Service(version = "1.1.0")
 public class AdminServiceImpl implements com.service.AdminServiceImpl {
 
-    @Reference(version = "1.0.0",check = false,stub = "")
+    @Reference(version = "1.0.0",check = false,cluster = "failfast",stub = "",mock = "fail:returen 123")
     AdminService adminService;
 
     @Override

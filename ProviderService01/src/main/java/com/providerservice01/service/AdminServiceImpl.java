@@ -14,12 +14,15 @@ import java.util.HashMap;
 
 @Service(version = "1.0.0")
 public class AdminServiceImpl implements AdminService {
-    private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
+    private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+    private static   int i = 0;
     public ServiceResult getAdmin(String uuid) {
-        logger.info(" provoder service01 uuid==》"+uuid);
+            i=i+1;
+        logger.info(" provoder service01 uuid==》" + uuid);
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.setResultObj(uuid);
+        serviceResult.setResultObj("provoder service01 uuid=" + uuid);
+        System.out.println(i);
         return serviceResult;
     }
 
@@ -34,7 +37,7 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             Thread.sleep(10000);
-            logger.info("uuid====>{}",uuid);
+            logger.info("uuid====>{}", uuid);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -45,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
     public ServiceResult setUser(User user) {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setResultObj("provider01 success");
-        logger.info("provider01====>"+user.toString());
+        logger.info("provider01====>" + user.toString());
         return serviceResult;
     }
 

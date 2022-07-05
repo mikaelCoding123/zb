@@ -12,7 +12,7 @@ public class WordCount {
         //创建执行环境
         ExecutionEnvironment environment = ExecutionEnvironment.getExecutionEnvironment();
         //从文件中读取数据
-        String path = "C:\\2Code\\zb\\flinkTest\\src\\main\\resources\\hello.txt";
+        String path = "D:\\6zb\\flinkTest\\src\\main\\java\\com\\mikael\\cn\\day01\\hello.txt";
         DataSet<String> stringDataSource = environment.readTextFile(path);
 
         //对数据集进行处理   按空格分词展开，转化成(world,1 )二元组
