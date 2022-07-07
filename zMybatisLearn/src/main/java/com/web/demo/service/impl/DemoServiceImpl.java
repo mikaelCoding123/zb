@@ -14,7 +14,8 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void demoService(String id) {
-        Admin admin = adminDao.selectByPrimaryKey(1L);
+        Admin admin = adminDao.selectById(1L);
+
         System.out.println(admin);
     }
 }

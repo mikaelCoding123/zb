@@ -7,15 +7,15 @@ import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan
 public interface AdminDao extends BaseMapper<Admin> {
-    int deleteByPrimaryKey(Long pokid);
-
-    int insert(Admin record);
-
-    int insertSelective(Admin record);
-
-    Admin selectByPrimaryKey(Long pokid);
-
-    int updateByPrimaryKeySelective(Admin record);
-
-    int updateByPrimaryKey(Admin record);
+//    int deleteByPrimaryKey(Long pokid);
+//
+//    int insert(Admin record);
+//
+//    int insertSelective(Admin record);
+//
+//    Admin selectByPrimaryKey(Long pokid);
+//
+//    int updateByPrimaryKeySelective(Admin record);
+//
+//    int updateByPrimaryKey(Admin record);
 }

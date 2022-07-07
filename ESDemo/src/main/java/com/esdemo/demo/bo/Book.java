@@ -11,6 +11,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class Book {
     @Id
     private String id;
+    @Field(type = FieldType.Nested,includeInParent = true)
     private String title;
     @Field(type = FieldType.Nested,includeInParent = true)
     private String auther;

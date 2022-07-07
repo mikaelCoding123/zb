@@ -17,7 +17,7 @@ public class Book implements Serializable {
     @Id
     private Integer id;
     @Field("titile")
-    private String title;
+    private String titile;
     @Field("auther")
     private String auther;
     @Field("word_count")

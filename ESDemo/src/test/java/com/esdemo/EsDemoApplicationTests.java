@@ -36,7 +36,7 @@ class EsDemoApplicationTests {
         Book book = new Book();
         book.setAuther("谭三");
         book.setDate(LocalDate.now());
-        book.setTitle("剪辑");
+        book.setTitile("剪辑");
         book.setWord_count("700");
         indexQuery.setId("11");
         indexQuery.setObject(book);
