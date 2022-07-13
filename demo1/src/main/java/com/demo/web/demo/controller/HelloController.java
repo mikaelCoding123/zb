@@ -1,11 +1,12 @@
 package com.demo.web.demo.controller;
 
 import com.bean.User;
-import com.demo.web.demo.bo.DemoBo;
+import com.demo.web.demo.bo.DemoBo1;
 import com.demo.web.demo.service.DemoService;
 import com.exception.ServiceException;
 import com.response.ServiceResult;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -20,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/web")
 @SessionAttributes("user")
+@Slf4j
 public class HelloController {
 
     @Value("${hkey}")
@@ -57,14 +59,16 @@ public class HelloController {
 
     //简单的使用属性校验
     @PostMapping("/postBo")
-    public ServiceResult postBoVoid(@RequestBody @Valid DemoBo demo, BindingResult bindingResult){
+    public ServiceResult postBoVoid(@RequestBody @Valid DemoBo1 demo, BindingResult bindingResult){
+      log.info("POSTBO............");
        if(bindingResult.hasErrors()){
            List<FieldError> allErrors = bindingResult.getFieldErrors();
            allErrors.forEach((item)->{
                System.out.println(item.getField()+ item.getDefaultMessage());
            });
        }
-
+        ServiceResult serviceResult = new ServiceResult();
+//        serviceResult.setResultObj(allErrors);
         System.out.println(demo.getPokid()+"-------");
         return null;
     }
@@ -78,7 +82,7 @@ public class HelloController {
     }
 
     @PostMapping("exception")
-    public ServiceResult postException(@RequestBody DemoBo demo) throws ServiceException {
+    public ServiceResult postException(@RequestBody DemoBo1 demo) throws ServiceException {
 
         try {
             int i =1/0;
