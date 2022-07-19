@@ -83,7 +83,10 @@ public class RocketController {
      */
     @PostMapping("transaction01")
     public void transaction01(){
-        MessageBuilder.withPayload("");
+        Message message = new Message();
+        message.setTopic("transaction01");
+        MessageBuilder<String> builder = MessageBuilder.withPayload("");
+
 //        rocketMQTemplate.sendMessageInTransaction("producer", "transaction01", message, "01");
     }
 }

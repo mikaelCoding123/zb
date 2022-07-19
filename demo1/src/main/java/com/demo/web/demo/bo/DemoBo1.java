@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class DemoBo1 implements Serializable {
     @NotNull
     private String pokid;
-    @Size(min = 3,max = 10,message = "必须在3~10之间")
+    @Size(min = 3,max = 10,message = "username必须在3~10之间")
     private String username;
     @NotNull
     private String password;

@@ -1,11 +1,11 @@
 package com.demo.web.demo.controller;
 
+import cn.hutool.json.JSON;
 import com.bean.User;
 import com.demo.web.demo.bo.DemoBo1;
 import com.demo.web.demo.service.DemoService;
 import com.exception.ServiceException;
 import com.response.ServiceResult;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
@@ -72,6 +72,15 @@ public class HelloController {
         System.out.println(demo.getPokid()+"-------");
         return null;
     }
+    @PostMapping("/postBo2")
+    public ServiceResult postBoVoid2(@RequestBody @Valid DemoBo1 demo){
+        log.info("POSTBO2............");
+
+        ServiceResult serviceResult = new ServiceResult();
+//        serviceResult.setResultObj(allErrors);
+        System.out.println(demo.getPokid()+"-------");
+        return null;
+    }
 
 
     @PostMapping("/postJson")
@@ -92,5 +101,14 @@ public class HelloController {
 
         return null;
     }
+
+    @PostMapping("/toJSON")
+    public ServiceResult get(@RequestBody JSON json){
+//        String name =(String) json.get("name");
+
+        System.out.println(json);
+        return null;
+    }
+
 
 }

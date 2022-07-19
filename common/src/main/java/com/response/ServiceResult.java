@@ -1,13 +1,15 @@
 package com.response;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class ServiceResult implements Serializable {
     private static final long serialVersionUID = 1635241255686L;
     private String resultCode = "000000";
-    private String resultMsg = "success";
+    private String resultMsg = "";
     private Object resultObj = null;
     private boolean flag = false;//返回的信息是否展示，true 前端要展示resultMsg
+    private String time = LocalDateTime.now().toString();
 
     public boolean isFlag() {
         return flag;
@@ -95,15 +97,6 @@ public class ServiceResult implements Serializable {
         this.resultObj = resultObj;
     }
 
-    @Override
-    public String toString() {
-        return "ServiceResult{" +
-                "resultCode='" + resultCode + '\'' +
-                ", resultMsg='" + resultMsg + '\'' +
-                ", resultObj=" + resultObj +
-                ", flag=" + flag +
-                '}';
-    }
 
     public static void main(String[] args) {
         ServiceResult serviceResult = new ServiceResult("12", "咯活啊", "123213");
@@ -124,5 +117,24 @@ public class ServiceResult implements Serializable {
 
         }
         System.out.println(str);
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceResult{" +
+                "resultCode='" + resultCode + '\'' +
+                ", resultMsg='" + resultMsg + '\'' +
+                ", resultObj=" + resultObj +
+                ", flag=" + flag +
+                ", time=" + time +
+                '}';
     }
 }

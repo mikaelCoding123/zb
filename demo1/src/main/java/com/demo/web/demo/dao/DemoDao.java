@@ -1,5 +1,6 @@
 package com.demo.web.demo.dao;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -14,4 +15,6 @@ public interface DemoDao {
 
     List<Map<String, String>> getDemoByName(@Param("username") String username);
 
+    @Insert("insert into admin (pokid,username, password) values(#{pokid},#{username},#{password}) ")
+    int setAdmin(Map<String, String> paramsMap);
 }
