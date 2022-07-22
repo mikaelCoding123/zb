@@ -1,6 +1,6 @@
 package com.demo.web.demo.controller;
 
-import cn.hutool.json.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.bean.User;
 import com.demo.web.demo.bo.DemoBo1;
 import com.demo.web.demo.service.DemoService;
@@ -103,12 +103,14 @@ public class HelloController {
     }
 
     @PostMapping("/toJSON")
-    public ServiceResult get(@RequestBody JSON json){
+    public ServiceResult get(@RequestBody JSONObject json){
 //        String name =(String) json.get("name");
 
         System.out.println(json);
         return null;
     }
+
+
 
 
 }

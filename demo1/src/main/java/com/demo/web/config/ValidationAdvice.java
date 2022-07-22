@@ -1,5 +1,6 @@
 package com.demo.web.config;
 
+import com.exception.ServiceException;
 import com.response.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.ObjectError;
@@ -22,7 +23,24 @@ public class ValidationAdvice {
         });
         serviceResult.setResultCode("999999");
         serviceResult.setFlag(true);
-
         return serviceResult;
     }
+    //捕获自定义异常抛出异常信息
+    @ExceptionHandler(ServiceException.class)
+    public ServiceResult getAdvice1(ServiceException e){
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultMsg(e.getMessage());
+        serviceResult.setResultCode("999999");
+        return serviceResult;
+    }
+
+//    //捕获自定义异常抛出异常信息
+//    @ExceptionHandler(Exception.class)
+//    public ServiceResult getAdvice2(Exception e){
+//        ServiceResult serviceResult = new ServiceResult();
+//        serviceResult.setResultMsg(e.getMessage());
+//        serviceResult.setResultCode("999999");
+//        return serviceResult;
+//    }
+
 }

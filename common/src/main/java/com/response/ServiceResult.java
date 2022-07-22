@@ -19,7 +19,6 @@ public class ServiceResult implements Serializable {
         this.flag = flag;
     }
 
-
     public ServiceResult() {
     }
 
@@ -36,12 +35,7 @@ public class ServiceResult implements Serializable {
     }
 
     public ServiceResult error(String msg, Object object, boolean flag) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.setResultMsg(msg);
-        serviceResult.setResultCode("999999");
-        serviceResult.setResultObj(object);
-        serviceResult.setFlag(flag);
-        return serviceResult;
+        return this.putFlag(flag).putCode("999999").putMsg(msg).putObject(object);
     }
 
     /**
@@ -51,7 +45,7 @@ public class ServiceResult implements Serializable {
     public ServiceResult error(String msg) {
         this.setFlag(true);
         this.setResultMsg(msg);
-        return this;
+        return this.putFlag(true).putMsg(msg);
     }
 
     /**
@@ -59,11 +53,8 @@ public class ServiceResult implements Serializable {
      * @return flag为true
      */
     public ServiceResult ok(String msg) {
-        this.setFlag(true);
-        this.setResultMsg(msg);
-        return this;
+        return this.putFlag(true).putMsg(msg);
     }
-
 
     public ServiceResult ok() {
         return this;
@@ -99,13 +90,9 @@ public class ServiceResult implements Serializable {
 
 
     public static void main(String[] args) {
-        ServiceResult serviceResult = new ServiceResult("12", "咯活啊", "123213");
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.putCode("200").putFlag(true).putFlag(false);
         System.out.println(serviceResult);
-        ServiceResult serviceResult1 = new ServiceResult();
-        setParams("123", "2313");
-        serviceResult.ok("123");
-        serviceResult1.error("2313");
-        System.out.println(serviceResult1);
     }
 
     public static void setParams(String... str) {
@@ -136,5 +123,26 @@ public class ServiceResult implements Serializable {
                 ", flag=" + flag +
                 ", time=" + time +
                 '}';
+    }
+
+    /***链式编程*****/
+    public ServiceResult putCode(String code) {
+        this.setResultCode(code);
+        return this;
+    }
+
+    public ServiceResult putMsg(String msg) {
+        this.setResultMsg(msg);
+        return this;
+    }
+
+    public ServiceResult putObject(Object object) {
+        this.setResultObj(object);
+        return this;
+    }
+
+    public ServiceResult putFlag(Boolean flag) {
+        this.setFlag(flag);
+        return this;
     }
 }
