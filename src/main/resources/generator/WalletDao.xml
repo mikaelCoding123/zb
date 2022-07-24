@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.WalletDao">
+  <resultMap id="BaseResultMap" type="generate.Wallet">
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="sum" jdbcType="DECIMAL" property="sum" />
+  </resultMap>
+  <insert id="insert" parameterType="generate.Wallet">
+    insert into wallet (userid, `sum`)
+    values (#{userid,jdbcType=VARCHAR}, #{sum,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="generate.Wallet">
+    insert into wallet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="sum != null">
+        `sum`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null">
+        #{sum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>
