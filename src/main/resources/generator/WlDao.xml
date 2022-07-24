@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.WlDao">
+  <resultMap id="BaseResultMap" type="generate.Wl">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="jjrdh" jdbcType="VARCHAR" property="jjrdh" />
+    <result column="jjrdz" jdbcType="VARCHAR" property="jjrdz" />
+    <result column="jjr" jdbcType="VARCHAR" property="jjr" />
+    <result column="jsrq" jdbcType="TIMESTAMP" property="jsrq" />
+    <result column="sjrdz" jdbcType="VARCHAR" property="sjrdz" />
+    <result column="sjrdh" jdbcType="VARCHAR" property="sjrdh" />
+    <result column="sjr" jdbcType="VARCHAR" property="sjr" />
+    <result column="llrq" jdbcType="TIMESTAMP" property="llrq" />
+    <result column="zt" jdbcType="VARCHAR" property="zt" />
+    <result column="wlgsid" jdbcType="VARCHAR" property="wlgsid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, jjrdh, jjrdz, jjr, jsrq, sjrdz, sjrdh, sjr, llrq, zt, wlgsid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wl
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="generate.Wl" useGeneratedKeys="true">
+    insert into wl (jjrdh, jjrdz, jjr, 
+      jsrq, sjrdz, sjrdh, 
+      sjr, llrq, zt, wlgsid
+      )
+    values (#{jjrdh,jdbcType=VARCHAR}, #{jjrdz,jdbcType=VARCHAR}, #{jjr,jdbcType=VARCHAR}, 
+      #{jsrq,jdbcType=TIMESTAMP}, #{sjrdz,jdbcType=VARCHAR}, #{sjrdh,jdbcType=VARCHAR}, 
+      #{sjr,jdbcType=VARCHAR}, #{llrq,jdbcType=TIMESTAMP}, #{zt,jdbcType=VARCHAR}, #{wlgsid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="generate.Wl" useGeneratedKeys="true">
+    insert into wl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jjrdh != null">
+        jjrdh,
+      </if>
+      <if test="jjrdz != null">
+        jjrdz,
+      </if>
+      <if test="jjr != null">
+        jjr,
+      </if>
+      <if test="jsrq != null">
+        jsrq,
+      </if>
+      <if test="sjrdz != null">
+        sjrdz,
+      </if>
+      <if test="sjrdh != null">
+        sjrdh,
+      </if>
+      <if test="sjr != null">
+        sjr,
+      </if>
+      <if test="llrq != null">
+        llrq,
+      </if>
+      <if test="zt != null">
+        zt,
+      </if>
+      <if test="wlgsid != null">
+        wlgsid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jjrdh != null">
+        #{jjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjrdz != null">
+        #{jjrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="jjr != null">
+        #{jjr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsrq != null">
+        #{jsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sjrdz != null">
+        #{sjrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="sjrdh != null">
+        #{sjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sjr != null">
+        #{sjr,jdbcType=VARCHAR},
+      </if>
+      <if test="llrq != null">
+        #{llrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="wlgsid != null">
+        #{wlgsid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.Wl">
+    update wl
+    <set>
+      <if test="jjrdh != null">
+        jjrdh = #{jjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jjrdz != null">
+        jjrdz = #{jjrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="jjr != null">
+        jjr = #{jjr,jdbcType=VARCHAR},
+      </if>
+      <if test="jsrq != null">
+        jsrq = #{jsrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sjrdz != null">
+        sjrdz = #{sjrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="sjrdh != null">
+        sjrdh = #{sjrdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sjr != null">
+        sjr = #{sjr,jdbcType=VARCHAR},
+      </if>
+      <if test="llrq != null">
+        llrq = #{llrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zt != null">
+        zt = #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="wlgsid != null">
+        wlgsid = #{wlgsid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.Wl">
+    update wl
+    set jjrdh = #{jjrdh,jdbcType=VARCHAR},
+      jjrdz = #{jjrdz,jdbcType=VARCHAR},
+      jjr = #{jjr,jdbcType=VARCHAR},
+      jsrq = #{jsrq,jdbcType=TIMESTAMP},
+      sjrdz = #{sjrdz,jdbcType=VARCHAR},
+      sjrdh = #{sjrdh,jdbcType=VARCHAR},
+      sjr = #{sjr,jdbcType=VARCHAR},
+      llrq = #{llrq,jdbcType=TIMESTAMP},
+      zt = #{zt,jdbcType=VARCHAR},
+      wlgsid = #{wlgsid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
