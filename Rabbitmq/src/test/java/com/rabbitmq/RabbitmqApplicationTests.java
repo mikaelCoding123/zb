@@ -35,9 +35,10 @@ class RabbitmqApplicationTests {
     @Test
     public void sendMsg(){
         User user = new User();
-        user.setPokid("12");
+        user.setPokid("sfs");
+        user.setPokid("1231423");
         user.setUsername("ming");
-        user.setPassword("78912");
+        user.setPassword("78912K2");
         rabbitTemplate.convertAndSend("exchange-test","test-one",user);
     }
 

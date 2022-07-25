@@ -29,7 +29,7 @@ public class RabbitListenerAc {
      * @rabbithandle  这个可以看看这么用
      */
     @RabbitListener(queues = {"test-one"})
-    public void js(Message msg, User user, Channel channel) {
+    public void ac(Message msg, User user, Channel channel) {
         byte[] body = msg.getBody();
 
         MessageProperties messageProperties = msg.getMessageProperties();

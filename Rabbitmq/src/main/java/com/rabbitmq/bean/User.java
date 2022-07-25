@@ -37,7 +37,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public void setPokid(String s) {
+    public void setPokid(String pokid) {
+        this.pokid= pokid;
     }
 
     @Override

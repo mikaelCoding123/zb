@@ -1,5 +1,6 @@
 package com.response;
 
+//简易版本
 public interface HttpStates {
 //
 //200	OK:请求

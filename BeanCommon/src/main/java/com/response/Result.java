@@ -12,7 +12,7 @@ public class Result extends HashMap<String, Object> {
     private static final long serialVersionUID = 1879L;
 
     public Result() {
-        put("code", HttpStates.Success);
+        put("code", HttpStatus.SC_OK);
         put("msg", "success");
     }
 

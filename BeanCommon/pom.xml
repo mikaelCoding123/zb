@@ -8,11 +8,11 @@
         <version>2.6.10</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.bean</groupId>
-    <artifactId>BeanCommon</artifactId>
+    <groupId>org.bean</groupId>
+    <artifactId>bean-common</artifactId>
     <version>1.0.0</version>
-    <name>BeanCommon</name>
-    <description>Demo project for Spring Boot</description>
+    <name>bean-common</name>
+    <description>common class and interface</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
