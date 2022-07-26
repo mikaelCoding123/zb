@@ -8,16 +8,20 @@
         <version>2.6.10</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.bean</groupId>
-    <artifactId>bean-common</artifactId>
-    <version>1.0.0</version>
+    <groupId>com</groupId>
+    <artifactId>common</artifactId>
+    <version>1.0</version>
     <name>bean-common</name>
     <description>common class and interface</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
-    <packaging>jar</packaging>
+<!--    <packaging>jar</packaging>-->
     <dependencies>
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+        </dependency>
 
     </dependencies>
 

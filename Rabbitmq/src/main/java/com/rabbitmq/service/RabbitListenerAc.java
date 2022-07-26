@@ -29,6 +29,7 @@ public class RabbitListenerAc {
      * @rabbithandle  这个可以看看这么用
      */
     @RabbitListener(queues = {"test-one"})
+//    {"pokid":"1231423","username":"ming","password":"78912K2"}
     public void ac(Message msg, User user, Channel channel) {
         byte[] body = msg.getBody();
 
