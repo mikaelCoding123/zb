@@ -28,13 +28,25 @@ public class SendMsgAction {
         rt.convertAndSend("exchange-hua","test-one",user);
         return null;
     }
-    //简单的一对一发送   exchange-hua  direct
+    //简单的一对一发送   exchange-hua  direct   rabbitmq返回
     @RequestMapping(value = "sendMsg-one-ack",method = RequestMethod.POST)
     public ServiceResult sendoneMsgACK(){
         User user = new User();
         user.setPokid("123");
         user.setUsername("明ke12k龚龖");
-        rt.convertAndSend("exchange-hua","test-one",user,new CorrelationData("12"));
+        rt.convertAndSend("exchange-hua","test-one1",user,new CorrelationData("12"));
+        return null;
+    }
+
+
+    //简单的一对一发送   exchange-hua  direct   rabbitmq返回
+    @RequestMapping(value = "sendMsg-one-ack_consumer",method = RequestMethod.POST)
+    public ServiceResult sendoneMsgACK_consumer(){
+        User user = new User();
+        user.setPokid("123");
+        user.setUsername("明ke12k龚龖");
+        user.setPassword("consumer");
+        rt.convertAndSend("exchange-hua","test-two",user,new CorrelationData("12"));
         return null;
     }
 

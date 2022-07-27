@@ -5,8 +5,11 @@ import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 @Slf4j
@@ -34,7 +37,27 @@ public class RabbitListenerAc {
         byte[] body = msg.getBody();
 
         MessageProperties messageProperties = msg.getMessageProperties();
+        try {
 
+            channel.basicAck(1l, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        log.info("====>>>>>" +user.toString());
+    }
+
+    @RabbitListener(queues = {"test-two"})
+//    {"pokid":"1231423","username":"ming","password":"78912K2"}
+    public void ac_consumer(Message msg, User user, Channel channel) {
+        byte[] body = msg.getBody();
+        MessageProperties messageProperties = msg.getMessageProperties();
+        try {
+
+            String messageId = messageProperties.getMessageId();
+            channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         log.info("====>>>>>" +user.toString());
     }
 }
