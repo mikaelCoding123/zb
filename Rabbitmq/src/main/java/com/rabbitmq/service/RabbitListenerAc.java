@@ -2,6 +2,7 @@ package com.rabbitmq.service;
 
 import com.rabbitmq.bean.User;
 import com.rabbitmq.client.Channel;
+import jdk.nashorn.internal.runtime.JSONFunctions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -38,11 +39,11 @@ public class RabbitListenerAc {
 
         MessageProperties messageProperties = msg.getMessageProperties();
         try {
-
-            channel.basicAck(1l, true);
+            channel.basicAck(msg.getMessageProperties().getDeliveryTag(), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         log.info("====>>>>>" +user.toString());
     }
 
@@ -51,10 +52,13 @@ public class RabbitListenerAc {
     public void ac_consumer(Message msg, User user, Channel channel) {
         byte[] body = msg.getBody();
         MessageProperties messageProperties = msg.getMessageProperties();
+        //在当前通道内自增
+        long deliveryTag = msg.getMessageProperties().getDeliveryTag();
         try {
 
             String messageId = messageProperties.getMessageId();
             channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
