@@ -52,7 +52,6 @@ public class RabbitListenerAc {
         byte[] body = msg.getBody();
         MessageProperties messageProperties = msg.getMessageProperties();
         try {
-
             String messageId = messageProperties.getMessageId();
             channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
         } catch (IOException e) {
