@@ -18,10 +18,7 @@
     </properties>
 <!--    <packaging>jar</packaging>-->
     <dependencies>
-        <dependency>
-            <groupId></groupId>
-            <artifactId></artifactId>
-        </dependency>
+
 
     </dependencies>
 
