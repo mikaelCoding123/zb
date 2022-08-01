@@ -39,7 +39,7 @@ public class initRabbitmq {
                 try {
                     s1 = new String(returnedMessage.getMessage().getBody(), "utf-8");
                     //s1为{"pokid":"123","username":"明ke12k龚龖","password":null}
-                    System.out.println(s1);
+                    log.info("没有投递到指定的queue"+s1);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

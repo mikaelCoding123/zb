@@ -34,7 +34,7 @@ public class SendMsgAction {
         User user = new User();
         user.setPokid("123");
         user.setUsername("明ke12k龚龖");
-        rt.convertAndSend("exchange-hua","test-one1",user,new CorrelationData("12"));
+        rt.convertAndSend("exchange-hua","test-one",user,new CorrelationData("12"));
         return null;
     }
 
@@ -49,5 +49,8 @@ public class SendMsgAction {
         rt.convertAndSend("exchange-hua","test-two",user,new CorrelationData("12"));
         return null;
     }
+
+
+
 
 }

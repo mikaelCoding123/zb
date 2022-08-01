@@ -2,11 +2,9 @@ package com.rabbitmq.service;
 
 import com.rabbitmq.bean.User;
 import com.rabbitmq.client.Channel;
-import jdk.nashorn.internal.runtime.JSONFunctions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
@@ -47,20 +45,4 @@ public class RabbitListenerAc {
         log.info("====>>>>>" +user.toString());
     }
 
-    @RabbitListener(queues = {"test-two"})
-//    {"pokid":"1231423","username":"ming","password":"78912K2"}
-    public void ac_consumer(Message msg, User user, Channel channel) {
-        byte[] body = msg.getBody();
-        MessageProperties messageProperties = msg.getMessageProperties();
-        //在当前通道内自增
-        long deliveryTag = msg.getMessageProperties().getDeliveryTag();
-        try {
-            String messageId = messageProperties.getMessageId();
-            channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        log.info("====>>>>>" +user.toString());
-    }
 }
