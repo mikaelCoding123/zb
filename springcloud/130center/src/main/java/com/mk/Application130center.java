@@ -1,16 +1,16 @@
 package com.mk;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 
+@EnableEurekaServer
 @SpringBootApplication
-@MapperScan(basePackages = {"com.mk.dao"})
-public class Application {
+public class Application130center {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application130center.class, args);
     }
 
 }

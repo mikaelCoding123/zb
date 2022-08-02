@@ -8,8 +8,4 @@ eureka:
       defaultZone: http://localhost:11300/eureka/
 spring:
   application:
-    name: mk-user
-feign:
-  httpclient:
-    connection-timeout: 1000
-
+    name: mk-bill
