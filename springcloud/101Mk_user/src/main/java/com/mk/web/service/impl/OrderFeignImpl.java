@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Component
-@FeignClient(value = "MK-BILL")
+@FeignClient(value = "MKBILL",fallback =FallBackTest.class )
 public interface OrderFeignImpl extends MK101use130commonApi{
 
     @GetMapping(value = "/bill/userid/{id}")
@@ -21,4 +21,8 @@ public interface OrderFeignImpl extends MK101use130commonApi{
 
     @PostMapping(value = "/postbill/userid")
     ServiceResult postusergetbill(@RequestBody User user);
+
+    @PostMapping(value = "balanceTest01/userid")
+    ServiceResult balanceTest01(@RequestBody User user);
+
 }

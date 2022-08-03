@@ -38,7 +38,7 @@ public class SendMsgAction {
         return null;
     }
 
-
+    //springboot2.0之后rabbitmqtemplate发送的消息都是默认持久化
     //简单的一对一发送   exchange-hua  direct   rabbitmq返回
     @RequestMapping(value = "sendMsg-one-ack_consumer",method = RequestMethod.POST)
     public ServiceResult sendoneMsgACK_consumer(){

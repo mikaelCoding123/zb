@@ -1,22 +1,14 @@
 package com.rabbitmq.config;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ReturnedMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.messaging.converter.JsonbMessageConverter;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Base64Utils;
-import sun.java2d.pipe.SpanIterator;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Base64;
 
 @Component
 @Slf4j
@@ -30,7 +22,6 @@ public class initRabbitmq {
     @PostConstruct
     public void initCallback() {
         rt.setMessageConverter(new Jackson2JsonMessageConverter());
-
         //消息没有投递到指定的queue，就触发这个回调
         rt.setReturnsCallback(new RabbitTemplate.ReturnsCallback() {
             @Override
@@ -46,6 +37,7 @@ public class initRabbitmq {
 
             }
         });
+
         // 消息发送到 Broker 后触发回调，确认消息是否到达 Broker 服务器，也就是只确认是否正确到达 Exchange 中
         //correlationData 消息唯一id
         //arrival   消息是否成功收到
