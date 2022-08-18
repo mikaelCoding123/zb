@@ -1,10 +1,10 @@
 package com.response;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ServiceResult implements Serializable {
-    private static final long serialVersionUID = 1635241255686L;
+public class ServiceResult {
+
+    private static final long serialVersionUID = -1952381222311672233L;
     private String resultCode = "000000";
     private String resultMsg = "";
     private Object resultObj = null;
@@ -93,6 +93,8 @@ public class ServiceResult implements Serializable {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.putCode("200").putFlag(true).putFlag(false);
         System.out.println(serviceResult);
+        System.out.println();
+        LocalDateTime now = LocalDateTime.now();
     }
 
     public static void setParams(String... str) {

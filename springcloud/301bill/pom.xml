@@ -20,6 +20,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.cloud.bean</groupId>
             <artifactId>cloud-bean</artifactId>
             <version>1.0.0</version>

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * 参数校验
+ */
 @Component
 @RestControllerAdvice
 public class MyValidated {

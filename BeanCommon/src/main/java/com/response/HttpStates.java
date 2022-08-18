@@ -12,11 +12,11 @@ public interface HttpStates {
 //520	后端服务请求失败
 //530	服务繁忙
 
-    int Success = 200;
-    int Bad_Request = 400;
-    int Server_error = 500;
-    int Parameter_error = 300;
-    int Request_failed = 520;
-    int Busy_service = 530;
-    int Server_Error_Msg=501;
+    public static final int Success = 200;
+    public static final int Bad_Request = 400;
+    public static final int Server_Error = 500;
+    public static final int Parameter_Error = 300;
+    public static final int Request_Failed = 520;
+    public static final int Busy_Service = 530;
+    public static final int Server_Error_Msg = 501;
 }

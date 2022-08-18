@@ -17,6 +17,16 @@ public class DemoAction {
     @RequestMapping(value = "/demo01", method = RequestMethod.POST)
     public void demo01Action() {
         demoService.demoService("1");
+    }
 
+
+    @RequestMapping(value = "/demo02",method = RequestMethod.GET)
+    public void demo02Action(){
+        demoService.demoService02(12+"");
+    }
+
+    @RequestMapping(value = "/demo03",method = RequestMethod.GET)
+    public void demo03Action(){
+        demoService.demoService03(12+"");
     }
 }

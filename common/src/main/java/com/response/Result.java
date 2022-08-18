@@ -9,7 +9,8 @@ import java.util.Map;
  * @Description:  返回数据统一化
  */
 public class Result extends HashMap<String, Object> {
-    private static final long serialVersionUID = 1879L;
+
+    private static final long serialVersionUID = 8667358312794598597L;
 
     public Result() {
         put("code", HttpStates.Success);

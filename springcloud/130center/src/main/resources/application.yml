@@ -26,3 +26,6 @@ eureka:
       # 单机 defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       # 相互注册
       defaultZone: http://localhost:11300/eureka/
+logging:
+  level:
+    com.netflix: warn

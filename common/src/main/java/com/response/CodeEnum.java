@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum CodeEnum {
-    SUCCESS(true, 20000, "成功"),
-    UNKNOWN_ERROR(false, 20001, "未知错误"),
-    PARAM_ERROR(false, 20002, "参数错误"),
+    SUCCESS(true, 200000, "成功"),
+    UNKNOWN_ERROR(false, 200001, "未知错误"),
+    PARAM_ERROR(false, 200002, "参数错误"),
     ;
 
     // 响应是否成功

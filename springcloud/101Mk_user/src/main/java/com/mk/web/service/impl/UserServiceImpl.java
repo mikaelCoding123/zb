@@ -7,6 +7,9 @@ import com.response.ServiceResult;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Service("UserServiceImpl")
 public class UserServiceImpl implements UserService {
@@ -32,4 +35,11 @@ public class UserServiceImpl implements UserService {
         }
         return new ServiceResult().putMsg("注册成功！");
     }
+
+    public static void main(String[] args) {
+        //这个ZonedDateTime可以获取after的时间
+        ZonedDateTime now = ZonedDateTime.now();
+        System.out.println(now);
+    }
+
 }

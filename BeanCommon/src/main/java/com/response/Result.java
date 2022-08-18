@@ -5,15 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @Description:  返回数据统一化
+ * @Description: 返回数据统一化
  */
 public class Result extends HashMap<String, Object> {
-    private static final long serialVersionUID = 1879L;
+    private final static long serialVersionUID = 21900790541721712L;
 
     public Result() {
-        put("code", HttpStatus.SC_OK);
-        put("msg", "success");
+        put("code", RestCodeEnum.SUCCESS.getCode());
+        put("msg", RestCodeEnum.SUCCESS.getMsg());
     }
 
     /**
@@ -40,7 +39,7 @@ public class Result extends HashMap<String, Object> {
         return r;
     }
 
-    public static Result ok(Map<String,?> map) {
+    public static Result ok(Map<String, ?> map) {
         Result r = new Result();
         r.putAll(map);
         return r;
@@ -59,7 +58,13 @@ public class Result extends HashMap<String, Object> {
         super.put("result", value);
         return this;
     }
-    public Object getResult(){
+
+    public Object getResult() {
         return super.get("result");
+    }
+
+    public static void main(String[] args) {
+        Result result = new Result();
+        System.out.println(result);
     }
 }

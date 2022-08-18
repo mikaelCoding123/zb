@@ -12,4 +12,3 @@ spring:
 feign:
   httpclient:
     connection-timeout: 1000
-

@@ -39,4 +39,13 @@ public class User implements Serializable  {
 
     public void setPokid(String s) {
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "pokid='" + pokid + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

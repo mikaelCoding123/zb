@@ -60,4 +60,21 @@
       `password` = #{password,jdbcType=VARCHAR}
     where pokid = #{pokid,jdbcType=BIGINT}
   </update>
+
+  <insert id="insertAdmin">
+    insert into admin (pokid,username,password) values(#{pokid},#{username},#{password})
+  </insert>
+
+
+<!--  <foreach collection ="userList" item="user" separator =",">
+            (#{user.id}, #{user.name}, #{user.password})
+        </foreach >-->
+
+
+  <insert id="insertAdminByBatch" parameterType="java.util.Arrays">
+    insert into test01 (pokid,username,password) values
+    <foreach collection ="test01s" item="test01" separator =",">
+      (#{test01.pokid},#{test01.username},#{test01.password})
+    </foreach >
+  </insert>
 </mapper>

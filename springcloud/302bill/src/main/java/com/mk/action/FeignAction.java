@@ -32,7 +32,6 @@ public class FeignAction {
     public ServiceResult balanceTest01(@RequestBody User user) {
         ServiceResult serviceResult = new ServiceResult();
         System.out.println("====>"+user.toString());
-        int i = 1/0;
         return serviceResult.putMsg("post "+pore);
     }
 }

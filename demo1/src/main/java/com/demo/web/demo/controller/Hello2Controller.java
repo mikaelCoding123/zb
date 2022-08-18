@@ -3,6 +3,7 @@ package com.demo.web.demo.controller;
 import cn.hutool.json.JSONObject;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/web2")
+@Slf4j
 public class Hello2Controller {
     private static final Logger logger = LoggerFactory.getLogger(Hello2Controller.class);
 
@@ -25,8 +27,8 @@ public class Hello2Controller {
         return null;
     }
 
-    @RequestMapping(value = "mybatis01",method = RequestMethod.POST)
-    public ServiceResult post01(@RequestBody JSONObject json){
+    @RequestMapping(value = "mybatis01", method = RequestMethod.POST)
+    public ServiceResult post01(@RequestBody JSONObject json) {
         demoService.findByid("1");
 
 

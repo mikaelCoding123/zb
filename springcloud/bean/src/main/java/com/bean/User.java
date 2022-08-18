@@ -3,7 +3,8 @@ package com.bean;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private final static long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = -4662775076072333649L;
     private String userid;
     private String username;
     private String password;

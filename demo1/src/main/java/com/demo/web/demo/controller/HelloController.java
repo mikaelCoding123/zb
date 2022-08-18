@@ -40,6 +40,13 @@ public class HelloController {
         return UUID;
     }
 
+    @GetMapping("/demo2/{uuid}")
+    public ServiceResult getUUID1(@PathVariable("uuid") String UUID) {
+        ServiceResult demo = demoService.getDemo("1");
+        log.info(">>>"+UUID);
+        return demo;
+    }
+
     @GetMapping("fisrtVoid")
     public ServiceResult fisrtVoid(HttpServletRequest request) {
         User user = new User();

@@ -2,6 +2,8 @@ package com.mk.action;
 
 
 import com.bean.User;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.response.ServiceResult;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +34,16 @@ public class FeignAction {
     public ServiceResult balanceTest01(@RequestBody User user) {
         ServiceResult serviceResult = new ServiceResult();
         System.out.println("====>"+user.toString());
-        int i = 1/0;
+        try {
+            Thread.sleep(15_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return serviceResult.putMsg("post "+pore);
+    }
+
+    public ServiceResult fallbacktest01(){
+        System.out.println("超时====》");
+        return null;
     }
 }
