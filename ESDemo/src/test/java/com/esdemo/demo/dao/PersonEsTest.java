@@ -6,9 +6,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +22,7 @@ class PersonEsTest {
     private PersonEs personEs;
 
     @Test
-    public void test01(){
+    public void test01() {
         double lat = 39.929986;
         double lon = 116.395645;
 
@@ -43,8 +45,18 @@ class PersonEsTest {
             person.setPhone("电话" + i);
             person.setAddress(dlat + "," + dlon);
 
-           personEs.save(person);
+            personEs.save(person);
         }
 //        personEs.saveAll(personList);
     }
+
+    @Test
+    public void test02() {
+        Optional<Person> byId = personEs.findById("100375");//通过id查找
+        Person person = new Person();
+
+        System.out.println(byId.get());
+    }
+
+
 }
