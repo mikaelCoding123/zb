@@ -1,10 +1,10 @@
 package com.mk.controller;
 
 import com.response.ServiceResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @RequestMapping("web")
 @RestController
@@ -17,4 +17,11 @@ public class DemoAction {
         return uuid;
 
     }
+    @RequestMapping(value = "/get",method = RequestMethod.POST)
+    public @ResponseBody String getAction(@RequestBody Map map, HttpServletRequest httpServletRequest){
+        System.out.println("map===>"+map);
+        return "";
+    }
+
+
 }
