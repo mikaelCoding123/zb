@@ -5,15 +5,18 @@ package com.response;
  */
 public enum RestCodeEnum {
     /***成功**/
-    SUCCESS("0000", "成功"),
-    /*****参数错误：1001-1999*************/
-    PARAM_IS_INVALID("1001", "参数无效"),
-    /***********用户错误：2001-2999******************************/
-    USER_NOT_LOGGED_IN("2001", "用户未登录，请登录"),
-    USER_LOGIN_ERROR("2002", "账号不存在或者密码错误"),
-    USER_ACCOUNT_FORBIDDEN("2003", "账号已被禁用"),
-    USER_NOT_EXIST("2004", "用户不存在"),
-    USER_HAS_EXISTED("2005", "用户已存在");
+    SUCCESS("00000", "成功"),
+    /*****参数错误：10001-19999*************/
+    PARAM_IS_INVALID("10001", "参数无效"),
+    /***********用户错误：20001-29999******************************/
+    USER_NOT_LOGGED_IN("20001", "用户未登录，请登录"),
+    USER_LOGIN_ERROR("20002", "账号不存在或者密码错误"),
+    USER_ACCOUNT_FORBIDDEN("20003", "账号已被禁用"),
+    USER_NOT_EXIST("20004", "用户不存在"),
+    USER_HAS_EXISTED("20005", "用户已存在"),
+    /*************第三方接口请求：30001-39999************************************/
+    THIRD_TOKEN_GET_FAILED("30001","token获取失败"),
+    THIRD_TOKEN_INVALID("30002","token失效");
 
     private String code;
     private String msg;
@@ -29,5 +32,11 @@ public enum RestCodeEnum {
 
     public String getMsg() {
         return msg;
+    }
+
+    public static void main(String[] args) {
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.putMsg(RestCodeEnum.SUCCESS.msg);
+        System.out.println(RestCodeEnum.SUCCESS.code);
     }
 }

@@ -10,10 +10,15 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class DemoController {
@@ -22,7 +27,7 @@ public class DemoController {
     private ElasticsearchRestTemplate restTemplate;
 
 
-    @PostMapping("/es")
+    @PostMapping("/es/add/book")
     public Object get() {
 //  查看book索引是否存在
 //        boolean target = restTemplate.indexOps(IndexCoordinates.of("book")).exists();
@@ -31,11 +36,11 @@ public class DemoController {
 //
         IndexQuery indexQuery = new IndexQuery();
         Book book = new Book();
-        book.setAuther("谭三");
+        book.setAuther("辑");
         book.setDate("2022-12-22");
         book.setTitile("剪辑");
         book.setWord_count("700");
-        indexQuery.setId("21");
+        indexQuery.setId(UUID.randomUUID().toString());
         indexQuery.setObject(book);
         String book1 = restTemplate.index(indexQuery, IndexCoordinates.of("book"));
         return book1;
@@ -63,7 +68,7 @@ public class DemoController {
     /**
      * 模糊查看titile字段是否包含 text字段内容
      */
-    @PostMapping("ESQuery/matchList")
+    @PostMapping("ESQuery/matchLikeList")
     public void matchList() {
         Pageable pageable = PageRequest.of(0, 10);
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
@@ -92,6 +97,25 @@ public class DemoController {
             System.out.println(value.toString());
         });
         System.out.println("======");
+    }
+
+    //multiMatchQuery
+    @PostMapping("/es/multi")
+    public void multiMatchQuery(){
+        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+        NativeSearchQuery query = builder.withQuery(QueryBuilders.matchPhraseQuery("titile", "辑").slop(2))
+                .build();
+        NativeSearchQuery query2 = builder.withQuery(QueryBuilders.matchPhraseQuery("auther", "辑").slop(2))
+                .build();
+        List<Query> queries = new ArrayList<>();
+        queries.add(query);
+        queries.add(query2);
+        List<SearchHits<Book>> search = restTemplate.multiSearch(queries, Book.class);
+        search.forEach(value -> {
+            System.out.println(value.toString());
+        });
+        System.out.println("======");
+
     }
 
 }
