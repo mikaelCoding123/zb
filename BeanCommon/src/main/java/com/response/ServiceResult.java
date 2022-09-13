@@ -2,14 +2,19 @@ package com.response;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
+/**
+ * resultCode,resultMsg  必须从ResetCodeEnum中获取
+ */
 public class ServiceResult implements Serializable {
     private static final long serialVersionUID = 1635241255686L;
-    private String resultCode = "000000";
-    private String resultMsg = "";
+    private String resultCode = RestCodeEnum.SUCCESS.getCode();
+    private String resultMsg = RestCodeEnum.SUCCESS.getMsg();
     private Object resultObj = null;
     private boolean flag = false;//返回的信息是否展示，true 前端要展示resultMsg
-    private String time = LocalDateTime.now().toString();
+    private String timestamp = LocalDateTime.now().toString();
 
     public boolean isFlag() {
         return flag;
@@ -30,6 +35,12 @@ public class ServiceResult implements Serializable {
         this.resultCode = code;
         this.resultMsg = message;
     }
+
+    public ServiceResult(RestCodeEnum restCodeEnum) {
+        this.resultMsg = restCodeEnum.getMsg();
+        this.resultCode = restCodeEnum.getCode();
+    }
+
 
     public ServiceResult(String code, String message, Object object) {
     }
@@ -90,28 +101,36 @@ public class ServiceResult implements Serializable {
 
 
     public static void main(String[] args) {
+        RestCodeEnum success = RestCodeEnum.SUCCESS;
+        //时区
+        ZonedDateTime now = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/New_York"));
+        System.out.println(now);
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.putCode("200").putFlag(true).putFlag(false);
+        ServiceResult serviceResult1 = serviceResult.restCode_ERROR(RestCodeEnum.SUCCESS);
+//        serviceResult.putCode("200").putFlag(true).putFlag(false);
         System.out.println(serviceResult);
+        ServiceResult serviceResult2 = new ServiceResult(RestCodeEnum.PARAM_IS_INVALID);
+        System.out.println(serviceResult2);
+        serviceResult2.restCode(RestCodeEnum.RC91000);
+        System.out.println(serviceResult2);
     }
 
     public static void setParams(String... str) {
         if (str.length > 3) {
             return;
         }
-
         for (int i = 0; i < str.length; i++) {
 
         }
         System.out.println(str);
     }
 
-    public String getTime() {
-        return time;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     @Override
@@ -121,11 +140,11 @@ public class ServiceResult implements Serializable {
                 ", resultMsg='" + resultMsg + '\'' +
                 ", resultObj=" + resultObj +
                 ", flag=" + flag +
-                ", time=" + time +
+                ", timestamp=" + timestamp +
                 '}';
     }
 
-    /***链式编程*****/
+    /***********************链式编程************************************************/
     public ServiceResult putCode(String code) {
         this.setResultCode(code);
         return this;
@@ -144,5 +163,18 @@ public class ServiceResult implements Serializable {
     public ServiceResult putFlag(Boolean flag) {
         this.setFlag(flag);
         return this;
+    }
+
+    /******************************************************************/
+    public ServiceResult restCode_ERROR(RestCodeEnum restCodeEnum) {
+        return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode());
+    }
+
+    public ServiceResult restCode_OBJECT(RestCodeEnum restCodeEnum, Object object) {
+        return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode()).putObject(object);
+    }
+
+    public ServiceResult restCode(RestCodeEnum restCodeEnum) {
+        return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode());
     }
 }

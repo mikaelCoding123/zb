@@ -16,8 +16,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class DemoServiceImpl implements DemoService {
@@ -30,6 +29,9 @@ public class DemoServiceImpl implements DemoService {
 
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
+
+    @Resource
+    private  SqlSession sqlSession;
 
     /**
      * 编程式事务
@@ -115,5 +117,22 @@ public class DemoServiceImpl implements DemoService {
         stopWatch.stop();
         logger.info(stopWatch.prettyPrint());
 
+    }
+
+    /**
+     * 实现根据string执行xml中相对应的sql
+     *
+     * DATA跟xml中的id对应，hashmap则是对应的参数
+     * 其中DATA必须是所有xml id 中唯一的，否则会报错
+     *
+     */
+    @Override
+    public void demoService04() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("username","1e34e7e2");
+        List<Object> data = sqlSession.selectList("DATA", hashMap);
+        data.forEach((a)->{
+            System.out.println(a.toString());
+        });
     }
 }

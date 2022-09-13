@@ -18,4 +18,10 @@ public interface DemoDao  {
 
     @Insert("insert into admin (pokid,username, password) values(#{pokid},#{username},#{password}) ")
     int setAdmin(Map<String, String> paramsMap);
+
+    @Insert("insert into ip_address(pokid,ip,datetime,date,date_time) values(#{pokid}, )")
+    int insertIP(Map<String, String> paramsMap);
+
+    int insetDemo(Map<String,Object> paramsMap);
+    List<Map<String,Object>> selectIP();
 }

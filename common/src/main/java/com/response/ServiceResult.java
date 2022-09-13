@@ -2,6 +2,10 @@ package com.response;
 
 import java.time.LocalDateTime;
 
+/**
+ *
+ */
+@Deprecated
 public class ServiceResult {
 
     private static final long serialVersionUID = -1952381222311672233L;

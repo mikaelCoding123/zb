@@ -8,6 +8,7 @@ import java.util.Map;
  *
  * @Description:  返回数据统一化
  */
+@Deprecated
 public class Result extends HashMap<String, Object> {
 
     private static final long serialVersionUID = 8667358312794598597L;

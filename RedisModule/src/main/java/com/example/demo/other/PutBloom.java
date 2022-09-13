@@ -13,9 +13,6 @@ public class PutBloom  {
     @Resource(name = "nameBloom")
     private BloomFilter<String> bloomFilter;
 
-
-
-
     @PostConstruct
     public void setBloom() {
         for (int i = 0; i < 10000; i++) {

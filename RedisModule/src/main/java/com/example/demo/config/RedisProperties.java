@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * Redis配置文件的参数
+ * Redisson的Redis配置文件的参数
  */
 @Data
 @Component

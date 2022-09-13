@@ -25,7 +25,7 @@ import java.util.List;
 public class HelloController {
 
     @Value("${hkey}")
-    private String  hkey;
+    private String hkey;
 
     @Resource
     private DemoService demoService;
@@ -35,7 +35,7 @@ public class HelloController {
         ServiceResult serviceResult = new ServiceResult();
         ServiceResult demo = demoService.getDemo("1");
 
-        System.out.println(user.getPassword() + "====="+hkey);
+        System.out.println(user.getPassword() + "=====" + hkey);
         System.out.println(demo);
         return UUID;
     }
@@ -43,7 +43,7 @@ public class HelloController {
     @GetMapping("/demo2/{uuid}")
     public ServiceResult getUUID1(@PathVariable("uuid") String UUID) {
         ServiceResult demo = demoService.getDemo("1");
-        log.info(">>>"+UUID);
+        log.info(">>>" + UUID);
         return demo;
     }
 
@@ -57,8 +57,9 @@ public class HelloController {
         session.setAttribute("user", user);
         return null;
     }
+
     @GetMapping("secondVoid")
-    public ServiceResult getSecondV(){
+    public ServiceResult getSecondV() {
         System.out.println(hkey);
 
         return null;
@@ -66,32 +67,33 @@ public class HelloController {
 
     //简单的使用属性校验
     @PostMapping("/postBo")
-    public ServiceResult postBoVoid(@RequestBody @Valid DemoBo1 demo, BindingResult bindingResult){
-      log.info("POSTBO............");
-       if(bindingResult.hasErrors()){
-           List<FieldError> allErrors = bindingResult.getFieldErrors();
-           allErrors.forEach((item)->{
-               System.out.println(item.getField()+ item.getDefaultMessage());
-           });
-       }
+    public ServiceResult postBoVoid(@RequestBody @Valid DemoBo1 demo, BindingResult bindingResult) {
+        log.info("POSTBO............");
+        if (bindingResult.hasErrors()) {
+            List<FieldError> allErrors = bindingResult.getFieldErrors();
+            allErrors.forEach((item) -> {
+                System.out.println(item.getField() + item.getDefaultMessage());
+            });
+        }
         ServiceResult serviceResult = new ServiceResult();
 //        serviceResult.setResultObj(allErrors);
-        System.out.println(demo.getPokid()+"-------");
+        System.out.println(demo.getPokid() + "-------");
         return null;
     }
+
     @PostMapping("/postBo2")
-    public ServiceResult postBoVoid2(@RequestBody @Valid DemoBo1 demo){
+    public ServiceResult postBoVoid2(@RequestBody @Valid DemoBo1 demo) {
         log.info("POSTBO2............");
 
         ServiceResult serviceResult = new ServiceResult();
 //        serviceResult.setResultObj(allErrors);
-        System.out.println(demo.getPokid()+"-------");
+        System.out.println(demo.getPokid() + "-------");
         return null;
     }
 
 
     @PostMapping("/postJson")
-    public ServiceResult postBoVoid(@RequestBody Object paramsObj){
+    public ServiceResult postBoVoid(@RequestBody Object paramsObj) {
 
         System.out.println(paramsObj.toString());
         return null;
@@ -101,23 +103,30 @@ public class HelloController {
     public ServiceResult postException(@RequestBody DemoBo1 demo) throws ServiceException {
 
         try {
-            int i =1/0;
-        }catch (RuntimeException e){
-            throw new ServiceException("错误"+e.getMessage());
+            int i = 1 / 0;
+        } catch (RuntimeException e) {
+            throw new ServiceException("错误" + e.getMessage());
         }
 
         return null;
     }
 
-    @PostMapping("/toJSON")
-    public ServiceResult get(@RequestBody JSONObject json){
-//        String name =(String) json.get("name");
-
-        System.out.println(json);
-        return null;
+    @PostMapping("exception2")
+    public ServiceResult postException2(@RequestBody DemoBo1 demo) throws ServiceException {
+        ServiceResult serviceResult = new ServiceResult();
+        int i = 10 / 2;
+        return serviceResult.putObject(i);
     }
 
 
+    @PostMapping("/toJSON")
+    public ServiceResult get(@RequestBody JSONObject json) {
+//        String name =(String) json.get("name");
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultCode("ifuisfjk");
+        System.out.println(json);
+        return serviceResult;
+    }
 
 
 }

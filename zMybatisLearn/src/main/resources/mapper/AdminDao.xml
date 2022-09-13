@@ -77,4 +77,9 @@
       (#{test01.pokid},#{test01.username},#{test01.password})
     </foreach >
   </insert>
+
+
+  <select id="DATA" resultType="map">
+    select  * from  admin where username = #{username}
+  </select>
 </mapper>
