@@ -20,25 +20,25 @@ public class FeignAction {
     public ServiceResult usergetbill(@PathVariable("id")String id) {
         ServiceResult serviceResult = new ServiceResult();
         System.out.println("====>"+id);
-        return serviceResult.putMsg("get 200");
+        return serviceResult.putMsg("get 200\t"+pore);
     }
 
     @PostMapping("postbill/userid")
     public ServiceResult usergetbill(@RequestBody User user) {
         ServiceResult serviceResult = new ServiceResult();
         System.out.println("====>"+user.toString());
-        return serviceResult.putMsg("post 200");
+        return serviceResult.putMsg("post 200\t"+pore);
     }
 
     @PostMapping("balanceTest01/userid")
     public ServiceResult balanceTest01(@RequestBody User user) {
         ServiceResult serviceResult = new ServiceResult();
-        System.out.println("====>"+user.toString());
         try {
             Thread.sleep(15_000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("====>"+user.toString()+"\t"+pore);
         return serviceResult.putMsg("post "+pore);
     }
 

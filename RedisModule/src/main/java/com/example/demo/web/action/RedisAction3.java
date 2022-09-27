@@ -41,6 +41,11 @@ public class RedisAction3 {
         return serviceResult;
     }
 
+    /**
+     * 布隆过滤器
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "api/redis/test02/{id}", method = RequestMethod.GET)
     public ServiceResult getway02(@PathVariable("id")String id) {
         RBloomFilter<String> bloomFilter = redissonClient.getBloomFilter("bloom-filter");
@@ -68,10 +73,10 @@ public class RedisAction3 {
 
     @RequestMapping(value = "api/redis/test03", method = RequestMethod.GET)
     public ServiceResult getway03() {
-
-
         return redisService.getRedis();
     }
+
+
 
 
 }

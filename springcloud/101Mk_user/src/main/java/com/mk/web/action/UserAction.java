@@ -47,8 +47,8 @@ public class UserAction {
         user.setUsername("hua");
         user.setPassword("1234");
         System.out.println(user.toString());
-        ServiceResult usergetbill = orderFeign.usergetbill(user.toString());
-        ServiceResult postusergetbill = orderFeign.postusergetbill(user);
+        com.bean.response.ServiceResult usergetbill = orderFeign.usergetbill(user.toString());
+        com.bean.response.ServiceResult postusergetbill = orderFeign.postusergetbill(user);
         System.out.println("");
         return null;
     }

@@ -25,11 +25,13 @@ public class FeignAction {
     public ServiceResult test01(){
         User user = new User();
         user.setUserid("111");
-        ServiceResult serviceResult = orderFeign.balanceTest01(user);
+       ServiceResult serviceResult = orderFeign.balanceTest01(user);
         return serviceResult;
     }
     public ServiceResult payment_TimeOutHandler(){
         System.out.println("payment_TimeOutHandler===>");
-        return null;
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultMsg("超时了。。。。执行回滚操作多个服务");
+        return serviceResult;
     }
 }

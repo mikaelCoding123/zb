@@ -7,6 +7,8 @@ import com.demo.web.demo.service.DemoService;
 import com.exception.ServiceException;
 import com.response.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -21,8 +23,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/web")
 @SessionAttributes("user")
-@Slf4j
 public class HelloController {
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Value("${hkey}")
     private String hkey;
@@ -32,6 +34,7 @@ public class HelloController {
 
     @GetMapping("/demo1/{uuid}")
     public String getUUID(@PathVariable("uuid") String UUID, @ModelAttribute("user") User user) {
+        logger.info("UUID====>"+UUID);
         ServiceResult serviceResult = new ServiceResult();
         ServiceResult demo = demoService.getDemo("1");
 
@@ -43,7 +46,6 @@ public class HelloController {
     @GetMapping("/demo2/{uuid}")
     public ServiceResult getUUID1(@PathVariable("uuid") String UUID) {
         ServiceResult demo = demoService.getDemo("1");
-        log.info(">>>" + UUID);
         return demo;
     }
 
@@ -68,7 +70,6 @@ public class HelloController {
     //简单的使用属性校验
     @PostMapping("/postBo")
     public ServiceResult postBoVoid(@RequestBody @Valid DemoBo1 demo, BindingResult bindingResult) {
-        log.info("POSTBO............");
         if (bindingResult.hasErrors()) {
             List<FieldError> allErrors = bindingResult.getFieldErrors();
             allErrors.forEach((item) -> {
@@ -83,7 +84,6 @@ public class HelloController {
 
     @PostMapping("/postBo2")
     public ServiceResult postBoVoid2(@RequestBody @Valid DemoBo1 demo) {
-        log.info("POSTBO2............");
 
         ServiceResult serviceResult = new ServiceResult();
 //        serviceResult.setResultObj(allErrors);
