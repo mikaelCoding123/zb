@@ -82,4 +82,6 @@
   <select id="DATA" resultType="map">
     select  * from  admin where username = #{username}
   </select>
+
+
 </mapper>

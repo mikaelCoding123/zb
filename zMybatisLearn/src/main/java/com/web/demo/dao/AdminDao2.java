@@ -19,8 +19,13 @@ public interface AdminDao2 extends BaseMapper<Admin> {
     Admin selectByPrimaryKey(Long pokid);
     int insertAdmin(Admin admin);
     int insertAdminByBatch(List<Test01> test01s);
+
+
+    void DUPLICATE(Admin admin);
 //
 //    int updateByPrimaryKeySelective(Admin record);
 //
 //    int updateByPrimaryKey(Admin record);
+
+
 }

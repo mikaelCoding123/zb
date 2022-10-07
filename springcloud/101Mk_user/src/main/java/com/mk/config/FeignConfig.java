@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FeignConfig {
-
     /**
      * feignClient配置日志级别
      *

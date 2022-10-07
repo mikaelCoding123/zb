@@ -82,4 +82,10 @@
   <select id="DATA2" resultType="map">
     select t.*,t.pokid from  admin t where username = #{username}
   </select>
+<!--  mysql类似merge into的作用-->
+  <select id="DUPLICATE">
+    INSERT INTO admin (pokid, username, password) values (#{pokid},#{username},#{password})
+      ON DUPLICATE KEY UPDATE username=#{username}, password=#{password}
+  </select>
+
 </mapper>

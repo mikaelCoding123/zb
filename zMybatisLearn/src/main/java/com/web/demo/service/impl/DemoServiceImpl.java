@@ -3,6 +3,7 @@ package com.web.demo.service.impl;
 import com.web.demo.bo.Admin;
 import com.web.demo.bo.Test01;
 import com.web.demo.dao.AdminDao;
+import com.web.demo.dao.AdminDao2;
 import com.web.demo.service.DemoService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,6 +24,8 @@ public class DemoServiceImpl implements DemoService {
     protected final Log logger = LogFactory.getLog(this.getClass());
     @Resource
     private AdminDao adminDao;
+    @Resource
+    private AdminDao2 adminDao2;
 
     @Resource
     private TransactionTemplate transactionTemplate;
@@ -39,8 +42,6 @@ public class DemoServiceImpl implements DemoService {
      */
     @Override
     public void demoService(String id) {
-
-
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
@@ -49,6 +50,9 @@ public class DemoServiceImpl implements DemoService {
                 admin1.setUsername("hua123");
                 admin1.setPokid(12366l);
                 adminDao.insertAdmin(admin1);
+                //todo
+                //会报异常待解决
+                adminDao2.DUPLICATE(admin1);
                 admin1.setPokid(1234l);
             }
         });
@@ -63,8 +67,9 @@ public class DemoServiceImpl implements DemoService {
                 admin1.setUsername("hua123");
                 admin1.setPokid(123l);
                 adminDao.insertAdmin(admin1);
+
                 admin1.setPokid(1234l);
-                int i = 1 / 0;
+//                int i = 1 / 0;
             }
         });
 
