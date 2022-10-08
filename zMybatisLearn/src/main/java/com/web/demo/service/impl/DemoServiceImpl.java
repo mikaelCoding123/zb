@@ -52,13 +52,18 @@ public class DemoServiceImpl implements DemoService {
                 adminDao.insertAdmin(admin1);
                 //todo
                 //会报异常待解决
-                adminDao2.DUPLICATE(admin1);
+                try {
+                    adminDao2.DUPLICATE(admin1);
+                }catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
                 admin1.setPokid(1234l);
             }
         });
 
         Admin admin = adminDao.selectById(1L);
         System.out.println(admin);
+        logger.info("11232");
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
@@ -66,6 +71,7 @@ public class DemoServiceImpl implements DemoService {
                 admin1.setPassword("123");
                 admin1.setUsername("hua123");
                 admin1.setPokid(123l);
+
                 adminDao.insertAdmin(admin1);
 
                 admin1.setPokid(1234l);
