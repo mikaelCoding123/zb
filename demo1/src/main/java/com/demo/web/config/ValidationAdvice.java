@@ -14,7 +14,6 @@ import java.util.List;
  * 验证不通过时获取的异常
  */
 @RestControllerAdvice
-@Slf4j
 public class ValidationAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

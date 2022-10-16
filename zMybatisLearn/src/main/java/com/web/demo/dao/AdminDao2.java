@@ -27,5 +27,6 @@ public interface AdminDao2 extends BaseMapper<Admin> {
 //
 //    int updateByPrimaryKey(Admin record);
 
+    void replaceINTO(Admin admin);
 
 }

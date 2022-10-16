@@ -5,19 +5,20 @@ import com.demo.web.demo.dao.DemoMapper;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.xml.ws.handler.Handler;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class DemoServiceImpl implements DemoService {
-
+private static final Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
     @Resource
     private DemoDao demoDao;
 
@@ -70,5 +71,14 @@ public class DemoServiceImpl implements DemoService {
             System.out.println(a.toString());
         });
         return null;
+    }
+    //测试logback.xml是否可以分割日志
+//    @Scheduled(cron = "30 10 1 * * ?")
+    public void test(){
+        int i=0;
+        while (1000000>i) {
+            logger.info("=====>" + UUID.randomUUID().toString());
+            i++;
+        }
     }
 }

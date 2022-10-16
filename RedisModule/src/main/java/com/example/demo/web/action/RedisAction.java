@@ -4,6 +4,8 @@ import com.bean.User;
 import com.google.gson.Gson;
 import com.response.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("redis")
-@Slf4j
 public class RedisAction {
-
+    private static final Logger log = LoggerFactory.getLogger(RedisAction.class);
     @Resource
     private RedisTemplate redisTemplate;
     @Resource
@@ -28,7 +29,7 @@ public class RedisAction {
      */
     @GetMapping("test01")
     public ServiceResult test01() {
-//        log.info("===>" + redisTemplate.opsForValue().get("name").toString());
+        log.info("===>" + redisTemplate.opsForValue().get("name").toString());
         redisTemplate.opsForValue().set("name", "画12", 10_000l, TimeUnit.SECONDS);
         log.info(redisTemplate.opsForValue().get("name").toString());
         ServiceResult serviceResult = new ServiceResult();

@@ -46,5 +46,10 @@ public class DemoAction {
         return txtNum+"===="+name;
     }
 
+    @RequestMapping(value = "likeMerge",method = RequestMethod.POST)
+    public void test01(){
+        demoService.demoService04();
+    }
+
 
 }

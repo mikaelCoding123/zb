@@ -117,7 +117,7 @@ public class HelloController {
     public ServiceResult postException2(@RequestBody DemoBo1 demo) throws ServiceException {
         ServiceResult serviceResult = new ServiceResult();
         int i = 10 / 2;
-        return serviceResult.putObject(i);
+        return null;
     }
 
 

@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * 参数校验
  */
-@Component
 @RestControllerAdvice
 public class MyValidated {
 

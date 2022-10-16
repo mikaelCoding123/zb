@@ -88,4 +88,7 @@
       ON DUPLICATE KEY UPDATE username=#{username}, password=#{password}
   </select>
 
+  <insert id="replaceINTO">
+replace into admin (pokid, username, password) values(#{pokid},#{username},#{password});
+  </insert>
 </mapper>

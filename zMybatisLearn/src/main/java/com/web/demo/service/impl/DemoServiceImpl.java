@@ -16,6 +16,7 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.StopWatch;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.*;
 
@@ -53,7 +54,7 @@ public class DemoServiceImpl implements DemoService {
                 //todo
                 //会报异常待解决
                 try {
-                    adminDao2.DUPLICATE(admin1);
+//                    adminDao2.DUPLICATE(admin1);
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                 }
@@ -146,4 +147,21 @@ public class DemoServiceImpl implements DemoService {
             System.out.println(a.toString());
         });
     }
+
+
+    //replace into 使用有缺点
+    //replace操作在自增主键的情况下，遇到唯一键冲突时执行的是delete+insert,但是在记录binlog时,却记录成了update操作,update操作不会
+    //涉及到auto_increment的修改。
+    //备库应用了binlog之后，备库的表的auto_increment属性不变。如果主备库发生主从切换，备库变为原来的主库，写新的主库则有风险发生主键冲突
+    //频繁的REPLACE INTO 会造成新纪录的主键的值迅速增大。总有一天。达到最大值后就会因为数据太大溢出了。就没法再插入新纪录了。数据表满了，
+    //不是因为空间不够了，而是因为主键的值没法再增加了。
+    @PostConstruct
+    public void replaceINSERT(){
+        Admin admin1 = new Admin();
+        admin1.setPassword("123");
+        admin1.setUsername("hua123");
+        admin1.setPokid(123l);
+        adminDao2.replaceINTO(admin1);
+    }
+
 }

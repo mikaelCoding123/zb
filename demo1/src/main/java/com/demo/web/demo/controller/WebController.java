@@ -26,6 +26,7 @@ public class WebController {
     //可以不用指定method的get还是post方法，但是参数的名字必须跟url中参数一致
     @RequestMapping(value = "/test")
     public String getWf(String txtNum, String name) {
+
         logger.info("name====>" + txtNum);
         logger.info("name====>" + name);
         return txtNum + "=======" + name;
