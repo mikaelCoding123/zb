@@ -35,6 +35,7 @@ package response;/*
  *
  * @since 4.0
  */
+@Deprecated
 public interface HttpStatus {
 
     // --- 1xx Informational ---

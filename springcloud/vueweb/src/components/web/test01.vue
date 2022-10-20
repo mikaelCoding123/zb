@@ -5,7 +5,9 @@
 
 <script>
 export default {
-  name: "test01.vue"
+  name: "test01.vue",
+  methods:
+
 }
 </script>
 

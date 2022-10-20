@@ -10,8 +10,8 @@ import java.time.ZonedDateTime;
  */
 public class ServiceResult implements Serializable {
     private static final long serialVersionUID = 1635241255686L;
-    private String resultCode = RestCodeEnum.SUCCESS.getCode();
-    private String resultMsg = RestCodeEnum.SUCCESS.getMsg();
+    private String resultCode = "000000";
+    private String resultMsg = "";
     private Object resultObj = null;
     private boolean flag = false;//返回的信息是否展示，true 前端要展示resultMsg
     private String timestamp = LocalDateTime.now().toString();
@@ -103,15 +103,15 @@ public class ServiceResult implements Serializable {
     public static void main(String[] args) {
         RestCodeEnum success = RestCodeEnum.SUCCESS;
         //时区
-        ZonedDateTime now = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/New_York"));
-        System.out.println(now);
+//        ZonedDateTime now = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/New_York"));
+//        System.out.println(now);
         ServiceResult serviceResult = new ServiceResult();
         ServiceResult serviceResult1 = serviceResult.restCode_ERROR(RestCodeEnum.SUCCESS);
 //        serviceResult.putCode("200").putFlag(true).putFlag(false);
         System.out.println(serviceResult);
         ServiceResult serviceResult2 = new ServiceResult(RestCodeEnum.PARAM_IS_INVALID);
         System.out.println(serviceResult2);
-        serviceResult2.restCode(RestCodeEnum.RC91000);
+        serviceResult2.setCode(RestCodeEnum.RC91000);
         System.out.println(serviceResult2);
     }
 
@@ -135,7 +135,7 @@ public class ServiceResult implements Serializable {
 
     @Override
     public String toString() {
-        return "ServiceResult{" +
+        return "{" +
                 "resultCode='" + resultCode + '\'' +
                 ", resultMsg='" + resultMsg + '\'' +
                 ", resultObj=" + resultObj +
@@ -174,7 +174,7 @@ public class ServiceResult implements Serializable {
         return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode()).putObject(object);
     }
 
-    public ServiceResult restCode(RestCodeEnum restCodeEnum) {
+    public ServiceResult setCode(RestCodeEnum restCodeEnum) {
         return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode());
     }
 }

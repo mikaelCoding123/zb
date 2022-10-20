@@ -2,7 +2,8 @@ package com.demo.web.config;
 
 import com.exception.ServiceException;
 import com.response.ServiceResult;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,6 +16,8 @@ import java.util.List;
  */
 @RestControllerAdvice
 public class ValidationAdvice {
+
+    private static final Logger log = LoggerFactory.getLogger(ValidationAdvice.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ServiceResult getAdvice(MethodArgumentNotValidException e){
@@ -36,13 +39,13 @@ public class ValidationAdvice {
         return serviceResult;
     }
 
-//    //捕获自定义异常抛出异常信息
-//    @ExceptionHandler(Exception.class)
-//    public ServiceResult getAdvice2(Exception e){
-//        ServiceResult serviceResult = new ServiceResult();
-//        serviceResult.setResultMsg(e.getMessage());
-//        serviceResult.setResultCode("999999");
-//        return serviceResult;
-//    }
+    //捕获自定义异常抛出异常信息
+    @ExceptionHandler({Exception.class})
+    public ServiceResult getAdvice2(Exception e){
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultMsg(e.getMessage());
+        serviceResult.setResultCode("8888");
+        return serviceResult;
+    }
 
 }

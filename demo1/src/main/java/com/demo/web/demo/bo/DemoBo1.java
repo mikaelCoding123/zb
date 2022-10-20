@@ -18,7 +18,7 @@ public class DemoBo1 implements Serializable {
 
     @NotNull
     private int age;
-
+    //引用类型
     @Valid
     private ArrayList<Child> list;
 

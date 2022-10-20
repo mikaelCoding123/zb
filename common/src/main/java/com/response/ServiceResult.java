@@ -1,12 +1,13 @@
 package com.response;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  */
 @Deprecated
-public class ServiceResult {
+public class ServiceResult  implements Serializable {
 
     private static final long serialVersionUID = -1952381222311672233L;
     private String resultCode = "000000";
@@ -120,17 +121,6 @@ public class ServiceResult {
         this.time = time;
     }
 
-    @Override
-    public String toString() {
-        return "ServiceResult{" +
-                "resultCode='" + resultCode + '\'' +
-                ", resultMsg='" + resultMsg + '\'' +
-                ", resultObj=" + resultObj +
-                ", flag=" + flag +
-                ", time=" + time +
-                '}';
-    }
-
     /***链式编程*****/
     public ServiceResult putCode(String code) {
         this.setResultCode(code);
@@ -150,5 +140,16 @@ public class ServiceResult {
     public ServiceResult putFlag(Boolean flag) {
         this.setFlag(flag);
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceResult{" +
+                "resultCode='" + resultCode + '\'' +
+                ", resultMsg='" + resultMsg + '\'' +
+                ", resultObj=" + resultObj +
+                ", flag=" + flag +
+                ", time='" + time + '\'' +
+                '}';
     }
 }

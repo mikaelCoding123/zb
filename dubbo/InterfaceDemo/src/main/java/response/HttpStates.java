@@ -1,6 +1,7 @@
 package response;
 
 //简易版本
+@Deprecated
 public interface HttpStates {
 //
 //200	OK:请求
