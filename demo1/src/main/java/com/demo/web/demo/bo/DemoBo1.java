@@ -8,12 +8,17 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @NotNull：不能为null，但可以为empty，用在基本类型上
+ * @NotEmpty：不能为null，而且长度必须大于0，用在集合类上面
+ * @NotBlank：只能作用在String上，不能为null，而且调用trim()后，长度必须大于0
+ */
 public class DemoBo1 implements Serializable {
     @NotBlank(message = "pokid 不能为空")
     private String pokid;
     @Size(min = 3,max = 10,message = "username必须在3~10之间")
     private String username;
-    @NotNull
+    @NotNull(message = "password 不能为空")
     private String password;
 
     @NotNull

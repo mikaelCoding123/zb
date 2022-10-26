@@ -20,11 +20,11 @@ public class Result extends HashMap<String, Object> {
      * @Description: 返回 msg="未知异常，请联系管理员"
      */
     public static Result error() {
-        return error(HttpStates.Server_Error_Msg, "未知异常，请联系管理员");
+        return error(HttpStatus01.Server_Error_Msg, "未知异常，请联系管理员");
     }
 
     public static Result error(String msg) {
-        return error(HttpStates.Server_Error_Msg, msg);
+        return error(HttpStatus01.Server_Error_Msg, msg);
     }
 
     public static Result error(int code, String msg) {

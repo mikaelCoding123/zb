@@ -2,8 +2,9 @@ package bean;
 
 import java.io.Serializable;
 
+
 public class User implements Serializable {
-    private final static long serialVersionUID = 6035854L;
+    private final static long serialVersionUID =12L;
     private String id;
     private String name;
     private String age;

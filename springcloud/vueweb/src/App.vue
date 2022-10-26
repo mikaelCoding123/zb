@@ -6,14 +6,11 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Test01 from "@/components/web/test01";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    Test01
-
+    HelloWorld
   }
 }
 </script>

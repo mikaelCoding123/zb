@@ -2,8 +2,7 @@ package response;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.util.UUID;
 
 /**
  * resultCode,resultMsg  必须从ResetCodeEnum中获取
@@ -15,6 +14,7 @@ public class ServiceResult implements Serializable {
     private Object resultObj = null;
     private boolean flag = false;//返回的信息是否展示，true 前端要展示resultMsg
     private String timestamp = LocalDateTime.now().toString();
+    private String uuid= UUID.randomUUID().toString();
 
     public boolean isFlag() {
         return flag;
@@ -133,16 +133,7 @@ public class ServiceResult implements Serializable {
         this.timestamp = timestamp;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "resultCode='" + resultCode + '\'' +
-                ", resultMsg='" + resultMsg + '\'' +
-                ", resultObj=" + resultObj +
-                ", flag=" + flag +
-                ", timestamp=" + timestamp +
-                '}';
-    }
+
 
     /***********************链式编程************************************************/
     public ServiceResult putCode(String code) {
@@ -176,5 +167,25 @@ public class ServiceResult implements Serializable {
 
     public ServiceResult setCode(RestCodeEnum restCodeEnum) {
         return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode());
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceResult{" +
+                "resultCode='" + resultCode + '\'' +
+                ", resultMsg='" + resultMsg + '\'' +
+                ", resultObj=" + resultObj +
+                ", flag=" + flag +
+                ", timestamp='" + timestamp + '\'' +
+                ", uuid='" + uuid + '\'' +
+                '}';
     }
 }

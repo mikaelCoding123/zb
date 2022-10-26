@@ -2,7 +2,7 @@ package response;
 
 //简易版本
 @Deprecated
-public interface HttpStates {
+public interface HttpStatus01 {
 //
 //200	OK:请求
 //400	Bad Request：客户端请求的语法错误，服务器无法理解

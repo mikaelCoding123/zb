@@ -18,11 +18,23 @@ public class UserAction {
 
     //dubbo调用userdemo服务
     @RequestMapping("/news")
-    public ServiceResult getUser(){
+    public ServiceResult getUser() throws Exception {
         User hfjks = newsService.findUser("hfjks");
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setResultObj(hfjks);
 
         return serviceResult;
     }
+
+    //dubbo调用userdemo服务
+    @RequestMapping("/news/timeout")
+    public ServiceResult getTimeout() throws Exception {
+        User hfjks = newsService.findUser("hfjks");
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultObj(hfjks);
+
+        return serviceResult;
+    }
+
+
 }
