@@ -38,6 +38,7 @@ public class User implements Serializable  {
     }
 
     public void setPokid(String s) {
+        this.pokid=s;
     }
 
     @Override

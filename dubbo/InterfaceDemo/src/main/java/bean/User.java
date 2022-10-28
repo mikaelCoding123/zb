@@ -41,4 +41,14 @@ public class User implements Serializable {
     public void setObject(Object object) {
         this.object = object;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=\"" + id + '\"' +
+                ", name=\"" + name + '\"' +
+                ", age=\"" + age + '\"' +
+                ", object=" + object +
+                '}';
+    }
 }

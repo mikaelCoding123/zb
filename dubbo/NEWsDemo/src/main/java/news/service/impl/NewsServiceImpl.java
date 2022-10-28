@@ -13,13 +13,28 @@ public class NewsServiceImpl implements NewsService {
 
     private static final Logger log = LoggerFactory.getLogger(NewsServiceImpl.class);
 
-    @Reference(url = "${dubbourl}")
+    @Reference(retries = 3,timeout = 7_000)
     private UserService userService;
 
     @Override
     public User findUser(String name) throws Exception {
+        log.info("次数");
         User user = userService.findUser(name);
         return user;
+    }
+
+    @Override
+    public User findUsertimeout(String name) throws Exception {
+        User user = userService.findUsertimeout(name);
+        log.info(user.toString());
+        return user;
+    }
+
+    @Override
+    public User findUserRetries(String name) throws Exception {
+        log.info("次数");
+        User userException = userService.findUserRetries(name);
+        return userException;
     }
 
     public String nocall() {
