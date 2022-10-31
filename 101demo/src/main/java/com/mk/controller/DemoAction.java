@@ -30,7 +30,7 @@ public class DemoAction {
     @GetMapping("/demo")
     public String getDemo(@RequestParam Map<String, String> bo) {
         System.out.println(bo.toString());
-        return "";
+        return "12121";
     }
 
 

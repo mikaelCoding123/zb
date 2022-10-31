@@ -38,4 +38,10 @@ public class UserRpcService implements UserService {
         user.setName("timeout");
         return user;
     }
+
+    @Override
+    public User findUserRet(User user) {
+        user.setName("userdemo2===>hua");
+        return user;
+    }
 }

@@ -2,6 +2,7 @@ package user.service;
 
 import bean.User;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.dubbo.rpc.RpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.UserService;
@@ -36,6 +37,20 @@ public class UserRpcService implements UserService {
         Thread.sleep(10_000);
         User user = new User();
         user.setName("timeout");
+        return user;
+    }
+
+    @Override
+    public User findUserRet(User user) {
+        log.info(user.toString());
+        try {
+            int i= 1/0;
+
+        }catch (Exception e){
+            throw new RpcException();
+        }
+
+        user.setName("userdemo====>hua");
         return user;
     }
 }

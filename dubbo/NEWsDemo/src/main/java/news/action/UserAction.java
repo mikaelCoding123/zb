@@ -2,6 +2,7 @@ package news.action;
 
 import bean.User;
 import news.service.NewsService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import response.ServiceResult;
@@ -43,5 +44,17 @@ public class UserAction {
         return serviceResult;
     }
 
+
+    //传递user给userdemo服务
+    @RequestMapping("/news/user")
+    public ServiceResult toUser(){
+        User user = new User();
+        user.setName("news==hua");
+        User user1 = newsService.toUserdemo( user);
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setResultObj(user1);
+        return serviceResult;
+
+    }
 
 }

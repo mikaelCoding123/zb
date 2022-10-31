@@ -6,6 +6,7 @@ import news.service.NewsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import service.UserService;
 
 @Service
@@ -13,7 +14,7 @@ public class NewsServiceImpl implements NewsService {
 
     private static final Logger log = LoggerFactory.getLogger(NewsServiceImpl.class);
 
-    @Reference(retries = 3,timeout = 7_000)
+    @Reference(retries = 3, timeout = 7_000)
     private UserService userService;
 
     @Override
@@ -35,6 +36,13 @@ public class NewsServiceImpl implements NewsService {
         log.info("次数");
         User userException = userService.findUserRetries(name);
         return userException;
+    }
+
+    @Override
+    public User toUserdemo(@Validated User user) {
+        User userRet = userService.findUserRet(user);
+
+        return userRet;
     }
 
     public String nocall() {

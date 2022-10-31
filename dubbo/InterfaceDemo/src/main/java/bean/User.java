@@ -1,10 +1,13 @@
 package bean;
 
+import com.sun.istack.internal.NotNull;
+
 import java.io.Serializable;
 
 
 public class User implements Serializable {
     private final static long serialVersionUID =12L;
+    @NotNull
     private String id;
     private String name;
     private String age;
