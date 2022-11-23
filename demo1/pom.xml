@@ -17,6 +17,20 @@
         <java.version>1.8</java.version>
     </properties>
     <packaging>jar</packaging>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.yml</exclude>
+                </excludes>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
     <dependencies>
 
         <dependency>
@@ -41,6 +55,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com</groupId>
             <artifactId>common</artifactId>
             <version>1.0</version>
@@ -54,6 +73,16 @@
             <!--                    <groupId>log4j</groupId>-->
             <!--                </exclusion>-->
             <!--            </exclusions>-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-boot-starter-validation</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -83,16 +112,8 @@
 
 
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <executable>true</executable>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+
+
 
 </project>

@@ -26,8 +26,8 @@ import java.util.List;
 public class HelloController {
     private static final Logger log = LoggerFactory.getLogger(HelloController.class);
 
-    @Value("${hkey}")
-    private String hkey;
+    private String hkey="421rwee";
+
 
     @Resource
     private DemoService demoService;

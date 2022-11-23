@@ -3,8 +3,6 @@ package com.demo.web.config;
 import com.alibaba.fastjson.JSON;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 import com.response.Result;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
