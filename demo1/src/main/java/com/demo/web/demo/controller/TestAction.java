@@ -18,7 +18,6 @@ public class TestAction {
     @AccessLimit(seconds = 10, maxCount = 4)
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public ServiceResult test() {
-
         log.info("ttttttttttt");
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setResultMsg("ttttt");

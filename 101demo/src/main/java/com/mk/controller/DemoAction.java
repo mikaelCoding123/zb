@@ -34,4 +34,19 @@ public class DemoAction {
     }
 
 
+    //http://localhost:11010/web/demo2?dm=123&type=hfsu&name=更何况
+    //{dm=123, uuid=hfsu, name=更何况}
+    @GetMapping("/demo2")
+    public String getDemo(String name , String type, String dm, HttpServletRequest request) {
+
+        String headers =(String) request.getHeader("name");
+        System.out.println(name+"\t"+type+"\t"+dm);
+        return "12121";
+    }
+
+    public static void main(String[] args) {
+        int i=296%3;
+
+        System.out.println(i);
+    }
 }

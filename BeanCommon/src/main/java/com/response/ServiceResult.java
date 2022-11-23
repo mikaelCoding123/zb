@@ -112,6 +112,7 @@ public class ServiceResult implements Serializable {
         ServiceResult serviceResult2 = new ServiceResult(RestCodeEnum.PARAM_IS_INVALID);
         System.out.println(serviceResult2);
         serviceResult2.restCode(RestCodeEnum.RC91000);
+
         System.out.println(serviceResult2);
     }
 
