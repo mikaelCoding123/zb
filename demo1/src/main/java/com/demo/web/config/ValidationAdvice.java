@@ -39,12 +39,12 @@ public class ValidationAdvice {
         return serviceResult;
     }
 
-    //捕获自定义异常抛出异常信息
+    //捕获异常抛出异常信息
     @ExceptionHandler({Exception.class})
     public ServiceResult getAdvice2(Exception e){
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setResultMsg(e.getMessage());
-        serviceResult.setResultCode("8888");
+        serviceResult.setResultCode("888888");
         return serviceResult;
     }
 
