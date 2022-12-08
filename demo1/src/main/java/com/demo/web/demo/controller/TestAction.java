@@ -33,7 +33,6 @@ public class TestAction {
     }
 
     @RequestMapping(value = "json",method = RequestMethod.POST)
-    @SneakyThrows
     public void test01(@RequestBody Map<String, String> params){
         String s = params.toString();
         Assert.isNull(params.get("username"), "不能为空");
