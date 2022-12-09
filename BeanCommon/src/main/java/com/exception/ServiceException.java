@@ -2,7 +2,7 @@ package com.exception;
 
 import java.io.Serializable;
 
-public class ServiceException extends Exception implements Serializable {
+public class ServiceException extends RuntimeException implements Serializable {
     private String code = "";
     private String message = "";
 
