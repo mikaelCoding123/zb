@@ -47,7 +47,7 @@ public class ApiRestResponse<T> implements Serializable {
         return new ApiRestResponse<>(code, msg);
     }
 
-    public static <T> ApiRestResponse<T> error(RestCodeEnum ex) {//吧所有的错误都收拢在一起，这样遇到的话直接调用 利用异常枚举类即可
+    public static <T> ApiRestResponse<T> error(RestCodeEnum ex) {//所有的错误都收拢在一起，这样遇到的话直接调用 利用异常枚举类即可
         return new ApiRestResponse<>(ex.getCode(), ex.getMsg());
     }
 

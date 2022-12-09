@@ -25,7 +25,7 @@ public class SendMsgAction {
         User user = new User();
         user.setPokid("123");
         user.setUsername("明ke12");
-        rt.convertAndSend("exchange-hua","test-one",user);
+        rt.convertAndSend("exchange-hua","test-one",user,new CorrelationData("12"));
         return null;
     }
     //简单的一对一发送   exchange-hua  direct   rabbitmq返回

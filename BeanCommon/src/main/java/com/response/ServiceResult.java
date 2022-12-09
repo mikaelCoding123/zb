@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
  * resultCode,resultMsg  必须从ResetCodeEnum中获取
  */
 public class ServiceResult implements Serializable {
-    private static final long serialVersionUID = 1635241255686L;
+    private static final long serialVersionUID = -1L;
     private String resultCode = RestCodeEnum.SUCCESS.getCode();
     private String resultMsg = RestCodeEnum.SUCCESS.getMsg();
     private Object resultObj = null;
@@ -145,7 +145,7 @@ public class ServiceResult implements Serializable {
                 '}';
     }
 
-    /***********************链式编程************************************************/
+    /***********************编程************************************************/
     public ServiceResult putCode(String code) {
         this.setResultCode(code);
         return this;
