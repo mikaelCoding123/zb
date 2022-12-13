@@ -1,4 +1,6 @@
-package com.response;
+package com.common;
+
+import com.response.ServiceResult;
 
 /**
  * 接口返回枚举定义
@@ -58,7 +60,7 @@ public enum CodeEnum {
     }
 
     public static void main(String[] args) {
-        ServiceResult serviceResult = new ServiceResult();
+        com.response.ServiceResult serviceResult = new ServiceResult();
         serviceResult.putMsg(CodeEnum.SUCCESS.msg);
         System.out.println(CodeEnum.SUCCESS.code);
     }
