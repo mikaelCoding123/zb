@@ -13,4 +13,6 @@ public interface DemoService {
      ServiceResult findByid(String id);
 
      ServiceResult insertIP(Map<String,String> paramsMap);
+
+     ServiceResult insertLogs();
 }

@@ -6,6 +6,9 @@
         insert into ip_address(pokid, ip, datetime, date, date_time)
         values (#{pokid}, INET_ATON(#{ip}), #{datetime}, #{date}, #{date_time})
     </insert>
+    <insert id="insertlogs">
+        insert into logs(id,log) values (#{id},#{user})
+    </insert>
 
     <select id="selectIP" resultType="java.util.Map">
     select pokid,INET_NTOA(ip) ip,datetime,date,date_time from ip_address

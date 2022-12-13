@@ -1,5 +1,6 @@
 package com.demo.web.demo.service.impl;
 
+import com.bean.User;
 import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.dao.DemoMapper;
 import com.demo.web.demo.service.DemoService;
@@ -66,6 +67,20 @@ public class DemoServiceImpl implements DemoService {
 
             System.out.println(a.toString());
         });
+        return null;
+    }
+
+    @Override
+    public ServiceResult insertLogs() {
+        for (int i = 0; i < 20; i++) {
+            User user = new User();
+            user.setUsername("logs"+i);
+            user.setPassword("123");
+            user.setPokid(UUID.randomUUID().toString());
+            demoDao.insertlogs(UUID.randomUUID().toString(),user.toString());
+        }
+
+
         return null;
     }
 

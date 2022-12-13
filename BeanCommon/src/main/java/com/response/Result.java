@@ -1,70 +1,124 @@
 package com.response;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
 
 /**
- * @Description: 返回数据统一化
+ * @author mikael
+ * @date 2020-12-13
+ * @Description: 返回数据统一格式
  */
-public class Result extends HashMap<String, Object> {
-    private final static long serialVersionUID = 21900790541721712L;
+public class Result implements Serializable {
+    private static final long serialVersionUID = -8898003017479253967L;
+    private String code = CodeEnum.SUCCESS.getCode();
+    private String msg = CodeEnum.SUCCESS.getMsg();
+    private Object data = null;
+    /**
+     * 返回的信息是否展示，true 前端要展示msg中的内容
+     */
+    private boolean flag = false;
 
     public Result() {
-        put("code", RestCodeEnum.SUCCESS.getCode());
-        put("msg", RestCodeEnum.SUCCESS.getMsg());
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                ", flag=" + flag +
+                '}';
+    }
+
+    /*******************************************************/
+
+    /**
+     * code = u.getCode();
+     * msg = u.getMsg();
+     * data = data;
+     *
+     * @param u
+     * @param data
+     */
+    public void setEnum(CodeEnum u, Object data) {
+        this.code = u.getCode();
+        this.msg = u.getMsg();
+        this.data = data;
     }
 
     /**
-     * @Description: 返回 msg="未知异常，请联系管理员"
+     * code = CodeEnum.SUCCESS.getCode();
+     * msg = CodeEnum.SUCCESS.getMsg();
+     * data = data;
+     *
+     * @param data
      */
-    public static Result error() {
-        return error(HttpStates.Server_Error_Msg, "未知异常，请联系管理员");
+    public void success(Object data) {
+        this.code = CodeEnum.SUCCESS.getCode();
+        this.msg = CodeEnum.SUCCESS.getMsg();
+        this.data = data;
     }
 
-    public static Result error(String msg) {
-        return error(HttpStates.Server_Error_Msg, msg);
+    /**
+     * code = u.getCode();
+     * msg = u.getMsg();
+     *
+     * @param u
+     */
+    public void error(CodeEnum u) {
+        this.code = u.getCode();
+        this.msg = u.getMsg();
     }
 
-    public static Result error(int code, String msg) {
-        Result r = new Result();
-        r.put("code", code);
-        r.put("msg", msg);
-        return r;
-    }
-
-    public static Result ok(String msg) {
-        Result r = new Result();
-        r.put("msg", msg);
-        return r;
-    }
-
-    public static Result ok(Map<String, ?> map) {
-        Result r = new Result();
-        r.putAll(map);
-        return r;
-    }
-
-    public static Result ok() {
-        return new Result();
-    }
-
-    public Result put(String key, Object value) {
-        super.put(key, value);
-        return this;
-    }
-
-    public Result putResult(Object value) {
-        super.put("result", value);
-        return this;
-    }
-
-    public Object getResult() {
-        return super.get("result");
+    /**
+     * code = u.getCode();
+     * msg = e.getMessage();
+     *
+     * @param u
+     * @param e
+     */
+    public void setException(CodeEnum u, Exception e) {
+        this.code = u.getCode();
+        this.msg = e.getMessage();
     }
 
     public static void main(String[] args) {
         Result result = new Result();
+        result.setException(CodeEnum.ERROR, new Exception("异常21331"));
         System.out.println(result);
     }
 }

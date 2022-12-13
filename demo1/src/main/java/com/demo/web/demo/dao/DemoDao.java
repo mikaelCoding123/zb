@@ -1,6 +1,7 @@
 package com.demo.web.demo.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.bean.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,4 +25,5 @@ public interface DemoDao  {
 
     int insetDemo(Map<String,Object> paramsMap);
     List<Map<String,Object>> selectIP();
+    int insertlogs(@Param("id") String uuid , @Param("user")String user);
 }

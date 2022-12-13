@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * 描述：     通用返回对象
  */
+@Deprecated
 public class ApiRestResponse<T> implements Serializable {
     private final static long serialVersionUID = 1L;
     private String status;
@@ -84,12 +85,22 @@ public class ApiRestResponse<T> implements Serializable {
         this.data = data;
     }
 
+    public  void setEnum(RestCodeEnum u){
+        this.msg=u.getMsg();
+        this.status=u.getCode();
+    }
+
     public static String getOkCode() {
         return OK_CODE;
     }
 
     public static String getOkMsg() {
         return OK_MSG;
+    }
+
+    public static void main(String[] args) {
+        ApiRestResponse<Object> objectApiRestResponse = new ApiRestResponse<>();
+        objectApiRestResponse.setEnum(RestCodeEnum.SUCCESS);
     }
 }
  

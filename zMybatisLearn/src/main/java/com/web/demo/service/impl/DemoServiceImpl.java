@@ -5,6 +5,9 @@ import com.web.demo.bo.Test01;
 import com.web.demo.dao.AdminDao;
 import com.web.demo.dao.AdminDao2;
 import com.web.demo.service.DemoService;
+
+
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.ExecutorType;
@@ -18,7 +21,10 @@ import org.springframework.util.StopWatch;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DemoServiceImpl implements DemoService {
@@ -49,7 +55,7 @@ public class DemoServiceImpl implements DemoService {
                 Admin admin1 = new Admin();
                 admin1.setPassword("123");
                 admin1.setUsername("hua123");
-                admin1.setPokid(12366l);
+                admin1.setPokid(12366L);
                 adminDao.insertAdmin(admin1);
                 //todo
                 //会报异常待解决
@@ -58,7 +64,7 @@ public class DemoServiceImpl implements DemoService {
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                 }
-                admin1.setPokid(1234l);
+                admin1.setPokid(1234L);
             }
         });
 
@@ -71,11 +77,11 @@ public class DemoServiceImpl implements DemoService {
                 Admin admin1 = new Admin();
                 admin1.setPassword("123");
                 admin1.setUsername("hua123");
-                admin1.setPokid(123l);
+                admin1.setPokid(123L);
 
                 adminDao.insertAdmin(admin1);
 
-                admin1.setPokid(1234l);
+                admin1.setPokid(1234L);
 //                int i = 1 / 0;
             }
         });
@@ -160,7 +166,7 @@ public class DemoServiceImpl implements DemoService {
         Admin admin1 = new Admin();
         admin1.setPassword("123");
         admin1.setUsername("hua123");
-        admin1.setPokid(123l);
+        admin1.setPokid(123L);
         adminDao2.replaceINTO(admin1);
     }
 

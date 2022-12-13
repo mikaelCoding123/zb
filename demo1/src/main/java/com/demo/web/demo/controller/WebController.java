@@ -1,5 +1,7 @@
 package com.demo.web.demo.controller;
 
+import com.bean.User;
+import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
 import org.slf4j.Logger;
@@ -33,6 +35,11 @@ public class WebController {
         logger.info("name====>" + name);
         return txtNum + "=======" + name;
 
+    }
+
+    @RequestMapping(value = "insterLogs",method = RequestMethod.GET)
+    public void insertLogs(){
+        demoService.insertLogs();
     }
 
 
