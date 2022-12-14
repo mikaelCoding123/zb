@@ -26,4 +26,7 @@ public interface DemoDao  {
     int insetDemo(Map<String,Object> paramsMap);
     List<Map<String,Object>> selectIP();
     int insertlogs(@Param("id") String uuid , @Param("user")String user);
+
+    @Select("SELECT * from codeenum")
+    List<Map<String,String>> selectCodeEnum();
 }

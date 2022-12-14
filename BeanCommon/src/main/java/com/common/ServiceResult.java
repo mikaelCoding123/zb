@@ -2,6 +2,7 @@ package com.common;
 
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * @author mikael
@@ -10,7 +11,7 @@ import java.io.Serializable;
  */
 public class ServiceResult implements Serializable {
 
-    private static final long serialVersionUID = -1785390400287984857L;
+    private static final long serialVersionUID = -1L;
     private String code = CodeEnum.SUCCESS.getCode();
     private String msg = CodeEnum.SUCCESS.getMsg();
     private Object data = null;
@@ -57,7 +58,7 @@ public class ServiceResult implements Serializable {
 
     @Override
     public String toString() {
-        return "ServiceResult{" +
+        return "ServiceResult==>{" +
                 "code='" + code + '\'' +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
@@ -79,6 +80,7 @@ public class ServiceResult implements Serializable {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.code = u.getCode();
         serviceResult.msg = u.getMsg();
+        serviceResult.flag=u.isFlag();
         serviceResult.data = data;
         return serviceResult;
     }
@@ -90,12 +92,9 @@ public class ServiceResult implements Serializable {
      *
      * @param data
      */
-    public static ServiceResult success(Object data) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = CodeEnum.SUCCESS.getCode();
-        serviceResult.msg = CodeEnum.SUCCESS.getMsg();
-        serviceResult.data = data;
-        return serviceResult;
+    public static ServiceResult successObject(Object data) {
+        ServiceResult success = ServiceResult.setEnum(CodeEnum.SUCCESS, data);
+        return success;
     }
 
     /**
@@ -107,25 +106,19 @@ public class ServiceResult implements Serializable {
      * @param data
      * @return serviceResult
      */
-    public static Object success(CodeEnum u, Object data) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = u.getCode();
-        serviceResult.msg = u.getMsg();
-        serviceResult.data = data;
-        return serviceResult;
+    public static ServiceResult success(CodeEnum u, Object data) {
+        return  ServiceResult.setEnum(CodeEnum.SUCCESS,data);
     }
 
     /**
      * code = u.getCode();
      * msg = u.getMsg();
-     *
+     * flag=u.isFlag();
+     * data=null
      * @param u
      */
     public static ServiceResult error(CodeEnum u) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = u.getCode();
-        serviceResult.msg = u.getMsg();
-        return serviceResult;
+        return ServiceResult.setEnum(u, null);
     }
 
     /**
@@ -139,6 +132,7 @@ public class ServiceResult implements Serializable {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.code = u.getCode();
         serviceResult.msg = e.getMessage();
+        serviceResult.flag=u.isFlag();
         return serviceResult;
     }
 
@@ -177,10 +171,27 @@ public class ServiceResult implements Serializable {
         return serviceResult;
     }
 
+    /**
+     * 从数据库中获取的错误码
+     * map的形式
+     * "msg" -> "未知错误"
+     * "code" -> "99922"
+     * "flag" -> "1"
+     * "system" -> "pokweb"
+     *
+     * @param map
+     * @return
+     */
+    public static ServiceResult setErrorMap(Map<String, String> map) {
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setCode(map.get("code"));
+        serviceResult.setMsg(map.get("msg"));
+        serviceResult.setFlag("0".equals(map.get("flag")) ? false : true);
+        return serviceResult;
+    }
+
 
     public static void main(String[] args) {
-        ServiceResult result = new ServiceResult();
-        ServiceResult sfsd = ServiceResult.success("sfsd");
-        System.out.println(ServiceResult.success("sfsd"));
+        System.out.println(ServiceResult.successObject("sfsd"));
     }
 }

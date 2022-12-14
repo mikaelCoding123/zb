@@ -62,7 +62,7 @@ public class Hello2Controller {
         if (!StringUtils.isBlank(filename)) {
             URL resourceurl = new ClassPathResource("static/xls/" + filename).getURL();
             //URL resourceurl = Thread.currentThread().getContextClassLoader().getResource(filename);
-            this.fileDownload(response, resourceurl, name);
+            fileDownload(response, resourceurl, name);
         }
 
     }
