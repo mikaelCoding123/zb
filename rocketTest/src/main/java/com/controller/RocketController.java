@@ -42,11 +42,12 @@ public class RocketController {
     @RequestMapping("batch")
     public String batch() {
         long l = System.currentTimeMillis();
-        User user = new User();
+
         ArrayList<User> users = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
+            User user = new User();
             Message message = new Message();
-            user.setPokid(i + "");
+            user.setPokid(""+i);
             message.setBody(user.toString().getBytes(StandardCharsets.UTF_8));
             users.add(user);
         }
@@ -88,5 +89,11 @@ public class RocketController {
         MessageBuilder<String> builder = MessageBuilder.withPayload("");
 
 //        rocketMQTemplate.sendMessageInTransaction("producer", "transaction01", message, "01");
+    }
+
+    public static void main(String[] args) {
+        User user = new User();
+        user.setPokid(""+1);
+        System.out.println(user);
     }
 }

@@ -1,5 +1,8 @@
 ## 参考博客https://blog.csdn.net/langeldep/article/details/83342419
 ##启动指定配置文件启动broker
+```
+mqnamesrv.cmd
+```
 ```mqbroker.cmd -c broker.conf -n localhost:9876 autoCreateTopicEnable=true```
 ## broker.conf
 ``brokerClusterName = DefaultCluster

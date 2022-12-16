@@ -20,6 +20,7 @@ public class ServiceResult implements Serializable {
      */
     private boolean flag = false;
 
+
     public ServiceResult() {
     }
 
@@ -80,7 +81,7 @@ public class ServiceResult implements Serializable {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.code = u.getCode();
         serviceResult.msg = u.getMsg();
-        serviceResult.flag=u.isFlag();
+        serviceResult.flag = u.isFlag();
         serviceResult.data = data;
         return serviceResult;
     }
@@ -93,8 +94,8 @@ public class ServiceResult implements Serializable {
      * @param data
      */
     public static ServiceResult successObject(Object data) {
-        ServiceResult success = ServiceResult.setEnum(CodeEnum.SUCCESS, data);
-        return success;
+        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.SUCCESS, data);
+        return serviceResult;
     }
 
     /**
@@ -107,49 +108,53 @@ public class ServiceResult implements Serializable {
      * @return serviceResult
      */
     public static ServiceResult success(CodeEnum u, Object data) {
-        return  ServiceResult.setEnum(CodeEnum.SUCCESS,data);
+        return ServiceResult.setEnum(CodeEnum.SUCCESS, data);
+    }
+
+    /**
+     * SUCCESS("000000", "成功", false),
+     * ""
+     *
+     * @return
+     */
+    public static ServiceResult defaultSuccess() {
+        return ServiceResult.setEnum(CodeEnum.SUCCESS, null);
+    }
+
+    /**
+     * ERROR("99999", "错误", false),
+     * data=null
+     *
+     * @return
+     */
+    public static ServiceResult defaultError() {
+        return ServiceResult.setEnum(CodeEnum.ERROR, null);
     }
 
     /**
      * code = u.getCode();
      * msg = u.getMsg();
      * flag=u.isFlag();
-     * data=null
+     * data=o
+     *
      * @param u
      */
-    public static ServiceResult error(CodeEnum u) {
-        return ServiceResult.setEnum(u, null);
+    public static ServiceResult error(CodeEnum u, Object o) {
+        return ServiceResult.setEnum(u, o);
     }
 
     /**
      * code = u.getCode();
      * msg = e.getMessage();
+     * flag=u.getFlag();
+     * data = e
      *
      * @param u
      * @param e
      */
     public static ServiceResult setException(CodeEnum u, Exception e) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = u.getCode();
-        serviceResult.msg = e.getMessage();
-        serviceResult.flag=u.isFlag();
-        return serviceResult;
-    }
-
-    /**
-     * serviceResult.code = CodeEnum.ERROR.getCode();
-     * serviceResult.msg = msgEnum.getMsg_1() + msg + msgEnum.getMsg_2();
-     * serviceResult.flag=true;
-     *
-     * @param msgEnum
-     * @param msg
-     * @return
-     */
-    public static ServiceResult setErrorMsg(MsgEnum msgEnum, String msg) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = CodeEnum.ERROR.getCode();
-        serviceResult.msg = msgEnum.getMsg_1() + msg + msgEnum.getMsg_2();
-        serviceResult.flag = true;
+        ServiceResult serviceResult = ServiceResult.setEnum(u, e);
+        serviceResult.setMsg(e.getMessage());
         return serviceResult;
     }
 
@@ -157,17 +162,16 @@ public class ServiceResult implements Serializable {
      * serviceResult.code = CodeEnum.ERROR.getCode();
      * serviceResult.msg = msg;
      * serviceResult.flag=true;
-     * 尽量不要用，用多了代码容易混乱
+     * 尽量不要用，用多了代码容易混乱，建议使用MsgEnum来拼接msg
      *
      * @param msg
      * @return
      */
     @Deprecated
-    public static ServiceResult setErrorMsg(String msg) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = CodeEnum.ERROR.getCode();
-        serviceResult.msg = msg;
-        serviceResult.flag = true;
+    public static ServiceResult setErrorMsg(String msg, boolean flag) {
+        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.ERROR_MSG, null);
+        serviceResult.setMsg(msg);
+        serviceResult.setFlag(flag);
         return serviceResult;
     }
 
@@ -192,6 +196,6 @@ public class ServiceResult implements Serializable {
 
 
     public static void main(String[] args) {
-        System.out.println(ServiceResult.successObject("sfsd"));
+        System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
     }
 }

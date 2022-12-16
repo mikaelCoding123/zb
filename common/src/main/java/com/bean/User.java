@@ -8,17 +8,16 @@ public class User implements Serializable {
     private String username;
     private String password;
 
-    public User(String pokid, String username, String password) {
-        this.pokid = pokid;
-        this.username = username;
-        this.password = password;
-    }
-
     public User() {
     }
 
+
     public String getPokid() {
         return pokid;
+    }
+
+    public void setPokid(String pokid) {
+        this.pokid = pokid;
     }
 
     public String getUsername() {
@@ -35,9 +34,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setPokid(String s) {
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.common;
 
 /**
+ *encoded: UTF-8
+ *
  * 消息进行拼接的时候用到
  */
 public enum MsgEnum {

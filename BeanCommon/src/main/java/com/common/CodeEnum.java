@@ -1,25 +1,37 @@
 package com.common;
 
-import com.response.ServiceResult;
-
 /**
+ *
+ *
+ * encoded: UTF-8
+ *
  * 接口返回枚举定义
- * 只增加不删除
- * 错误的code定义规范：应用名简称或者应用代号+“-”+6位数字码
+ * 只增加不删除不修改
+ * <p>
+ * //200	OK:请求
+ * //400	Bad Request：客户端请求的语法错误，服务器无法理解
+ * //500	Internal Server Error：内部服务器错误
+ * //json 中的code值
+ * //200	结果正常
+ * //300	参数错误
+ * //520	后端服务请求失败
+ * //530	服务繁忙
  */
 public enum CodeEnum {
     /**
-     * success
+     * 成功
      */
     SUCCESS("000000", "成功", false),
     /**
-     * 未知错误
+     * 错误
      */
-    ERROR("99998", "未知错误。。。。。", false),
+    ERROR("999999", "错误", false),
+    ERROR_MSG("999999", "MSG1", false),
+
     /**
      * 异常
      */
-    Exception("999999", "异常", false),
+    Exception("9999999", "异常", false),
     /*****参数错误：10001-19999***********************************************************/
     PARAM_IS_INVALID("10001", "参数无效", false),
     /***********用户错误：20001-29999****************************************************/
@@ -50,13 +62,6 @@ public enum CodeEnum {
         this.code = code;
         this.msg = msg;
         this.flag = flag;
-    }
-
-
-    public static void main(String[] args) {
-        com.response.ServiceResult serviceResult = new ServiceResult();
-        serviceResult.putMsg(CodeEnum.SUCCESS.msg);
-        System.out.println(CodeEnum.SUCCESS.code);
     }
 
     public String getCode() {

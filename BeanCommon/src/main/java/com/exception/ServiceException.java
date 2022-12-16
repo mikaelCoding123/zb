@@ -1,33 +1,48 @@
 package com.exception;
 
+import com.common.CodeEnum;
+
 import java.io.Serializable;
 
 public class ServiceException extends RuntimeException implements Serializable {
-    private String code = "";
-    private String message = "";
+    private static final long serialVersionUID = -1L;
+    /**
+     * 错误状态码
+     */
+    protected String errorCode;
+    /**
+     * 错误提示
+     */
+    protected String errorMsg;
 
-    public ServiceException(String message) {
-        this.message = message;
+    public ServiceException() {
     }
 
-    public ServiceException(String code, String message) {
-        this.code = code;
-        this.message = message;
+    public ServiceException(String errorCode, String errorMsg) {
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
     }
 
-    public String getCode() {
-        return this.code;
+    public String getErrorCode() {
+        return errorCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getMessage() {
-        return this.message;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public static void main(String[] args) {
+        new ServiceException(CodeEnum.Exception.getCode(),CodeEnum.Exception.getMsg()).getMessage();
+        System.out.println();
     }
 }
+
+

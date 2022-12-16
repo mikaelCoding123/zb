@@ -1,10 +1,11 @@
 package com.service;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
+
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Slf4j
 @Component
@@ -13,6 +14,6 @@ public class Js01 implements RocketMQListener<String> {
 
     @Override
     public void onMessage(String s) {
-        log.info("Js01====>");
+        log.info("Js01====>"+s);
     }
 }

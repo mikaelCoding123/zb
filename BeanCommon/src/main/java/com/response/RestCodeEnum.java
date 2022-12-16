@@ -5,6 +5,7 @@ package com.response;
  * 只增加不删除
  * 错误的code定义规范：应用名简称或者应用代号+“-”+6位数字码
  */
+@Deprecated
 public enum RestCodeEnum {
     /**
      *success
