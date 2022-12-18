@@ -113,7 +113,7 @@ public class ServiceResult implements Serializable {
 
     /**
      * SUCCESS("000000", "成功", false),
-     * ""
+     * null
      *
      * @return
      */
@@ -169,7 +169,7 @@ public class ServiceResult implements Serializable {
      */
     @Deprecated
     public static ServiceResult setErrorMsg(String msg, boolean flag) {
-        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.ERROR_MSG, null);
+        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.ERROR, null);
         serviceResult.setMsg(msg);
         serviceResult.setFlag(flag);
         return serviceResult;
@@ -196,6 +196,8 @@ public class ServiceResult implements Serializable {
 
 
     public static void main(String[] args) {
+
+        System.out.println(ServiceResult.setErrorMsg("shfjks", false));
         System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
     }
 }
