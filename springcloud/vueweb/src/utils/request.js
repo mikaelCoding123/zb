@@ -5,7 +5,6 @@ import {Toast, Dialog} from 'vant';
 import store from "@/store";
 import errorCode from "@/utils/const/errorCode";
 import {tansParams} from "@/utils/tools";
-import {env} from "postcss-pxtorem/.eslintrc";
 import {getToken} from "@/utils/auth";
 
 

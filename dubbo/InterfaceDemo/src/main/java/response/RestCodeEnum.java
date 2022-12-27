@@ -49,7 +49,6 @@ public enum RestCodeEnum {
 
     public static void main(String[] args) {
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.putMsg(RestCodeEnum.SUCCESS.msg);
         System.out.println(RestCodeEnum.SUCCESS.code);
     }
 }

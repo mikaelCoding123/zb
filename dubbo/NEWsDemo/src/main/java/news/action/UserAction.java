@@ -21,7 +21,7 @@ public class UserAction {
     public ServiceResult getUser() throws Exception {
         User hfjks = newsService.findUser("hfjks");
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.setResultObj(hfjks);
+        serviceResult.setData(hfjks);
 
         return serviceResult;
     }
@@ -31,7 +31,7 @@ public class UserAction {
     public ServiceResult getTimeout() throws Exception {
         User hfjks = newsService.findUsertimeout("hfjks");
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.setResultObj(hfjks);
+        serviceResult.setData(hfjks);
 
         return serviceResult;
     }
@@ -40,7 +40,7 @@ public class UserAction {
     public ServiceResult getRetries() throws Exception {
         User hfjks = newsService.findUserRetries("hfjks");
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.setResultObj(hfjks);
+        serviceResult.setData(hfjks);
         return serviceResult;
     }
 
@@ -52,7 +52,7 @@ public class UserAction {
         user.setName("news==hua");
         User user1 = newsService.toUserdemo( user);
         ServiceResult serviceResult = new ServiceResult();
-        serviceResult.setResultObj(user1);
+        serviceResult.setData(user1);
         return serviceResult;
 
     }

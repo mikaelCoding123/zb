@@ -1,20 +1,53 @@
 package response;
 
+
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.Map;
 
 /**
- * resultCode,resultMsg  必须从ResetCodeEnum中获取
+ * @author mikael
+ * @date 2020-12-13
+ * @Description: 返回数据统一格式
  */
 public class ServiceResult implements Serializable {
-    private static final long serialVersionUID = 1635241255686L;
-    private String resultCode = "000000";
-    private String resultMsg = "";
-    private Object resultObj = null;
-    private boolean flag = false;//返回的信息是否展示，true 前端要展示resultMsg
-    private String timestamp = LocalDateTime.now().toString();
-    private String uuid= UUID.randomUUID().toString();
+
+    private static final long serialVersionUID = -1L;
+    private String code = CodeEnum.SUCCESS.getCode();
+    private String msg = CodeEnum.SUCCESS.getMsg();
+    private Object data = null;
+    /**
+     * 返回的信息是否展示，true 前端要展示msg中的内容
+     */
+    private boolean flag = false;
+
+
+    public ServiceResult() {
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
 
     public boolean isFlag() {
         return flag;
@@ -24,168 +57,148 @@ public class ServiceResult implements Serializable {
         this.flag = flag;
     }
 
-    public ServiceResult() {
+    @Override
+    public String toString() {
+        return "ServiceResult==>{" +
+                "code=\"" + code + "\"" +
+                ", msg=\"" + msg + "\"" +
+                ", data=" + data +
+                ", flag=" + flag +
+                "}";
     }
 
-    public ServiceResult(String message) {
-        this.resultMsg = message;
-    }
+    /*******************************************************/
 
-    public ServiceResult(String code, String message) {
-        this.resultCode = code;
-        this.resultMsg = message;
-    }
-
-    public ServiceResult(RestCodeEnum restCodeEnum) {
-        this.resultMsg = restCodeEnum.getMsg();
-        this.resultCode = restCodeEnum.getCode();
-    }
-
-
-    public ServiceResult(String code, String message, Object object) {
-    }
-
-    public ServiceResult error(String msg, Object object, boolean flag) {
-        return this.putFlag(flag).putCode("999999").putMsg(msg).putObject(object);
+    /**
+     * code = u.getCode();
+     * msg = u.getMsg();
+     * data = data;
+     *
+     * @param u
+     * @param data
+     */
+    public static ServiceResult setEnum(CodeEnum u, Object data) {
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.code = u.getCode();
+        serviceResult.msg = u.getMsg();
+        serviceResult.flag = u.isFlag();
+        serviceResult.data = data;
+        return serviceResult;
     }
 
     /**
-     * @param msg
-     * @return flag为true的
+     * code = CodeEnum.SUCCESS.getCode();
+     * msg = CodeEnum.SUCCESS.getMsg();
+     * data = data;
+     *
+     * @param data
      */
-    public ServiceResult error(String msg) {
-        this.setFlag(true);
-        this.setResultMsg(msg);
-        return this.putFlag(true).putMsg(msg);
+    public static ServiceResult successObject(Object data) {
+        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.SUCCESS, data);
+        return serviceResult;
     }
 
     /**
-     * @param msg
-     * @return flag为true
+     * serviceResult.code = u.getCode();
+     * serviceResult.msg = u.getMsg();
+     * serviceResult.data = data;
+     *
+     * @param u
+     * @param data
+     * @return serviceResult
      */
-    public ServiceResult ok(String msg) {
-        return this.putFlag(true).putMsg(msg);
+    public static ServiceResult success(CodeEnum u, Object data) {
+        return ServiceResult.setEnum(CodeEnum.SUCCESS, data);
     }
 
-    public ServiceResult ok() {
-        return this;
+    /**
+     * SUCCESS("000000", "成功", false),
+     * null
+     *
+     * @return
+     */
+    public static ServiceResult defaultSuccess() {
+        return ServiceResult.setEnum(CodeEnum.SUCCESS, null);
     }
 
-    public ServiceResult(Object object) {
-        this.resultObj = object;
+    /**
+     * ERROR("99999", "错误", false),
+     * data=null
+     *
+     * @return
+     */
+    public static ServiceResult defaultError() {
+        return ServiceResult.setEnum(CodeEnum.ERROR, null);
     }
 
-    public String getResultCode() {
-        return this.resultCode;
+    /**
+     * code = u.getCode();
+     * msg = u.getMsg();
+     * flag=u.isFlag();
+     * data=o
+     *
+     * @param u
+     */
+    public static ServiceResult error(CodeEnum u, Object o) {
+        return ServiceResult.setEnum(u, o);
     }
 
-    public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
+    /**
+     * code = u.getCode();
+     * msg = e.getMessage();
+     * flag=u.getFlag();
+     * data = e
+     *
+     * @param u
+     * @param e
+     */
+    public static ServiceResult setException(CodeEnum u, Exception e) {
+        ServiceResult serviceResult = ServiceResult.setEnum(u, e);
+        serviceResult.setMsg(e.getMessage());
+        return serviceResult;
     }
 
-    public String getResultMsg() {
-        return this.resultMsg;
+    /**
+     * serviceResult.code = CodeEnum.ERROR.getCode();
+     * serviceResult.msg = msg;
+     * serviceResult.flag=true;
+     * 尽量不要用，用多了代码容易混乱，建议使用MsgEnum来拼接msg
+     *
+     * @param msg
+     * @return
+     */
+    @Deprecated
+    public static ServiceResult setErrorMsg(String msg, boolean flag) {
+        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.ERROR, null);
+        serviceResult.setMsg(msg);
+        serviceResult.setFlag(flag);
+        return serviceResult;
     }
 
-    public void setResultMsg(String resultMsg) {
-        this.resultMsg = resultMsg;
-    }
-
-    public Object getResultObj() {
-        return this.resultObj;
-    }
-
-    public void setResultObj(Object resultObj) {
-        this.resultObj = resultObj;
+    /**
+     * 从数据库中获取的错误码
+     * map的形式
+     * "msg" -> "未知错误"
+     * "code" -> "99922"
+     * "flag" -> "1"
+     * "system" -> "pokweb"
+     *
+     * @param map
+     * @return
+     */
+    @Deprecated
+    public static ServiceResult setErrorMap(Map<String, String> map) {
+        ServiceResult serviceResult = new ServiceResult();
+        serviceResult.setCode(map.get("code"));
+        serviceResult.setMsg(map.get("msg"));
+        serviceResult.setFlag("0".equals(map.get("flag")) ? false : true);
+        return serviceResult;
     }
 
 
     public static void main(String[] args) {
-        RestCodeEnum success = RestCodeEnum.SUCCESS;
-        //时区
-//        ZonedDateTime now = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/New_York"));
-//        System.out.println(now);
-        ServiceResult serviceResult = new ServiceResult();
-        ServiceResult serviceResult1 = serviceResult.restCode_ERROR(RestCodeEnum.SUCCESS);
-//        serviceResult.putCode("200").putFlag(true).putFlag(false);
-        System.out.println(serviceResult);
-        ServiceResult serviceResult2 = new ServiceResult(RestCodeEnum.PARAM_IS_INVALID);
-        System.out.println(serviceResult2);
-        serviceResult2.setCode(RestCodeEnum.RC91000);
-        System.out.println(serviceResult2);
-    }
 
-    public static void setParams(String... str) {
-        if (str.length > 3) {
-            return;
-        }
-        for (int i = 0; i < str.length; i++) {
-
-        }
-        System.out.println(str);
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-
-
-    /***********************链式编程************************************************/
-    public ServiceResult putCode(String code) {
-        this.setResultCode(code);
-        return this;
-    }
-
-    public ServiceResult putMsg(String msg) {
-        this.setResultMsg(msg);
-        return this;
-    }
-
-    public ServiceResult putObject(Object object) {
-        this.setResultObj(object);
-        return this;
-    }
-
-    public ServiceResult putFlag(Boolean flag) {
-        this.setFlag(flag);
-        return this;
-    }
-
-    /******************************************************************/
-    public ServiceResult restCode_ERROR(RestCodeEnum restCodeEnum) {
-        return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode());
-    }
-
-    public ServiceResult restCode_OBJECT(RestCodeEnum restCodeEnum, Object object) {
-        return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode()).putObject(object);
-    }
-
-    public ServiceResult setCode(RestCodeEnum restCodeEnum) {
-        return this.putMsg(restCodeEnum.getMsg()).putCode(restCodeEnum.getCode());
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    @Override
-    public String toString() {
-        return "ServiceResult{" +
-                "resultCode='" + resultCode + '\'' +
-                ", resultMsg='" + resultMsg + '\'' +
-                ", resultObj=" + resultObj +
-                ", flag=" + flag +
-                ", timestamp='" + timestamp + '\'' +
-                ", uuid='" + uuid + '\'' +
-                '}';
+        System.out.println(ServiceResult.setErrorMsg("shfjks", false));
+        System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
     }
 }

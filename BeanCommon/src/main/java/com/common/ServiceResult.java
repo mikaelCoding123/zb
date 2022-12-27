@@ -60,11 +60,11 @@ public class ServiceResult implements Serializable {
     @Override
     public String toString() {
         return "ServiceResult==>{" +
-                "code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
+                "code=\"" + code + "\"" +
+                ", msg=\"" + msg + "\"" +
                 ", data=" + data +
                 ", flag=" + flag +
-                '}';
+                "}";
     }
 
     /*******************************************************/
@@ -186,6 +186,7 @@ public class ServiceResult implements Serializable {
      * @param map
      * @return
      */
+    @Deprecated
     public static ServiceResult setErrorMap(Map<String, String> map) {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setCode(map.get("code"));

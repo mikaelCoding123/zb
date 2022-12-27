@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 
 public class User implements Serializable {
-    private final static long serialVersionUID =12L;
+    private static final long serialVersionUID = 8526186615712029705L;
     @NotNull
     private String id;
     private String name;
