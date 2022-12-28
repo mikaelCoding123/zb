@@ -4,12 +4,15 @@ import bean.User;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import service.UserService;
 
 @Service(retries = 3)
 public class UserRpcService implements UserService {
 
     private static final Logger log = LoggerFactory.getLogger(UserRpcService.class);
+    @Value("${server.port}")
+    private  String port;
 
     @Override
     public User findUser(String name) throws Exception {
@@ -17,7 +20,7 @@ public class UserRpcService implements UserService {
         log.info("findUser......");
         user.setAge("123413");
         user.setName(name);
-        user.setObject("2313");
+        user.setObject(port);
         return user;
     }
 
@@ -41,7 +44,7 @@ public class UserRpcService implements UserService {
 
     @Override
     public User findUserRet(User user) {
-        user.setName("userdemo2===>hua");
+        user.setName("userdemo2===>hua==>"+port);
         return user;
     }
 }

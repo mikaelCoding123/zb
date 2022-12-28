@@ -4,6 +4,7 @@ import bean.User;
 import news.service.NewsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import response.ServiceResult;
 
@@ -36,7 +37,7 @@ public class UserAction {
         return serviceResult;
     }
     //retries 重试 只有在多个注册中才能生效
-    @RequestMapping("/news/retries")
+    @RequestMapping(value = "/news/retries",method = RequestMethod.GET)
     public ServiceResult getRetries() throws Exception {
         User hfjks = newsService.findUserRetries("hfjks");
         ServiceResult serviceResult = new ServiceResult();
