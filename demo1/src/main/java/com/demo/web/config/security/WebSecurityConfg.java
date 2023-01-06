@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfg extends WebSecurityConfigurerAdapter {
 
     /**
-     * http请求设置
+     * HttpSecurity设置
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -22,6 +22,8 @@ public class WebSecurityConfg extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest()
                 // 其他需要拦截
-                .authenticated();
+                .authenticated()
+
+        ;
     }
 }

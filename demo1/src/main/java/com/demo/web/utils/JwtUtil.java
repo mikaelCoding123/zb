@@ -2,7 +2,6 @@ package com.demo.web.utils;
 
 
 import com.bean.User;
-import com.common.CodeEnum;
 import com.common.ServiceResult;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -73,8 +72,8 @@ public class JwtUtil {
         String s = jwtUtil.JWTBuild(objectMap);
         System.out.println("s=>>" + s);
         ServiceResult webResponse = jwtUtil.parserJwt(s);
-        Object resultObj = webResponse.getData();
-        System.out.println(resultObj);
+
+        System.out.println(webResponse.toString());
     }
 
 }

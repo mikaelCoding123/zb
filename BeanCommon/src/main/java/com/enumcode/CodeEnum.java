@@ -1,10 +1,8 @@
-package com.common;
+package com.enumcode;
 
 /**
- *
- *
  * encoded: UTF-8
- *
+ * <p>
  * 接口返回枚举定义
  * 只增加不删除不修改
  * <p>
@@ -19,9 +17,9 @@ package com.common;
  */
 public enum CodeEnum {
     /**
-     * 成功
+     * 操作成功
      */
-    SUCCESS("000000", "成功", false),
+    SUCCESS("000000", "操作成功", false),
     /**
      * 错误
      */
@@ -32,6 +30,8 @@ public enum CodeEnum {
      * 异常
      */
     Exception("9999999", "异常", false),
+    Exception_String("9999999", "不能直接返回String类型，需要包装成ServiceResult类型返回", false),
+
     /*****参数错误：10001-19999***********************************************************/
     PARAM_IS_INVALID("10001", "参数无效", false),
     /***********用户错误：20001-29999****************************************************/

@@ -1,6 +1,6 @@
 package com.web.demo.service.impl;
 
-import com.common.CodeEnum;
+import com.enumcode.CodeEnum;
 import com.common.ServiceResult;
 import com.web.demo.bo.Admin;
 import com.web.demo.dao.AdminDao;

@@ -1,6 +1,8 @@
 package com.common;
 
 
+import com.enumcode.CodeEnum;
+
 import java.io.Serializable;
 import java.util.Map;
 
@@ -10,8 +12,8 @@ import java.util.Map;
  * @Description: 返回数据统一格式
  */
 public class ServiceResult implements Serializable {
-
     private static final long serialVersionUID = -1L;
+
     private String code = CodeEnum.SUCCESS.getCode();
     private String msg = CodeEnum.SUCCESS.getMsg();
     private Object data = null;
@@ -24,6 +26,13 @@ public class ServiceResult implements Serializable {
     public ServiceResult() {
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public Object getData() {
+        return data;
+    }
 
     public String getCode() {
         return code;
@@ -33,25 +42,15 @@ public class ServiceResult implements Serializable {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    public Object getData() {
-        return data;
-    }
 
     public void setData(Object data) {
         this.data = data;
     }
 
-    public boolean isFlag() {
-        return flag;
-    }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
@@ -74,8 +73,8 @@ public class ServiceResult implements Serializable {
      * msg = u.getMsg();
      * data = data;
      *
-     * @param u
-     * @param data
+     * @param u    codeEnum
+     * @param data data
      */
     public static ServiceResult setEnum(CodeEnum u, Object data) {
         ServiceResult serviceResult = new ServiceResult();
@@ -91,11 +90,10 @@ public class ServiceResult implements Serializable {
      * msg = CodeEnum.SUCCESS.getMsg();
      * data = data;
      *
-     * @param data
+     * @param data data
      */
     public static ServiceResult successObject(Object data) {
-        ServiceResult serviceResult = ServiceResult.setEnum(CodeEnum.SUCCESS, data);
-        return serviceResult;
+        return ServiceResult.setEnum(CodeEnum.SUCCESS, data);
     }
 
     /**
@@ -103,19 +101,19 @@ public class ServiceResult implements Serializable {
      * serviceResult.msg = u.getMsg();
      * serviceResult.data = data;
      *
-     * @param u
-     * @param data
+     * @param u    CodeEnum
+     * @param data data
      * @return serviceResult
      */
     public static ServiceResult success(CodeEnum u, Object data) {
-        return ServiceResult.setEnum(CodeEnum.SUCCESS, data);
+        return ServiceResult.setEnum(u, data);
     }
 
     /**
      * SUCCESS("000000", "成功", false),
      * null
      *
-     * @return
+     * @return ServiceResult
      */
     public static ServiceResult defaultSuccess() {
         return ServiceResult.setEnum(CodeEnum.SUCCESS, null);
@@ -125,7 +123,7 @@ public class ServiceResult implements Serializable {
      * ERROR("99999", "错误", false),
      * data=null
      *
-     * @return
+     * @return ServiceResult
      */
     public static ServiceResult defaultError() {
         return ServiceResult.setEnum(CodeEnum.ERROR, null);
@@ -137,7 +135,7 @@ public class ServiceResult implements Serializable {
      * flag=u.isFlag();
      * data=o
      *
-     * @param u
+     * @param u CodeEnum
      */
     public static ServiceResult error(CodeEnum u, Object o) {
         return ServiceResult.setEnum(u, o);
@@ -145,16 +143,16 @@ public class ServiceResult implements Serializable {
 
     /**
      * code = u.getCode();
-     * msg = e.getMessage();
+     * msg = e.toString();
      * flag=u.getFlag();
      * data = e
      *
-     * @param u
-     * @param e
+     * @param u CodeEnum
+     * @param e Exception
      */
     public static ServiceResult setException(CodeEnum u, Exception e) {
         ServiceResult serviceResult = ServiceResult.setEnum(u, e);
-        serviceResult.setMsg(e.getMessage());
+        serviceResult.setMsg(e.toString());
         return serviceResult;
     }
 
@@ -164,8 +162,8 @@ public class ServiceResult implements Serializable {
      * serviceResult.flag=true;
      * 尽量不要用，用多了代码容易混乱，建议使用MsgEnum来拼接msg
      *
-     * @param msg
-     * @return
+     * @param msg String
+     * @return ServiceResult
      */
     @Deprecated
     public static ServiceResult setErrorMsg(String msg, boolean flag) {
@@ -183,22 +181,30 @@ public class ServiceResult implements Serializable {
      * "flag" -> "1"
      * "system" -> "pokweb"
      *
-     * @param map
-     * @return
+     * @param map Map<String, String>
+     * @return ServiceResult
      */
     @Deprecated
     public static ServiceResult setErrorMap(Map<String, String> map) {
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setCode(map.get("code"));
         serviceResult.setMsg(map.get("msg"));
-        serviceResult.setFlag("0".equals(map.get("flag")) ? false : true);
+        serviceResult.setFlag(!"0".equals(map.get("flag")));
         return serviceResult;
     }
 
 
     public static void main(String[] args) {
-
+        ServiceResult.successObject("hsfks");
         System.out.println(ServiceResult.setErrorMsg("shfjks", false));
         System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+        throw new java.io.NotSerializableException("com.common.ServiceResult");
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+        throw new java.io.NotSerializableException("com.common.ServiceResult");
     }
 }

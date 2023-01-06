@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bean.User;
 import com.demo.web.demo.bo.DemoBo1;
 import com.demo.web.demo.service.DemoService;
-import com.exception.ServiceException;
+import com.common.ServiceException;
 import com.response.ServiceResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

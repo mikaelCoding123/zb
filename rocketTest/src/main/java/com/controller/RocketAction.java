@@ -2,18 +2,17 @@ package com.controller;
 
 import cn.hutool.core.lang.UUID;
 import com.bean.User;
-import com.common.CodeEnum;
+import com.enumcode.CodeEnum;
 import com.common.ServiceResult;
 import org.apache.rocketmq.client.producer.LocalTransactionState;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
-import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,6 +44,13 @@ public class RocketAction {
         }
 
         return ServiceResult.defaultSuccess();
+    }
+
+    //顺序消费消息
+    @RequestMapping(value = "",method = RequestMethod.GET)
+    public ServiceResult SequentiaMsg(){
+
+        return null;
     }
 
 }

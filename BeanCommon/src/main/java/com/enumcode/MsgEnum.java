@@ -1,4 +1,4 @@
-package com.common;
+package com.enumcode;
 
 /**
  *encoded: UTF-8
@@ -8,7 +8,7 @@ package com.common;
 public enum MsgEnum {
     msg01("你好","先生\\女士"),
     SUCCESS("启动成功==》","端口："),
-
+    exception("异常",""),
 
     ;
     private String msg_1;

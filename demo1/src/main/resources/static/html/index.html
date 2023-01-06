@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <script src="/html/pub/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <div id = "r1">r1
@@ -13,13 +14,17 @@
 
 </body>
 <script type="text/javascript">
-    function socket() {
-        var webSocket = new WebSocket();
-        if (webSocket == null) {
-            return;
-        }
-    }
-    var r1 = document.getElementById("r1").valueOf()
-    console.log(r1)
+    $(function(){
+      $.ajax({
+              url: "/mm/test01",
+              dataType: 'json',
+              type: "get",
+              contentType: 'application/json;charset=utf-8',
+              async: false,//同步
+              success: function (data) {
+                  console.log(data)
+              }
+          });
+    })
 </script>
 </html>
