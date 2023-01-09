@@ -37,6 +37,10 @@ public class ServiceResult implements Serializable {
     public String getCode() {
         return code;
     }
+    public boolean isFlag() {
+        return flag;
+    }
+
 
     public void setCode(String code) {
         this.code = code;
