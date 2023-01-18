@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class FangshuaInterceptor extends HandlerInterceptorAdapter {
-    private static Cache<String, Integer> cache = CacheBuilder.newBuilder().expireAfterAccess(20l, TimeUnit.SECONDS).build();
+    private static Cache<String, Integer> cache = CacheBuilder.newBuilder().expireAfterAccess(20L, TimeUnit.SECONDS).build();
     private int i = 0;
 
     @Override

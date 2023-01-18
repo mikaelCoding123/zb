@@ -21,16 +21,16 @@ public enum CodeEnum {
      */
     SUCCESS("000000", "操作成功", false),
     /**
-     * 错误
+     * 操作失败
      */
-    ERROR("999999", "错误", false),
-    ERROR_MSG("999999", "MSG1", false),
+    ERROR("999999", "操作失败", false),
+    ERROR_100("999999", "MSG1", false),
 
     /**
      * 异常
      */
     Exception("9999999", "异常", false),
-    Exception_String("9999999", "不能直接返回String类型，需要包装成ServiceResult类型返回", false),
+    Exception_100("9999999", "不能直接返回String类型，需要包装成ServiceResult类型返回", false),
 
     /*****参数错误：10001-19999***********************************************************/
     PARAM_IS_INVALID("10001", "参数无效", false),
@@ -50,6 +50,56 @@ public enum CodeEnum {
     /**********************99999*************************************************/
     ERROR_CONTACT_CUSTOMER_SERVICE("99999", "系统维护中。。。。。", false),
     RC91000("91000", "91000错误", false),
+
+    /**
+     * 操作成功
+     */
+    SUCCESS200("200", "操作成功",false),
+    /**
+     * 操作失败
+     */
+    ERROR400("400", "操作失败",false),
+    /**
+     * 未经过身份认证
+     */
+    AUTH_ERROR("401", "未经过身份认证",false),
+    /**
+     * token参数不存在,无访问权限
+     */
+    NO_TOKEN("40101", "token参数不存在,无访问权限",false),
+    /**
+     * token验证失败,无访问权限
+     */
+    CHECK_TOKEN("40102", "token验证失败,无访问权限",false),
+    /**
+     * accessKeyId参数不存在
+     */
+    NO_SECRET_ID("40151", "accessKeyId参数不存在",false),
+    /**
+     * sign签名参数不存在
+     */
+    NO_SECRET_SIGN("40152", "sign签名参数不存在",false),
+    /**
+     * 请求校验失败
+     */
+    CHECK_SECRET("40153", "请求校验失败",false),
+    /**
+     * 资源不存在
+     */
+    NOT_FOUND("404", "资源不存在",false),
+    /**
+     * 服务器异常,请稍后再试
+     */
+    SYSTEM_ERROR("500", "服务器异常,请稍后再试",false),
+    /**
+     * 用户信息解析异常,请稍后再试
+     */
+    USERPRINCIPAL_RESOLVER_ERROR("50001", "用户信息解析异常,请稍后再试",false),
+    /**
+     * RPC或其他项目通信调用异常，外部服务异常
+     */
+    RPC_ERROR("503", "外部服务异常",false),
+
 
     ;
 

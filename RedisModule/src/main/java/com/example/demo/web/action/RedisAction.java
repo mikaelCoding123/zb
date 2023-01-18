@@ -80,6 +80,13 @@ public class RedisAction {
         Map entries = redisTemplate.opsForHash().entries("01");
         User user1 = (User) redisTemplate.opsForHash().get("01", "user");
         log.info(user1.getUsername());
+
+        Object o = redisTemplate.opsForHash().get("spring:session:sessions:8874a26c-664e-4a32-8ebf-87b139aa9a7c", "sessionAttr:name");
+
+
+        Object o1 = redisTemplate.opsForValue().get("sessions:expires:8874a26c-664e-4a32-8ebf-87b139aa9a7c");
+
+        System.out.println("=====>"+o1);
     }
 
 

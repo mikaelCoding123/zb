@@ -2,6 +2,7 @@ package com.demo.web.demo.controller;
 
 import cn.hutool.core.lang.UUID;
 import com.bean.User;
+import com.common.Result;
 import com.enumcode.MsgEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ public class Web03Action {
     @RequestMapping(value = "/test01",method = RequestMethod.GET)
     public Object set(){
 
-        return "hfjks";
+        return Result.defaultSuccess();
     }
 
     @RequestMapping(value = "/test02",method = RequestMethod.GET)

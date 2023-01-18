@@ -4,6 +4,7 @@ package com.common;
 import com.enumcode.CodeEnum;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +19,7 @@ public class ServiceResult implements Serializable {
     private String msg = CodeEnum.SUCCESS.getMsg();
     private Object data = null;
     /**
-     * 返回的信息是否展示，true 前端要展示msg中的内容
+     * 返回的msg是否展示，true 前端要展示msg中的内容
      */
     private boolean flag = false;
 
@@ -37,6 +38,7 @@ public class ServiceResult implements Serializable {
     public String getCode() {
         return code;
     }
+
     public boolean isFlag() {
         return flag;
     }
@@ -120,7 +122,7 @@ public class ServiceResult implements Serializable {
      * @return ServiceResult
      */
     public static ServiceResult defaultSuccess() {
-        return ServiceResult.setEnum(CodeEnum.SUCCESS, null);
+        return new ServiceResult();
     }
 
     /**
@@ -197,11 +199,12 @@ public class ServiceResult implements Serializable {
         return serviceResult;
     }
 
-
     public static void main(String[] args) {
         ServiceResult.successObject("hsfks");
+        System.out.println(ServiceResult.defaultSuccess());
         System.out.println(ServiceResult.setErrorMsg("shfjks", false));
         System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
+
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {

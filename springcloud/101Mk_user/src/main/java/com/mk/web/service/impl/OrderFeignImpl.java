@@ -3,6 +3,7 @@ package com.mk.web.service.impl;
 import com.bean.User;
 import com.bean.interfaces.MK101use130commonApi;
 import com.bean.response.ServiceResult;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
