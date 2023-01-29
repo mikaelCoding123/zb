@@ -51,12 +51,12 @@ public class Hello2Controller {
         String filename = "", name = "";
         switch (lx) {
             case "DD":
-                filename = "demo1.xls";
-                name = "模板1.xls";
+                filename = "demo1.xlsx";
+                name = "模板1.xlsx";
                 break;
             case "FP":
-                filename = "demo2.xls";
-                name = "模板2.xls";
+                filename = "demo2.xlsx";
+                name = "模板2.xlsx";
                 break;
         }
         if (!StringUtils.isBlank(filename)) {
