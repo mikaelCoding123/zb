@@ -4,11 +4,11 @@ package com.web.demo.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.web.demo.bo.Admin;
 import com.web.demo.bo.Test01;
-import org.mybatis.spring.annotation.MapperScan;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@MapperScan
+@Mapper
 public interface AdminDao2 extends BaseMapper<Admin> {
 //    int deleteByPrimaryKey(Long pokid);
 //

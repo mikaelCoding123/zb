@@ -11,6 +11,7 @@ import lombok.Data;
  */
 @Data
 public class Admin implements Serializable {
+    private static final long serialVersionUID = -2597342667901138950L;
     @TableId
     private Long pokid;
 
@@ -21,5 +22,4 @@ public class Admin implements Serializable {
 
     private String password;
 
-    private static final long serialVersionUID = 1L;
 }

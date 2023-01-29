@@ -3,7 +3,7 @@ package com.providerservice01.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bean.User;
 import com.response.ServiceResult;
-import com.service.AdminService;
+import com.services.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

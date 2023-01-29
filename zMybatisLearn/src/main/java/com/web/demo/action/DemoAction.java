@@ -1,6 +1,8 @@
 package com.web.demo.action;
 
+import com.common.ServiceResult;
 import com.web.demo.service.DemoService;
+import com.web.demo.service.PlusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,8 @@ public class DemoAction {
     private static final Logger log = LoggerFactory.getLogger(DemoAction.class);
     @Resource
     private DemoService demoService;
+    @Resource
+    private PlusService plusService;
 
 
     @RequestMapping(value = "/demo01", method = RequestMethod.POST)
@@ -52,5 +56,16 @@ public class DemoAction {
         demoService.demoService04();
     }
 
+    @RequestMapping(value = "adminmapper01", method = RequestMethod.GET)
+    public ServiceResult test02() {
+        ServiceResult serviceResult = plusService.AdminMapper01();
+        return serviceResult;
+    }
+
+    @RequestMapping(value = "adminmapper02", method = RequestMethod.GET)
+    public ServiceResult test03() {
+        int i = plusService.update();
+        return ServiceResult.successObject(i);
+    }
 
 }

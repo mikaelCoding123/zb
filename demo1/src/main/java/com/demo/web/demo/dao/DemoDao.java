@@ -1,7 +1,5 @@
 package com.demo.web.demo.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bean.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
