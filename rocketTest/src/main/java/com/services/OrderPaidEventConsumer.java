@@ -1,4 +1,4 @@
-package com.service;
+package com.services;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RocketMQMessageListener(topic = "sequential", consumerGroup = "Test2")
-public class OrderPaidEventConsumer4 implements RocketMQListener<String> {
+@RocketMQMessageListener(topic = "Test", consumerGroup = "Test2")
+public class OrderPaidEventConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
         System.out.print("------- 消息内容OrderPaidEventConsumer received:"+ JSON.toJSONString(message));

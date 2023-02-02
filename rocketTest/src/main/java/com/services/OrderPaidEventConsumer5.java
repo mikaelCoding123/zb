@@ -1,4 +1,4 @@
-package com.service;
+package com.services;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;

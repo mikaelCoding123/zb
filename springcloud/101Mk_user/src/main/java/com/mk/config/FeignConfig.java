@@ -1,6 +1,7 @@
 package com.mk.config;
 
-import feign.Logger;
+
+import org.jboss.logging.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +15,6 @@ public class FeignConfig {
     @Bean
     public Logger.Level feignLoggerLevel() {
         // 请求和响应的头信息,请求和响应的正文及元数据
-        return Logger.Level.FULL;
+        return Logger.Level.DEBUG;
     }
 }

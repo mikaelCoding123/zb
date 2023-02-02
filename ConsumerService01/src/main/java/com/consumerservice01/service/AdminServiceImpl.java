@@ -4,12 +4,12 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.bean.User;
 import com.response.ServiceResult;
-import com.service.AdminService;
+import com.services.AdminService;
 
 import java.util.HashMap;
 
 @Service(version = "1.1.0")
-public class AdminServiceImpl implements com.service.AdminServiceImpl {
+public class AdminServiceImpl implements com.services.AdminServiceImpl {
 
     @Reference(version = "1.0.0",check = false,cluster = "failfast",stub = "",mock = "fail:returen 123")
     AdminService adminService;

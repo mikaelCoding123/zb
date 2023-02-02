@@ -26,8 +26,8 @@ public class OthreServiceImpl {
      */
     @PostConstruct
     public void setCodeEnum() {
-        List<Map<String, String>> maps = demoDao.selectCodeEnum();
-        codeDo.setCode(maps);
+      //  List<Map<String, String>> maps = demoDao.selectCodeEnum();
+       // codeDo.setCode(maps);
     }
 
     @PostConstruct
