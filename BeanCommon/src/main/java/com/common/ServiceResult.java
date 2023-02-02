@@ -3,8 +3,6 @@ package com.common;
 
 import com.enumcode.CodeEnum;
 
-import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,9 +10,8 @@ import java.util.Map;
  * @date 2020-12-13
  * @Description: 返回数据统一格式
  */
-public class ServiceResult implements Serializable {
-    private static final long serialVersionUID = -1L;
-
+public class ServiceResult {
+    private static final long serialVersionUID = 2137735190448255040L;
     private String code = CodeEnum.SUCCESS.getCode();
     private String msg = CodeEnum.SUCCESS.getMsg();
     private Object data = null;
@@ -25,6 +22,26 @@ public class ServiceResult implements Serializable {
 
 
     public ServiceResult() {
+    }
+
+    public ServiceResult(Object o) {
+        super();
+        this.data = o;
+    }
+
+    public ServiceResult(CodeEnum u, Object o) {
+        super();
+        this.msg = u.getMsg();
+        this.code = u.getCode();
+        this.data = o;
+        this.flag = u.isFlag();
+    }
+
+    public ServiceResult(CodeEnum u) {
+        super();
+        this.flag = u.isFlag();
+        this.code = u.getCode();
+        this.msg = u.getMsg();
     }
 
     public String getMsg() {
@@ -83,12 +100,7 @@ public class ServiceResult implements Serializable {
      * @param data data
      */
     public static ServiceResult setEnum(CodeEnum u, Object data) {
-        ServiceResult serviceResult = new ServiceResult();
-        serviceResult.code = u.getCode();
-        serviceResult.msg = u.getMsg();
-        serviceResult.flag = u.isFlag();
-        serviceResult.data = data;
-        return serviceResult;
+        return new ServiceResult(u, data);
     }
 
     /**
@@ -204,14 +216,8 @@ public class ServiceResult implements Serializable {
         System.out.println(ServiceResult.defaultSuccess());
         System.out.println(ServiceResult.setErrorMsg("shfjks", false));
         System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
-
+        System.out.println(new ServiceResult("sfk"));
+        System.out.println(new ServiceResult(CodeEnum.Exception, ""));
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-        throw new java.io.NotSerializableException("com.common.ServiceResult");
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-        throw new java.io.NotSerializableException("com.common.ServiceResult");
-    }
 }

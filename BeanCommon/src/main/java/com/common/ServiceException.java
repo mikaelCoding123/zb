@@ -1,23 +1,19 @@
 package com.common;
 
-import java.io.Serializable;
+public class ServiceException extends RuntimeException {
 
-public class ServiceException extends RuntimeException implements Serializable {
-    private static final long serialVersionUID = -1L;
+    private static final long serialVersionUID = 4971600066789355123L;
 
-    /**
-     * msgenum
-     *
-     * @param msg msgenum
-     */
-    public ServiceException(String msg) {
-        super(msg);
+    public ServiceException(String s) {
+        super(s);
     }
 
-    public static void main(String[] args) {
-        new ServiceException("yihchsjfk").printStackTrace();
-        System.out.println(
-                new ServiceException("你好").getMessage());
+    public ServiceException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ServiceException(Throwable cause) {
+        super(cause);
     }
 }
 
