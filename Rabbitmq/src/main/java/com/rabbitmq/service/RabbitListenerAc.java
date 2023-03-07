@@ -1,7 +1,10 @@
 package com.rabbitmq.service;
 
+import com.common.WebResult;
 import com.rabbitmq.bean.User;
+import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
+import com.response.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -32,9 +35,8 @@ public class RabbitListenerAc {
      */
     @RabbitListener(queues = {"test-one"})
 //    {"pokid":"1231423","username":"ming","password":"78912K2"}
-    public void ac(Message msg, User user, Channel channel) {
+    public void ac(Message msg, WebResult serviceResult, Channel channel) {
         byte[] body = msg.getBody();
-
         MessageProperties messageProperties = msg.getMessageProperties();
         try {
             channel.basicAck(msg.getMessageProperties().getDeliveryTag(), true);
@@ -42,7 +44,22 @@ public class RabbitListenerAc {
             e.printStackTrace();
         }
 
-        log.info("====>>>>>" +user.toString());
+        log.info("====>>>>>{}====》{}" ,serviceResult.toString(),msg.getMessageProperties().getDeliveryTag());
+    }
+
+
+    @RabbitListener(queues = {"test-two"})
+//    {"pokid":"1231423","username":"ming","password":"78912K2"}
+    public void ac_two(Message msg, WebResult serviceResult, Channel channel) {
+        byte[] body = msg.getBody();
+        MessageProperties messageProperties = msg.getMessageProperties();
+//        try {
+//            channel.basicAck(msg.getMessageProperties().getDeliveryTag(), true);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        log.info("====>>>>>{}====》{}" ,serviceResult.toString(),msg.getMessageProperties().getDeliveryTag());
     }
 
 }

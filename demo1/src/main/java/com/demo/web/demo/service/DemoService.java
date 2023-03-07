@@ -15,4 +15,5 @@ public interface DemoService {
      ServiceResult insertIP(Map<String,String> paramsMap);
 
      ServiceResult insertLogs();
+     ServiceResult insertTest02();
 }

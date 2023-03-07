@@ -1,8 +1,8 @@
 package com.common;
 
-public class ServiceException extends RuntimeException {
+import java.io.Serializable;
 
-    private static final long serialVersionUID = 4971600066789355123L;
+public class ServiceException extends RuntimeException implements Serializable {
 
     public ServiceException(String s) {
         super(s);

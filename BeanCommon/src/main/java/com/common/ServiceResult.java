@@ -3,6 +3,7 @@ package com.common;
 
 import com.enumcode.CodeEnum;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -10,8 +11,7 @@ import java.util.Map;
  * @date 2020-12-13
  * @Description: 返回数据统一格式
  */
-public class ServiceResult {
-    private static final long serialVersionUID = 2137735190448255040L;
+public class ServiceResult implements Serializable {
     private String code = CodeEnum.SUCCESS.getCode();
     private String msg = CodeEnum.SUCCESS.getMsg();
     private Object data = null;
@@ -209,15 +209,6 @@ public class ServiceResult {
         serviceResult.setMsg(map.get("msg"));
         serviceResult.setFlag(!"0".equals(map.get("flag")));
         return serviceResult;
-    }
-
-    public static void main(String[] args) {
-        ServiceResult.successObject("hsfks");
-        System.out.println(ServiceResult.defaultSuccess());
-        System.out.println(ServiceResult.setErrorMsg("shfjks", false));
-        System.out.println(ServiceResult.setException(CodeEnum.Exception, new RuntimeException("skjfl")));
-        System.out.println(new ServiceResult("sfk"));
-        System.out.println(new ServiceResult(CodeEnum.Exception, ""));
     }
 
 }

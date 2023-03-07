@@ -5,7 +5,6 @@ import com.common.ServiceResult;
 import com.enumcode.CodeEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -47,15 +46,16 @@ public class RestAdvice implements ResponseBodyAdvice<Object> {
     public ServiceResult getAdvice1(RuntimeException e) {
         e.printStackTrace();
         log.error(e.getMessage());
-        return ServiceResult.setEnum(CodeEnum.Exception, e.toString());
+        return ServiceResult.setEnum(CodeEnum.Exception, "");
     }
 
     //捕获异常抛出异常信息
     @ExceptionHandler({Exception.class})
     public ServiceResult getAdvice2(Exception e) {
+
         e.printStackTrace();
         log.error(e.getMessage());
-        return ServiceResult.setEnum(CodeEnum.Exception, e.toString());
+        return ServiceResult.setEnum(CodeEnum.Exception, "");
     }
 
     /**

@@ -9,6 +9,9 @@ import java.util.HashMap;
  * 返回的类型为HashMap，可以新增多个键值对
  */
 public class Result extends HashMap<String, Object> implements Serializable {
+    public Result() {
+
+    }
 
     public static Result setCodeEnum(CodeEnum u, Object o) {
         Result result = new Result();
@@ -50,12 +53,6 @@ public class Result extends HashMap<String, Object> implements Serializable {
         Result result = Result.setCodeEnum(u, null);
         result.put(key, value);
         return result;
-    }
-
-
-    public static void main(String[] args) {
-
-
     }
 
 }

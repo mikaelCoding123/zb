@@ -5,6 +5,7 @@ import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.dao.DemoMapper;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,15 @@ public class DemoServiceImpl implements DemoService {
         }
 
 
+        return null;
+    }
+
+    @Override
+    public ServiceResult insertTest02() {
+        for (int i = 0; i < 10; i++) {
+            String s = cn.hutool.core.lang.UUID.randomUUID().toString();
+            demoDao.insertTest02(s);
+        }
         return null;
     }
 

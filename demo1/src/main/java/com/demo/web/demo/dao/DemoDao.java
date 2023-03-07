@@ -27,4 +27,8 @@ public interface DemoDao  {
 
     @Select("SELECT * from codeenum")
     List<Map<String,String>> selectCodeEnum();
+
+    @Insert("INSERT INTO `test02` VALUES (#{uuid}, 'a', 'fksl', 'h', 'h', 'o', 'l', 'o', 'u', 'i', 'i', 'o')")
+    boolean insertTest02(@Param("uuid") String uuid);
+
 }

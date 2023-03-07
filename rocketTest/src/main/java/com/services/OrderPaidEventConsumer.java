@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class OrderPaidEventConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
-        System.out.print("------- 消息内容OrderPaidEventConsumer received:"+ JSON.toJSONString(message));
+        System.out.println("------- 消息内容OrderPaidEventConsumer received:" + JSON.toJSONString(message));
+        log.info("123");
     }
 }

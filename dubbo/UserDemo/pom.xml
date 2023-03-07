@@ -43,6 +43,11 @@
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.mk</groupId>
+            <artifactId>mkCommon</artifactId>
+            <version>1.0.1ga</version>
+        </dependency>
 
     </dependencies>
 

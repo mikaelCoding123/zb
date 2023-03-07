@@ -18,10 +18,10 @@ public class UserRpcService implements UserService {
     @Override
     public User findUser(String name) throws Exception {
         User user = new User();
-        log.info("findUser......");
+        log.info("findUser......userdemo服务");
         user.setAge("123413");
         user.setName(name);
-        user.setObject("2313===>"+port);
+        user.setObject("port===>"+port);
         return user;
     }
 

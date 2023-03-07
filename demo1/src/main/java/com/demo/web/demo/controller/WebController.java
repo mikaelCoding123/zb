@@ -43,5 +43,10 @@ public class WebController {
     }
 
 
+    @RequestMapping(value = "insterTest02",method = RequestMethod.GET)
+    public void insertTest02(){
+        demoService.insertTest02();
+
+    }
 
 }
