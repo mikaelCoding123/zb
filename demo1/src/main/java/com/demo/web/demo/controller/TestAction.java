@@ -57,7 +57,7 @@ public class TestAction {
     }
 
     @RequestMapping(value = "hhhh",method = RequestMethod.POST)
-    public void test03(@RequestBody DkfpzfBo bo){
+    public void test03(@RequestBody Object bo){
         System.out.println("123123");
 
     }

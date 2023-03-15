@@ -1,14 +1,14 @@
 package com.demo.web.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bean.User;
+import com.demo.web.demo.bo.DkfpzfBo;
 import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -37,16 +37,26 @@ public class WebController {
 
     }
 
-    @RequestMapping(value = "insterLogs",method = RequestMethod.GET)
-    public void insertLogs(){
+    @RequestMapping(value = "insterLogs", method = RequestMethod.GET)
+    public void insertLogs() {
         demoService.insertLogs();
     }
 
 
-    @RequestMapping(value = "insterTest02",method = RequestMethod.GET)
-    public void insertTest02(){
+    @RequestMapping(value = "insterTest02", method = RequestMethod.GET)
+    public void insertTest02() {
         demoService.insertTest02();
 
+    }
+
+    @RequestMapping(
+            value = {"/query"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public ServiceResult queryYrdh(@RequestBody DkfpzfBo dkfpzfBo) throws Exception {
+        System.out.println("1111111111");
+        return new ServiceResult("123");
     }
 
 }
