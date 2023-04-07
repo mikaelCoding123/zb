@@ -5,9 +5,6 @@ import com.web.demo.bo.Test01;
 import com.web.demo.dao.AdminDao;
 import com.web.demo.dao.AdminDao2;
 import com.web.demo.service.DemoService;
-
-
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.ExecutorType;
@@ -146,7 +143,7 @@ public class DemoServiceImpl implements DemoService {
      */
     @Override
     public void demoService04() {
-        HashMap<String, String> hashMap = new HashMap<>();
+        HashMap<String, String> hashMap = new HashMap<>(3);
         hashMap.put("username","1e34e7e2");
         List<Object> data = sqlSession.selectList("DATA", hashMap);
         data.forEach((a)->{

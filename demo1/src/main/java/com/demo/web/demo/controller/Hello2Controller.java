@@ -1,6 +1,5 @@
 package com.demo.web.demo.controller;
 
-import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
@@ -16,6 +15,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/web2")
@@ -25,17 +25,17 @@ public class Hello2Controller {
     @Autowired
     public DemoService demoService;
 
-    @RequestMapping(value = "demo", method = RequestMethod.POST)
+    @RequestMapping(value = "/demo", method = RequestMethod.POST)
     public ServiceResult demo() {
         logger.info("web2/demo");
         logger.warn("123213");
         return null;
     }
 
-    @RequestMapping(value = "mybatis01", method = RequestMethod.POST)
-    public ServiceResult post01(@RequestBody JSONObject json) {
-        demoService.findByid("1");
-        return null;
+    @RequestMapping(value = "/mybatis01", method = RequestMethod.POST)
+    public ServiceResult post01(@RequestBody HashMap<String, String> json) {
+        ServiceResult byid = demoService.findByid("1");
+        return byid;
     }
 
     /**
