@@ -31,4 +31,8 @@ public interface DemoDao  {
     @Insert("INSERT INTO `test02` VALUES (#{uuid}, 'a', 'fksl', 'h', 'h', 'o', 'l', 'o', 'u', 'i', 'i', 'o')")
     boolean insertTest02(@Param("uuid") String uuid);
 
+
+    @Select("select * from admin ")
+    List<Map<String,String>> selectAdmin();
+
 }

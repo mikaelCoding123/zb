@@ -1,12 +1,14 @@
 package com.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class User implements Serializable {
     private final static long serialVersionUID = 1L;
     private String pokid;
     private String username;
     private String password;
+    private List pc;
 
     public User() {
     }
@@ -43,5 +45,13 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public List<String> getPc() {
+        return pc;
+    }
+
+    public void setPc(List<String> pc) {
+        this.pc = pc;
     }
 }

@@ -1,5 +1,6 @@
 package com.controller;
 
+import cn.hutool.core.lang.Snowflake;
 import com.bean.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -35,6 +36,7 @@ public class RocketController {
     @RequestMapping("Nor")
     public void pt() {
         User user = new User();
+        user.setPokid(new Snowflake().nextIdStr());
         rocketMQTemplate.syncSend("Nor", user, 2000);
     }
 
