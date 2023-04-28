@@ -1,7 +1,5 @@
 package com.demo.web.demo.controller;
 
-import com.bean.User;
-import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
 import org.slf4j.Logger;

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DemoBo1 implements Serializable {
     @NotBlank(message = "pokid 不能为空")
     private String pokid;
-    @Size(min = 3,max = 10,message = "username必须在3~10之间")
+    @Size(min = 3, max = 10, message = "username必须在3~10之间")
     private String username;
     @NotNull(message = "password 不能为空")
     private String password;
@@ -34,8 +34,6 @@ public class DemoBo1 implements Serializable {
     public void setList(ArrayList<Child> list) {
         this.list = list;
     }
-
-
 
 
     public String getPokid() {
