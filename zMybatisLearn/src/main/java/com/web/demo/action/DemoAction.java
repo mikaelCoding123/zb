@@ -5,6 +5,8 @@ import com.web.demo.service.DemoService;
 import com.web.demo.service.PlusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,11 @@ public class DemoAction {
     public void demo03Action() {
         demoService.demoService03(12 + "");
     }
+    @RequestMapping(value = "/demo04", method = RequestMethod.GET)
+    public ServiceResult demo04Action() {
+        ServiceResult serviceResult = demoService.demoService05(12 + "");
+        return serviceResult;
+    }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     public void getData() {
@@ -50,6 +57,12 @@ public class DemoAction {
         log.info("====>" + name);
         return txtNum + "====" + name;
     }
+    @RequestMapping(value = "/{id}/test", method = RequestMethod.GET)
+    public String test01(@PathVariable("id") String id) {
+        log.info("====>" + id);
+        return  id;
+    }
+
 
     @RequestMapping(value = "likeMerge", method = RequestMethod.POST)
     public void test01() {

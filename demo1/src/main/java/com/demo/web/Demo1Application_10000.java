@@ -10,11 +10,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 @MapperScan({"com.demo.web.*.dao"})
-public class Demo1Application10000 {
+public class Demo1Application_10000 {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(Demo1Application10000.class, args);
+        SpringApplication.run(Demo1Application_10000.class, args);
         System.out.println("=====>启动完成");
 
     }

@@ -1,5 +1,6 @@
 package com.web.demo.service.impl;
 
+import com.common.ServiceResult;
 import com.web.demo.bo.Admin;
 import com.web.demo.bo.Test01;
 import com.web.demo.dao.AdminDao;
@@ -137,6 +138,16 @@ public class DemoServiceImpl implements DemoService {
 
     }
 
+    @Override
+    public ServiceResult demoService05(String id) {
+        Admin admin = new Admin();
+        admin.setPokid(123L);
+//        admin.setUsername("");
+        Admin admin1 = adminDao.selectAdmin(admin);
+        logger.info(admin1);
+        return ServiceResult.successObject(admin1);
+    }
+
     /**
      * 实现根据string执行xml中相对应的sql
      *
@@ -147,7 +158,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public void demoService04() {
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("username","1e34e7e2");
+        hashMap.put("username","hua123");
         List<Object> data = sqlSession.selectList("DATA", hashMap);
         data.forEach((a)->{
             System.out.println(a.toString());

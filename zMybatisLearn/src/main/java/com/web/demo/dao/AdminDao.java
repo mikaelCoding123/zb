@@ -21,6 +21,8 @@ public interface AdminDao extends BaseMapper<Admin> {
     
     int insertAdmin(Admin admin);
     int insertAdminByBatch(List<Test01> test01s);
+
+    Admin selectAdmin(Admin admin);
 //
 //    int updateByPrimaryKeySelective(Admin record);
 //
