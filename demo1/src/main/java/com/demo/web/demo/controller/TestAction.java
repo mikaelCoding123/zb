@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.web.config.AccessLimit;
 import com.demo.web.demo.bo.CodeDo;
+import com.demo.web.demo.bo.DkfpzfBo;
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.response.ServiceResult;
 import lombok.SneakyThrows;
@@ -46,10 +48,17 @@ public class TestAction {
     public void test01(@RequestBody Map<String, String> params){
         String s = params.toString();
         Assert.isNull(params.get("username"), "不能为空");
+        Assert.isTrue(!Strings.isNullOrEmpty(params.get("username")), "不能为空");
         String s1 = JSONObject.toJSONString(params);
         Map jsonObject = JSONObject.parseObject(s1,Map.class);
         log.info(params.toString());
         String json = "{\"abc\":\"1\",\"hahah\":\"2\"}";
         log.info(jsonObject.toString());
+    }
+
+    @RequestMapping(value = "hhhh",method = RequestMethod.POST)
+    public void test03(@RequestBody Object bo){
+        System.out.println("123123");
+
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mk.dao.MkBillDao">
-  <resultMap id="BaseResultMap" type="com.mk.bo.MkBill">
+<mapper namespace="com.common.dao.MkBillDao">
+  <resultMap id="BaseResultMap" type="com.common.bo.MkBill">
     <id column="bill_id" jdbcType="VARCHAR" property="billId" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="spsm" jdbcType="VARCHAR" property="spsm" />
@@ -23,13 +23,13 @@
     delete from mk_bill
     where bill_id = #{billId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="bill_id" keyProperty="billId" parameterType="com.mk.bo.MkBill" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="bill_id" keyProperty="billId" parameterType="com.common.bo.MkBill" useGeneratedKeys="true">
     insert into mk_bill (userid, spsm, jf, 
       cjsj, fkfs, zfsj)
     values (#{userid,jdbcType=VARCHAR}, #{spsm,jdbcType=VARCHAR}, #{jf,jdbcType=VARCHAR}, 
       #{cjsj,jdbcType=DATE}, #{fkfs,jdbcType=VARCHAR}, #{zfsj,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" keyColumn="bill_id" keyProperty="billId" parameterType="com.mk.bo.MkBill" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="bill_id" keyProperty="billId" parameterType="com.common.bo.MkBill" useGeneratedKeys="true">
     insert into mk_bill
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -72,7 +72,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mk.bo.MkBill">
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.bo.MkBill">
     update mk_bill
     <set>
       <if test="userid != null">
@@ -96,7 +96,7 @@
     </set>
     where bill_id = #{billId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mk.bo.MkBill">
+  <update id="updateByPrimaryKey" parameterType="com.common.bo.MkBill">
     update mk_bill
     set userid = #{userid,jdbcType=VARCHAR},
       spsm = #{spsm,jdbcType=VARCHAR},

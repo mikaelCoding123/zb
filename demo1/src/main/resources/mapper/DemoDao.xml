@@ -21,5 +21,9 @@
         select  userid,name,age,CONVERT (blog USING utf8) as blog,bri,money from user
     </select>
 
+    <insert id="insertId">
+        INSERT INTO `test02` VALUES (#{uuid}, 'a', 'fksl', 'h', 'h', 'o', 'l', 'o', 'u', 'i', 'i', 'o');
+
+    </insert>
 
 </mapper>

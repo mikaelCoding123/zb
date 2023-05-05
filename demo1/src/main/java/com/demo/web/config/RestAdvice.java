@@ -46,15 +46,16 @@ public class RestAdvice implements ResponseBodyAdvice<Object> {
     public ServiceResult getAdvice1(RuntimeException e) {
         e.printStackTrace();
         log.error(e.getMessage());
-        return ServiceResult.setEnum(CodeEnum.Exception, e.toString());
+        return ServiceResult.setEnum(CodeEnum.Exception, "");
     }
 
     //捕获异常抛出异常信息
     @ExceptionHandler({Exception.class})
     public ServiceResult getAdvice2(Exception e) {
+
         e.printStackTrace();
         log.error(e.getMessage());
-        return ServiceResult.setEnum(CodeEnum.Exception, e.toString());
+        return ServiceResult.setEnum(CodeEnum.Exception, "");
     }
 
     /**

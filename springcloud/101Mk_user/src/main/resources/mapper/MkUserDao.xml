@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mk.web.dao.MkUserDao">
-    <resultMap id="BaseResultMap" type="com.mk.web.bo.MkUser">
+<mapper namespace="com.common.web.dao.MkUserDao">
+    <resultMap id="BaseResultMap" type="com.common.web.bo.MkUser">
         <id column="userid" jdbcType="VARCHAR" property="userid" />
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
@@ -22,13 +22,13 @@
         delete from mk_user
         where userid = #{userid,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert" keyColumn="userid" keyProperty="userid" parameterType="com.mk.web.bo.MkUser" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="userid" keyProperty="userid" parameterType="com.common.web.bo.MkUser" useGeneratedKeys="true">
         insert into mk_user (username, `password`, sjhm,
         dzyx, balance)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sjhm,jdbcType=VARCHAR},
         #{dzyx,jdbcType=VARCHAR}, #{balance,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" keyColumn="userid" keyProperty="userid" parameterType="com.mk.web.bo.MkUser" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="userid" keyProperty="userid" parameterType="com.common.web.bo.MkUser" useGeneratedKeys="true">
         insert into mk_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">
@@ -65,7 +65,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.mk.web.bo.MkUser">
+    <update id="updateByPrimaryKeySelective" parameterType="com.common.web.bo.MkUser">
         update mk_user
         <set>
             <if test="username != null">
@@ -86,7 +86,7 @@
         </set>
         where userid = #{userid,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.mk.web.bo.MkUser">
+    <update id="updateByPrimaryKey" parameterType="com.common.web.bo.MkUser">
         update mk_user
         set username = #{username,jdbcType=VARCHAR},
         `password` = #{password,jdbcType=VARCHAR},

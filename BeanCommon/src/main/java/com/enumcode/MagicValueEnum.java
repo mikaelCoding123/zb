@@ -3,7 +3,7 @@ package com.enumcode;
 /**
  * encoded: UTF-8
  * <p>
- * 魔法值  一些特定的固定值(数字，字符串)
+ * 魔法值  一些特定的固定值(数字，字符串等)
  */
 public enum MagicValueEnum {
     /**
@@ -15,7 +15,9 @@ public enum MagicValueEnum {
      * <p>
      * 版本号
      */
-    version(1, 2301L, "1.0.2301RC1"),
+    version(1, 2301L, "v1.3.2301RC1"),
+
+    version_1(1, 2301L, "202301GA1"),
     M001(1, 1L, "https://www.baidu.com/"),
     M002(3, 1L, "fwef"),
 

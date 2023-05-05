@@ -1,5 +1,6 @@
 package com.rabbitmq.controller;
 
+import com.common.WebResult;
 import com.rabbitmq.bean.User;
 import com.response.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +26,9 @@ public class SendMsgAction {
         User user = new User();
         user.setPokid("123");
         user.setUsername("明ke12");
-        rt.convertAndSend("exchange-hua","test-one",user,new CorrelationData("12"));
-        return null;
+        WebResult webResult = new WebResult(user);
+        rt.convertAndSend("exchange-hua","test-one",webResult,new CorrelationData("12"));
+        return new ServiceResult();
     }
     //简单的一对一发送   exchange-hua  direct   rabbitmq返回
     @RequestMapping(value = "sendMsg-one-ack",method = RequestMethod.POST)
@@ -34,7 +36,8 @@ public class SendMsgAction {
         User user = new User();
         user.setPokid("123");
         user.setUsername("明ke12k龚龖");
-        rt.convertAndSend("exchange-hua","test-one",user,new CorrelationData("12"));
+        WebResult webResult = new WebResult(user);
+        rt.convertAndSend("exchange-hua","test-one",webResult,new CorrelationData("12"));
         return null;
     }
 
