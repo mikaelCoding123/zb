@@ -13,7 +13,13 @@
     <select id="selectIP" resultType="java.util.Map">
     select pokid,INET_NTOA(ip) ip,datetime,date,date_time from ip_address
     </select>
-    <select id="getDemoByName" resultType="java.util.Map"></select>
+    <select id="getDemoByName" resultType="java.util.Map">
+        select  * from user
+    </select>
+
+    <select id="selectSomething" resultType="java.util.Map">
+        select  userid,name,age,CONVERT (blog USING utf8) as blog,bri,money from user
+    </select>
 
 
 </mapper>

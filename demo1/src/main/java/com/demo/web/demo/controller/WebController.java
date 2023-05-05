@@ -1,5 +1,6 @@
 package com.demo.web.demo.controller;
 
+import com.common.Result;
 import com.demo.web.demo.service.DemoService;
 import com.response.ServiceResult;
 import org.slf4j.Logger;
@@ -38,6 +39,16 @@ public class WebController {
     @RequestMapping(value = "insterLogs",method = RequestMethod.GET)
     public void insertLogs(){
         demoService.insertLogs();
+    }
+
+    /**
+     * mysql几种数剧类型查出来的效果
+     * @return
+     */
+    @RequestMapping(value = "selectUser",method = RequestMethod.GET)
+    public Result selectUser(){
+        Result result = demoService.selectUser();
+        return result;
     }
 
 

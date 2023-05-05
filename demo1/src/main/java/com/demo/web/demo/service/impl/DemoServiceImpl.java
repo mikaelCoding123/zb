@@ -1,9 +1,11 @@
 package com.demo.web.demo.service.impl;
 
 import com.bean.User;
+import com.common.Result;
 import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.dao.DemoMapper;
 import com.demo.web.demo.service.DemoService;
+import com.enumcode.CodeEnum;
 import com.response.ServiceResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,14 +76,20 @@ public class DemoServiceImpl implements DemoService {
     public ServiceResult insertLogs() {
         for (int i = 0; i < 20; i++) {
             User user = new User();
-            user.setUsername("logs"+i);
+            user.setUsername("logs" + i);
             user.setPassword("123");
             user.setPokid(UUID.randomUUID().toString());
-            demoDao.insertlogs(UUID.randomUUID().toString(),user.toString());
+            demoDao.insertlogs(UUID.randomUUID().toString(), user.toString());
         }
 
-
         return null;
+    }
+
+    @Override
+    public Result selectUser() {
+        List<Map<String, Object>> maps = demoDao.selectSomething();
+        return Result.setCodeEnum(CodeEnum.SUCCESS, maps);
+
     }
 
     //测试logback.xml是否可以分割日志

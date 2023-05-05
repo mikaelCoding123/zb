@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.annotation.Resource;
 
-@SpringBootTest(classes = {Demo1Application10000.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = {Demo1Application_10000.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class Demo1ApplicationTests {
     @Resource

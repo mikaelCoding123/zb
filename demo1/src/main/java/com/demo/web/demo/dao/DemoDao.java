@@ -27,4 +27,7 @@ public interface DemoDao  {
 
     @Select("SELECT * from codeenum")
     List<Map<String,String>> selectCodeEnum();
+
+
+    List<Map<String,Object>> selectSomething();
 }

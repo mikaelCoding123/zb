@@ -4,7 +4,6 @@ package com.common;
 import com.enumcode.CodeEnum;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +12,6 @@ import java.util.Map;
  * @Description: 返回数据统一格式
  */
 public class ServiceResult implements Serializable {
-    private static final long serialVersionUID = -1L;
 
     private String code = CodeEnum.SUCCESS.getCode();
     private String msg = CodeEnum.SUCCESS.getMsg();

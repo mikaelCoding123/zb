@@ -1,7 +1,6 @@
 package com.demo.web.demo.controller;
 
 import com.common.ServiceResult;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -17,7 +16,7 @@ public class AsyncAction {
 
     private static final Logger log = LoggerFactory.getLogger(AsyncAction.class);
 
-    @Async
+    @Async("async-1")
     @RequestMapping(value = "/test01",method = RequestMethod.POST)
     public void ays01(){
         ServiceResult.defaultSuccess();
@@ -27,7 +26,7 @@ public class AsyncAction {
             e.printStackTrace();
         }
         log.info("test01====");
-        return  ;
+        return ;
     }
 
 

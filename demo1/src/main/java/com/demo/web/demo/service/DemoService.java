@@ -1,5 +1,6 @@
 package com.demo.web.demo.service;
 
+import com.common.Result;
 import com.response.ServiceResult;
 
 import java.util.Map;
@@ -15,4 +16,5 @@ public interface DemoService {
      ServiceResult insertIP(Map<String,String> paramsMap);
 
      ServiceResult insertLogs();
+     Result selectUser();
 }

@@ -50,7 +50,6 @@ public class Result extends HashMap<String, Object> implements Serializable {
 
 
     public static void main(String[] args) {
-
         System.out.println(Result.defaultSuccess());
         System.out.println(Result.addKV(CodeEnum.Exception, "trid", "jsfhkjdhf"));
 
