@@ -18,17 +18,17 @@ public class UserAction {
     private NewsService newsService;
 
     //dubbo调用userdemo服务
-    @RequestMapping("/news")
+    @RequestMapping(value = "/news",method = RequestMethod.GET)
     public ServiceResult getUser() throws Exception {
         User hfjks = newsService.findUser("hfjks");
         ServiceResult serviceResult = new ServiceResult();
         serviceResult.setData(hfjks);
-
+        Thread.sleep(1000);
         return serviceResult;
     }
 
     //dubbo调用userdemo服务
-    @RequestMapping("/news/timeout")
+    @RequestMapping(value = "/news/timeout",method = RequestMethod.GET)
     public ServiceResult getTimeout() throws Exception {
         User hfjks = newsService.findUsertimeout("hfjks");
         ServiceResult serviceResult = new ServiceResult();
@@ -47,7 +47,7 @@ public class UserAction {
 
 
     //传递user给userdemo服务
-    @RequestMapping("/news/user")
+    @RequestMapping(value = "/news/user",method = RequestMethod.GET)
     public ServiceResult toUser(){
         User user = new User();
         user.setName("news==hua");

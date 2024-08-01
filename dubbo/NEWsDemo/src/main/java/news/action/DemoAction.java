@@ -16,9 +16,11 @@ public class DemoAction {
     private DemoService01 demoService01;
 
     @RequestMapping(value = "demo/insert",method = RequestMethod.GET)
-    public ServiceResult insert(){
+    public ServiceResult insert() throws InterruptedException {
+        ServiceResult serviceResult = new ServiceResult();
+        //Thread.sleep(1000);
         ServiceResult insert = demoService01.insert();
-        return insert;
+        return serviceResult;
     }
 
 

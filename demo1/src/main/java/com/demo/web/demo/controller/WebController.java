@@ -2,6 +2,8 @@ package com.demo.web.demo.controller;
 
 import com.common.Result;
 import com.demo.web.demo.service.DemoService;
+import com.enumcode.CodeEnum;
+import com.github.pagehelper.PageInfo;
 import com.response.ServiceResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class WebController {
     private static final Logger logger = LoggerFactory.getLogger(WebController.class);
-    @Resource
+    @Resource(name = "DemoServiceImpl")
     private DemoService demoService;
 
     @RequestMapping(value = "insertDdmin", method = RequestMethod.GET)
@@ -51,6 +54,16 @@ public class WebController {
         return result;
     }
 
+
+    @RequestMapping(value = "/Admin",method = RequestMethod.GET)
+    public Result selectAdmin(){
+
+        Result selectlist = demoService.selectlist();
+
+
+
+        return Result.setCodeEnum(CodeEnum.SUCCESS,selectlist);
+    }
 
 
 }

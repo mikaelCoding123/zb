@@ -9,6 +9,32 @@
     <artifactId>UserDemo</artifactId>
     <name>UserDemo Tapestry 5 Application</name>
     <packaging>war</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- 扫描src/main/java下所有xx.xml文件 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!-- 扫描resources下所有资源 -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -44,9 +70,9 @@
             <version>2.9.0</version>
         </dependency>
         <dependency>
-            <groupId>com.mk</groupId>
-            <artifactId>mkCommon</artifactId>
-            <version>1.0.1ga</version>
+            <groupId>com</groupId>
+            <artifactId>bean-common</artifactId>
+            <version>1.0</version>
         </dependency>
 
     </dependencies>

@@ -17,4 +17,6 @@ public interface DemoService {
 
      ServiceResult insertLogs();
      Result selectUser();
+
+     Result selectlist();
 }

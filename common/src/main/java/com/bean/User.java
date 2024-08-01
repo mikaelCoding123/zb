@@ -1,5 +1,7 @@
 package com.bean;
 
+import com.sun.deploy.util.OrderedHashSet;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -9,6 +11,10 @@ public class User implements Serializable {
     private String password;
 
     public User() {
+    }
+
+    public User(String s, String s1, String s2) {
+
     }
 
 
@@ -43,5 +49,9 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public OrderedHashSet getPc() {
+        return null;
     }
 }

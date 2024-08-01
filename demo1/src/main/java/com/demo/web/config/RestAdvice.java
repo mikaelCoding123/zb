@@ -46,8 +46,9 @@ public class RestAdvice implements ResponseBodyAdvice<Object> {
     public ServiceResult getAdvice1(RuntimeException e) {
         e.printStackTrace();
         log.error(e.getMessage());
-        return ServiceResult.setEnum(CodeEnum.Exception, "");
+        return ServiceResult.setEnum(CodeEnum.Exception, e.getMessage());
     }
+
 
     //捕获异常抛出异常信息
     @ExceptionHandler({Exception.class})
@@ -73,11 +74,12 @@ public class RestAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        log.info("123");
+//        log.info("123");
         // 提供一定的灵活度，如果body已经被包装了，就不进行包装
         if (body instanceof ServiceResult) {
             return body;
         }
+
         if (body instanceof String) {
             try {
                 return new ObjectMapper().writeValueAsString(ServiceResult.successObject(body));
@@ -85,13 +87,14 @@ public class RestAdvice implements ResponseBodyAdvice<Object> {
                 e.printStackTrace();
             }
         }
-        if(body instanceof com.response.ServiceResult){
+        if (body instanceof com.response.ServiceResult) {
             return body;
         }
 
         if (body instanceof Result) {
             return body;
         }
+
         return ServiceResult.successObject(body);
 
     }

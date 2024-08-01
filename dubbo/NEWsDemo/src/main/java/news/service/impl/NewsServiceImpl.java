@@ -14,7 +14,7 @@ public class NewsServiceImpl implements NewsService {
 
     private static final Logger log = LoggerFactory.getLogger(NewsServiceImpl.class);
 
-    @Reference(retries = 3, timeout = 7_000)
+    @Reference(retries = 1, timeout = 7_000)
     private UserService userService;
 
     @Override

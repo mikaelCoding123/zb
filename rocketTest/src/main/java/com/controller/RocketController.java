@@ -1,5 +1,6 @@
 package com.controller;
 
+import cn.hutool.core.lang.Snowflake;
 import com.bean.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -27,7 +28,7 @@ public class RocketController {
         long l = System.currentTimeMillis();        //Test消息的主题 要和消费者的主题保持一致
         SendResult test = rocketMQTemplate.syncSend("Test", MessageBuilder.withPayload("user").build(), 2000, 3);//delayLevel 延时时间18个等级 1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
         long l1 = System.currentTimeMillis();
-        System.out.println("=======上述代码执行时间为:=====" + (l1 - l));
+        System.out.println("=======上述代码执行时间为:=====" + (l1 - l)+"Millis");
         System.out.println("发送成功");
     }
 
@@ -35,6 +36,7 @@ public class RocketController {
     @RequestMapping("Nor")
     public void pt() {
         User user = new User();
+        user.setPokid(new Snowflake().nextIdStr());
         rocketMQTemplate.syncSend("Nor", user, 2000);
     }
 

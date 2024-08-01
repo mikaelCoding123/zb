@@ -2,6 +2,7 @@ package com.demo.web.demo.service.impl;
 
 import com.bean.User;
 import com.common.Result;
+import com.demo.web.demo.bo.Admin;
 import com.demo.web.demo.dao.DemoDao;
 import com.demo.web.demo.dao.DemoMapper;
 import com.demo.web.demo.service.DemoService;
@@ -15,7 +16,7 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@Service
+@Service("DemoServiceImpl")
 public class DemoServiceImpl implements DemoService {
     private static final Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
     @Resource
@@ -45,6 +46,7 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public ServiceResult findByid(String id) {
+        List<Map<String, String>> maps = demoDao.selectAdmin1();
 
         return null;
     }
@@ -92,6 +94,13 @@ public class DemoServiceImpl implements DemoService {
 
     }
 
+    @Override
+    public Result selectlist() {
+        List<Admin> list = demoDao.selectList();
+
+        return Result.setCodeEnum(CodeEnum.SUCCESS,list);
+    }
+
     //测试logback.xml是否可以分割日志
 //    @Scheduled(cron = "30 10 1 * * ?")
     public void test() {
@@ -101,4 +110,5 @@ public class DemoServiceImpl implements DemoService {
             i++;
         }
     }
+
 }

@@ -1,14 +1,10 @@
 package com.demo.web.demo.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.web.config.AccessLimit;
 import com.demo.web.demo.bo.CodeDo;
-import com.demo.web.demo.bo.DkfpzfBo;
 import com.google.common.base.Strings;
-import com.google.gson.Gson;
 import com.response.ServiceResult;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 @RestController
@@ -47,8 +42,8 @@ public class TestAction {
     @RequestMapping(value = "json",method = RequestMethod.POST)
     public void test01(@RequestBody Map<String, String> params){
         String s = params.toString();
-        Assert.isNull(params.get("username"), "不能为空");
-        Assert.isTrue(!Strings.isNullOrEmpty(params.get("username")), "不能为空");
+      //  Assert.isNull(params.get("username"), "username不能为空");
+        Assert.isTrue(!Strings.isNullOrEmpty(params.get("username")), "11不能为空");
         String s1 = JSONObject.toJSONString(params);
         Map jsonObject = JSONObject.parseObject(s1,Map.class);
         log.info(params.toString());
@@ -60,5 +55,11 @@ public class TestAction {
     public void test03(@RequestBody Object bo){
         System.out.println("123123");
 
+    }
+
+    public static void main(String[] args) {
+        Integer i = 100;
+        Integer a= 300;
+        System.out.println(i==a);
     }
 }

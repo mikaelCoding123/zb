@@ -23,7 +23,10 @@
 
     <insert id="insertId">
         INSERT INTO `test02` VALUES (#{uuid}, 'a', 'fksl', 'h', 'h', 'o', 'l', 'o', 'u', 'i', 'i', 'o');
-
     </insert>
+
+    <select id="selectList" resultType="com.demo.web.demo.bo.Admin">
+        select * from admin
+    </select>
 
 </mapper>

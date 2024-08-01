@@ -1,5 +1,6 @@
 package com.demo.web.demo.dao;
 
+import com.demo.web.demo.bo.Admin;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @Mapper
 public interface DemoDao  {
+
     @Select("select * from admin where pokid=#{id}")
     Map<String, String> getDemoById(@Param("id") String id);
 
@@ -28,6 +30,14 @@ public interface DemoDao  {
     @Select("SELECT * from codeenum")
     List<Map<String,String>> selectCodeEnum();
 
+    @Insert("INSERT INTO `test02` VALUES (#{uuid}, 'a', 'fksl', 'h', 'h', 'o', 'l', 'o', 'u', 'i', 'i', 'o')")
+    boolean insertTest02(@Param("uuid") String uuid);
 
-    List<Map<String,Object>> selectSomething();
+
+    @Select("select * from admin ")
+    List<Map<String,String>> selectAdmin1();
+
+    List<Map<String, Object>> selectSomething();
+
+    List<Admin> selectList();
 }
