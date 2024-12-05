@@ -6,9 +6,6 @@ import com.web.demo.bo.Test01;
 import com.web.demo.dao.AdminDao;
 import com.web.demo.dao.AdminDao2;
 import com.web.demo.service.DemoService;
-
-
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.ExecutorType;
@@ -42,10 +39,11 @@ public class DemoServiceImpl implements DemoService {
     private SqlSessionTemplate sqlSessionTemplate;
 
     @Resource
-    private  SqlSession sqlSession;
+    private SqlSession sqlSession;
 
     /**
      * 编程式事务
+     *
      * @param id
      */
     @Override
@@ -62,7 +60,7 @@ public class DemoServiceImpl implements DemoService {
                 //会报异常待解决
                 try {
 //                    adminDao2.DUPLICATE(admin1);
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
                 admin1.setPokid(1234L);
@@ -92,6 +90,7 @@ public class DemoServiceImpl implements DemoService {
 
     /**
      * 采用
+     *
      * @param id
      */
     @Override
@@ -103,7 +102,7 @@ public class DemoServiceImpl implements DemoService {
         Admin test01 = new Admin();
         ArrayList<Test01> list = new ArrayList<>();
         for (int i = 1; i < 1000; i++) {
-            test01.setPokid(Long.valueOf(i+""));
+            test01.setPokid(Long.valueOf(i + ""));
             test01.setPassword(UUID.randomUUID().toString().substring(0, 8));
             test01.setUsername(UUID.randomUUID().toString().substring(0, 8));
             adminDao.insertAdmin(test01);
@@ -116,6 +115,7 @@ public class DemoServiceImpl implements DemoService {
     /**
      * 采用batch方式插入  大量数据时容易造成内存溢出，此时可以分批插入，先插3000个
      * 根据数据库本身的特点用foreach 拼接如下sql 语句实现批处理，但是受数据库本身配置限制的sql长度大小
+     *
      * @param id
      */
     @Override
@@ -125,11 +125,11 @@ public class DemoServiceImpl implements DemoService {
         ArrayList<Test01> test01s = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             Test01 test01 = new Test01();
-            test01.setPokid(i+"s");
+            test01.setPokid(i + "s");
             test01.setPassword(UUID.randomUUID().toString().substring(0, 8));
             test01.setUsername(UUID.randomUUID().toString().substring(0, 8));
             test01s.add(test01);
-            test01=null;
+            test01 = null;
         }
 
         adminDao.insertAdminByBatch(test01s);
@@ -150,17 +150,16 @@ public class DemoServiceImpl implements DemoService {
 
     /**
      * 实现根据string执行xml中相对应的sql
-     *
+     * <p>
      * DATA跟xml中的id对应，hashmap则是对应的参数
      * 其中DATA必须是所有xml id 中唯一的，否则会报错
-     *
      */
     @Override
     public void demoService04() {
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("username","hua123");
+        hashMap.put("username", "hua123");
         List<Object> data = sqlSession.selectList("DATA", hashMap);
-        data.forEach((a)->{
+        data.forEach((a) -> {
             System.out.println(a.toString());
         });
     }
@@ -173,12 +172,22 @@ public class DemoServiceImpl implements DemoService {
     //频繁的REPLACE INTO 会造成新纪录的主键的值迅速增大。总有一天。达到最大值后就会因为数据太大溢出了。就没法再插入新纪录了。数据表满了，
     //不是因为空间不够了，而是因为主键的值没法再增加了。
     @PostConstruct
-    public void replaceINSERT(){
+    public void replaceINSERT() {
         Admin admin1 = new Admin();
         admin1.setPassword("123");
         admin1.setUsername("hua123");
         admin1.setPokid(123L);
         adminDao2.replaceINTO(admin1);
+    }
+
+
+    //============================================================
+    @PostConstruct
+    public void DUPLICATEINSERT() {
+        List stringObjectMap = adminDao.selectSc1("76");
+        stringObjectMap.forEach((a) -> {
+            System.out.println(a.toString());
+        });
     }
 
 }

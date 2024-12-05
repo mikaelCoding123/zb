@@ -101,4 +101,9 @@
     </select>
 
 
+    <select id="selectSc"  resultType="java.util.Map">
+        select * from sc where score &gt;= #{score}
+    </select>
+
+
 </mapper>
