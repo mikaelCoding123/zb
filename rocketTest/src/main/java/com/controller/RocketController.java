@@ -8,6 +8,7 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -88,9 +89,25 @@ public class RocketController {
     public void transaction01(){
         Message message = new Message();
         message.setTopic("transaction01");
+        message.setTags("01");
+        message.setTags("1323");
         MessageBuilder<String> builder = MessageBuilder.withPayload("");
 
+
+
 //        rocketMQTemplate.sendMessageInTransaction("producer", "transaction01", message, "01");
+    }
+
+    @GetMapping("/tag")
+    public void tag(){
+        User user = new User();
+        user.setPokid("123");
+        user.setUsername("话");
+        user.setPassword("oisuejf");
+        Message message = new Message();
+        message.setBody(user.toString().getBytes());
+        message.setTags("1");
+        rocketMQTemplate.send("test",MessageBuilder.withPayload(message).build());
     }
 
     public static void main(String[] args) {

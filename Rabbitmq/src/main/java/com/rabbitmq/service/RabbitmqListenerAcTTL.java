@@ -14,10 +14,10 @@ import java.io.IOException;
 @Slf4j
 public class RabbitmqListenerAcTTL {
 
-    @RabbitListener(queues = "test-dead")
-    public void AcTWO(Message msg, User user, Channel channel) throws IOException {
-        channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
-        log.info("test-dead====》" + user.toString());
-    }
+//    @RabbitListener(queues = "test-dead")
+//    public void AcTWO(Message msg, User user, Channel channel) throws IOException {
+//        channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
+//        log.info("test-dead====》" + user.toString());
+//    }
 
 }

@@ -61,7 +61,7 @@ public class DemoServiceImpl implements DemoService {
                 try {
 //                    adminDao2.DUPLICATE(admin1);
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    throw new RuntimeException("重复插入");
                 }
                 admin1.setPokid(1234L);
             }
