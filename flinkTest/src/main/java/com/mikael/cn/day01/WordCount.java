@@ -5,14 +5,14 @@ import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.util.Collector;
-
+//DataSet在1.12之后不推荐使用
 //批处理world count
 public class WordCount {
     public static void main(String[] args) throws Exception {
         //创建执行环境
         ExecutionEnvironment environment = ExecutionEnvironment.getExecutionEnvironment();
         //从文件中读取数据
-        String path = "D:\\6zb\\flinkTest\\src\\main\\java\\com\\mikael\\cn\\day01\\hello.txt";
+        String path = "C:\\2Code\\2BackendCode\\zb\\flinkTest\\src\\main\\java\\com\\mikael\\cn\\day01\\hello.txt";
         DataSet<String> stringDataSource = environment.readTextFile(path);
 
         //对数据集进行处理   按空格分词展开，转化成(world,1 )二元组
