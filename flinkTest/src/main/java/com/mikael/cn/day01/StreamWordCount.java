@@ -14,7 +14,7 @@ public class StreamWordCount {
         DataStream<String> stringDataStreamSource = env.readTextFile(path);
         DataStream<Tuple2<String, Integer>> sum = stringDataStreamSource.flatMap(new WordCount.MyflatMapper()).keyBy(0).sum(1).filter(x -> x.f1 > 2);
 
-
+//
         sum.print().setParallelism(1);
         env.execute();
     }
