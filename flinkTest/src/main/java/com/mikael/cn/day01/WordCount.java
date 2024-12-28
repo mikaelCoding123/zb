@@ -15,6 +15,7 @@ public class WordCount {
         String path = "C:\\2Code\\2BackendCode\\zb\\flinkTest\\src\\main\\java\\com\\mikael\\cn\\day01\\hello.txt";
         DataSet<String> stringDataSource = environment.readTextFile(path);
 
+
         //对数据集进行处理   按空格分词展开，转化成(world,1 )二元组
         DataSet<Tuple2<String, Integer>> result = stringDataSource.flatMap(new MyflatMapper()).
                 groupBy(0) //按照第一个位置的world分组
@@ -34,6 +35,7 @@ public class WordCount {
             for (String world : s) {
                out.collect( new Tuple2<>(world,1));
             }
+
 
 
         }
