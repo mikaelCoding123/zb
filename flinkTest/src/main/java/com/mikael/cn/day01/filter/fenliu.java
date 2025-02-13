@@ -1,6 +1,8 @@
 package com.mikael.cn.day01.filter;
 
 import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.KeyedStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 //filter简单使用
@@ -13,7 +15,8 @@ public class fenliu {
 
         stringDataStreamSource.filter(value -> Integer.valueOf(value) % 2 == 0).print("偶数");
         stringDataStreamSource.filter(value -> Integer.valueOf(value) % 2 == 1).print("奇数");
-
+        KeyedStream<String, Integer> keyedStream = stringDataStreamSource.keyBy(value -> Integer.valueOf(value));
+      keyedStream.print();
 
         env.execute();
 
