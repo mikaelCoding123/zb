@@ -1,9 +1,0 @@
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: jf
-          #当地址栏为localhost：12560/pokweb 时就跳转到uri地址中
-          uri: https://www.huya.com/23903183
-          predicates:
-            - Path=/pokweb/**
