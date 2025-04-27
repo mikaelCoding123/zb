@@ -12,6 +12,7 @@ import java.util.Map;
  * @Description: 返回数据统一格式
  */
 public class ServiceResult implements Serializable {
+    private final static long serialVersionUID = 1L;
 
     private String code = CodeEnum.SUCCESS.getCode();
     private String msg = CodeEnum.SUCCESS.getMsg();

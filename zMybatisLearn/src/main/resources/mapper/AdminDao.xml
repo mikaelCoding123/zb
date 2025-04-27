@@ -78,7 +78,7 @@
             </foreach >-->
 
 
-    <insert id="insertAdminByBatch" parameterType="java.util.Arrays">
+    <insert id="insertAdminByBatch" parameterType="java.util.Arrays" >
         insert into test01 (pokid,username,password) values
         <foreach collection="test01s" item="test01" separator=",">
             (#{test01.pokid},#{test01.username},#{test01.password})
@@ -86,7 +86,7 @@
     </insert>
 
 <!--    注意防止sql注入问题-->
-    <select id="selectAdmin" resultType="com.web.demo.bo.Admin">
+    <select id="selectAdmin" resultType="com.web.demo.bo.Admin" parameterType="com.web.demo.bo.Admin">
         select * from admin where pokid=#{pokid}
         <if test=" username != null and username !='' ">
             and username like '%${username}%'

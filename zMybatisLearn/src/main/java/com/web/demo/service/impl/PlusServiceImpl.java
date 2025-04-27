@@ -1,5 +1,6 @@
 package com.web.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.common.ServiceResult;
 import com.web.demo.bo.Admin;
 import com.web.demo.dao.AdminDao;
@@ -29,6 +30,8 @@ public class PlusServiceImpl implements PlusService {
 
         return  ServiceResult.successObject(admin);
     }
+
+
 
     @Override
     public int update() {
