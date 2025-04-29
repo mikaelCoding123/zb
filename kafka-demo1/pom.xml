@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>bean-common</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>

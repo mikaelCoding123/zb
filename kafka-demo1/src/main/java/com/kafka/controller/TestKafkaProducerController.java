@@ -1,12 +1,14 @@
 package com.kafka.controller;
 
 import com.bean.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.apache.commons.logging.LogFactory;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
@@ -38,10 +40,14 @@ public class TestKafkaProducerController {
         user.setUsername("61616@qq.com");
         user.setPassword("fkshfkjhksjhkfhksjhfuekjhd");
         Gson gson = new Gson();
+        ObjectMapper objectMapper = new ObjectMapper();
         String s = gson.toJson(user);
         logger.info("1231312313213==>{}");
         kafkaTemplate.send("test_topic", s);
         kafkaTemplate.send("test_topic2", s);
+        this.sender(s);
+
+
         return "success";
     }
 

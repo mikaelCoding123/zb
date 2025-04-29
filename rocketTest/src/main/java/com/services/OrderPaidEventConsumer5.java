@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RocketMQMessageListener(topic = "MessageException", consumerGroup = "test",selectorExpression = "123321",selectorType = SelectorType.TAG)
+@RocketMQMessageListener(topic = "MessageException", consumerGroup = "test12",selectorExpression = "123321",selectorType = SelectorType.TAG)
 public class OrderPaidEventConsumer5 implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {

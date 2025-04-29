@@ -2,7 +2,10 @@ package com.controller;
 
 import cn.hutool.core.lang.Snowflake;
 import com.bean.User;
+import com.common.Result;
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageQueue;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 @RestController
 @Slf4j
 public class RocketController {
+
     @Resource
     private RocketMQTemplate rocketMQTemplate;
 
@@ -29,16 +33,22 @@ public class RocketController {
         long l = System.currentTimeMillis();        //Test消息的主题 要和消费者的主题保持一致
         SendResult test = rocketMQTemplate.syncSend("Test", MessageBuilder.withPayload("user").build(), 2000, 3);//delayLevel 延时时间18个等级 1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
         long l1 = System.currentTimeMillis();
-        System.out.println("=======上述代码执行时间为:=====" + (l1 - l)+"Millis");
+        System.out.println("=======上述代码执行时间为:=====" + (l1 - l) + "Millis");
         System.out.println("发送成功");
     }
 
     //一般消息
     @RequestMapping("Nor")
-    public void pt() {
+    public Result pt() {
         User user = new User();
         user.setPokid(new Snowflake().nextIdStr());
-        rocketMQTemplate.syncSend("Nor", user, 2000);
+        MessageBuilder<User> messageBuilder = MessageBuilder.withPayload(user);
+      //  rocketMQTemplate.sendOneWay("Nor:12",user);
+        SendResult sendResult = rocketMQTemplate.syncSend("Nor:12", user);
+        String msgId = sendResult.getMsgId();
+       log.info ("pokid===="+user.getPokid());
+        return Result.defaultSuccess();
+
     }
 
     //批量发送消息
@@ -50,7 +60,7 @@ public class RocketController {
         for (int i = 0; i < 10; i++) {
             User user = new User();
             Message message = new Message();
-            user.setPokid(""+i);
+            user.setPokid("" + i);
             message.setBody(user.toString().getBytes(StandardCharsets.UTF_8));
             users.add(user);
         }
@@ -61,8 +71,9 @@ public class RocketController {
 
 
     }
+
     @PostMapping("sequentialMessage")
-    public void sequentialMessage(){
+    public void sequentialMessage() {
         MessageQueue messageQueue = new MessageQueue();
         messageQueue.setQueueId(123);
         messageQueue.setTopic("sequentialMessage");
@@ -74,19 +85,20 @@ public class RocketController {
      * 接受方报错
      */
     @PostMapping("MessageException")
-    public void sequentialMessage1(){
+    public void sequentialMessage1() {
         MessageQueue messageQueue = new MessageQueue();
         messageQueue.setQueueId(123);
         messageQueue.setTopic("sequentialMessage");
         SendResult sequential = rocketMQTemplate.syncSend("sequential", messageQueue);
-        System.out.println("sequential==》"+sequential.toString());
+        System.out.println("sequential==》" + sequential.toString());
 
     }
+
     /**
      * 用事务
      */
     @PostMapping("transaction01")
-    public void transaction01(){
+    public void transaction01() {
         Message message = new Message();
         message.setTopic("transaction01");
         message.setTags("01");
@@ -94,12 +106,11 @@ public class RocketController {
         MessageBuilder<String> builder = MessageBuilder.withPayload("");
 
 
-
 //        rocketMQTemplate.sendMessageInTransaction("producer", "transaction01", message, "01");
     }
 
     @GetMapping("/tag")
-    public void tag(){
+    public void tag() {
         User user = new User();
         user.setPokid("123");
         user.setUsername("话");
@@ -107,12 +118,12 @@ public class RocketController {
         Message message = new Message();
         message.setBody(user.toString().getBytes());
         message.setTags("1");
-        rocketMQTemplate.send("test",MessageBuilder.withPayload(message).build());
+        rocketMQTemplate.send("test", MessageBuilder.withPayload(message).build());
     }
 
     public static void main(String[] args) {
         User user = new User();
-        user.setPokid(""+1);
+        user.setPokid("" + 1);
         System.out.println(user);
     }
 }

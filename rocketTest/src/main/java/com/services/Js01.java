@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@RocketMQMessageListener(topic = "topic_first1",consumerGroup = "12Group")
+@RocketMQMessageListener(topic = "topic_first1",consumerGroup = "14Group")
 public class Js01 implements RocketMQListener<String> {
 
     @Override
