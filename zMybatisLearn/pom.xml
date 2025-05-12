@@ -24,11 +24,11 @@
         <!--        </dependency>-->
 
 
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot</artifactId>
-            <version>1.4.3</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.pagehelper</groupId>-->
+<!--            <artifactId>pagehelper-spring-boot</artifactId>-->
+<!--            <version>1.4.3</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>cn.hutool</groupId>
