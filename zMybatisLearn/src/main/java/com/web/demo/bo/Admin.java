@@ -2,6 +2,7 @@ package com.web.demo.bo;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
@@ -19,7 +20,7 @@ public class Admin implements Serializable {
      * 用户名
      */
     private String username;
-
+    @TableField(select = false)
     private String password;
 
 }

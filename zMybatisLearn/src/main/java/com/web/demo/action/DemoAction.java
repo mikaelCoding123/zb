@@ -65,7 +65,7 @@ public class DemoAction {
     public ServiceResult wrapper(){
 
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("username","pokid");//select username from admin
+        queryWrapper.select("username","pokid","password");//select username from admin
         List<Admin> admin =  adminDao.selectList(queryWrapper);
 
 

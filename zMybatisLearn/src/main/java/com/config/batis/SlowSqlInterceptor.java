@@ -31,7 +31,7 @@ public class SlowSqlInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        log.info("................{}", "SlowSqlInterceptor");//每次有sql执行的时候
+        log.info("................{}", "SlowSqlInterceptor...慢sql");//每次有sql执行的时候
         long startTime = System.currentTimeMillis();
         Object result = invocation.proceed(); // 执行目标方法执行sql部分其他不受影响
         long endTime = System.currentTimeMillis();

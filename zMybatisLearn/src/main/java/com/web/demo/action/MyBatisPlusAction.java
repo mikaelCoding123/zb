@@ -13,15 +13,13 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -124,6 +122,13 @@ public class MyBatisPlusAction {
         teacher.setTid(id);
         //用ById时 要在teacher里添加@TableId指定属性为id
         int i = teacherMapper.updateById(teacher);
+
+        //
+        System.out.println("===============");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("tid", "1747099270417");
+
+        List<Teacher> teachers = teacherMapper.selectByMap(map);
         return ServiceResult.successObject(insert);
     }
 
@@ -140,6 +145,7 @@ public class MyBatisPlusAction {
         List<Map<String, Teacher>> mapList = teacherMapper.selectLike("明");
         return i > 0 ? ServiceResult.successObject(teachers.addAll(mapList)) : ServiceResult.defaultError();
     }
+
 
     public static void main(String[] args) {
 //        System.out.println(new String(DigestUtil.sha256Hex("hua")));
