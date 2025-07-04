@@ -10,14 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.sql.Wrapper;
 import java.util.List;
 
 @RestController
@@ -65,7 +63,7 @@ public class DemoAction {
     public ServiceResult wrapper(){
 
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("username");
+        queryWrapper.select("username", "pokid", "password");//select username from admin
         List<Admin> admin =  adminDao.selectList(queryWrapper);
 
 
