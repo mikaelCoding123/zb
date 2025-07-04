@@ -3,6 +3,7 @@ package com.web.demo.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.web.demo.bo.Admin;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
 * @author hua
@@ -25,4 +26,6 @@ public interface AdminDao3 extends BaseMapper<Admin> {
 
     int updateByPrimaryKey(Admin record);
 
+    @Select("Select * from  admin where pokid=${id}")
+    Admin findByPokidList(long id);
 }

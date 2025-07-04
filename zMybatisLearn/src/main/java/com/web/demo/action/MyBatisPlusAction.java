@@ -5,21 +5,28 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.common.ServiceResult;
+import com.result.Result;
+import com.result.ResultUtil;
 import com.web.demo.bo.StudentOfScore;
 import com.web.demo.bo.Teacher;
+import com.web.demo.dao.AdminDao;
+import com.web.demo.dao.AdminDao3;
 import com.web.demo.dao.ScoreDao;
+import com.web.demo.dao.TeacherMapper;
 import com.web.demo.service.PlusService;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -35,7 +42,11 @@ public class MyBatisPlusAction {
     private ScoreDao scoreDao;
 
     @Resource
-    private com.web.demo.dao.teacherMapper teacherMapper;
+    private TeacherMapper teacherMapper;
+    private AdminDao adminDao;
+
+    @Resource
+    private AdminDao3 adminDao3;
 
     @RequestMapping(value = "/plus", method = RequestMethod.GET)
     public ServiceResult plusAction() {
@@ -132,21 +143,6 @@ public class MyBatisPlusAction {
         return ServiceResult.successObject(insert);
     }
 
-    //单表的update
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ServiceResult update01() {
-
-        Teacher teacher = new Teacher();
-        teacher.setTid("1747099270417");
-        teacher.setTname("张明");
-
-        int i = teacherMapper.updateById(teacher);
-        List<Map<String, Teacher>> teachers = teacherMapper.selectList("1993-12-12 12:00:00", "2000-12-12 12:00:00");
-        List<Map<String, Teacher>> mapList = teacherMapper.selectLike("明");
-        return i > 0 ? ServiceResult.successObject(teachers.addAll(mapList)) : ServiceResult.defaultError();
-    }
-
-
     public static void main(String[] args) {
 //        System.out.println(new String(DigestUtil.sha256Hex("hua")));
 //        System.out.println(DigestUtil.bcrypt("110"));
@@ -180,6 +176,41 @@ public class MyBatisPlusAction {
         long maxValue = Instant.now().toEpochMilli();
         long i = 13065975433L + 12341234l * 4;
         System.out.println(i);
+
+
+    }
+
+    //单表的update
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public ServiceResult update01() {
+
+        Teacher teacher = new Teacher();
+        teacher.setTid("1747099270417");
+        teacher.setTname("张明");
+
+        int i = teacherMapper.updateById(teacher);
+        List<Map<String, Teacher>> teachers = teacherMapper.selectList1("1993-12-12 12:00:00", "2000-12-12 12:00:00");
+        List<Map<String, Teacher>> mapList = teacherMapper.selectLike1("明");
+        return i > 0 ? ServiceResult.successObject(teachers.addAll(mapList)) : ServiceResult.defaultError();
+    }
+
+    /**
+     * 缓存
+     */
+    @RequestMapping(value = "/getAdmin/{id}", method = RequestMethod.GET)
+    public Result cacahe01(@PathVariable("id") String id) {
+        Teacher teacher = teacherMapper.selectById(id);
+        return ResultUtil.success(teacher);
+    }
+
+    @RequestMapping(value = "/updateAdmin/{id}", method = RequestMethod.GET)
+    public Result cacahe02(@PathVariable("id") String id) {
+        Teacher teacher1 = new Teacher();
+        teacher1.setTid("12");
+        teacher1.setTname("kiskjfol");
+        teacher1.setBirthday(LocalDateTime.parse("1993-09-07 12:12:12", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        teacherMapper.updateById(teacher1);
+        return ResultUtil.success();
     }
 
 }

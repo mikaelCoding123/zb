@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan({"com.web.*.dao", ""})
+@MapperScan({"com.web.*.dao"})
 public class ZMybatisLearnApplication8081 {
     private static final Logger log = LoggerFactory.getLogger(ZMybatisLearnApplication8081.class);
 

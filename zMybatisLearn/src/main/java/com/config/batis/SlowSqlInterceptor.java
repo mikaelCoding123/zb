@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.Properties;
 
 /**
  * @author
@@ -44,15 +43,15 @@ public class SlowSqlInterceptor implements Interceptor {
         return result;
     }
 
-    @Override
-    public void setProperties(Properties properties) {
-        if (properties != null) {
-            String thresholdStr = properties.getProperty("threshold");
-            if (thresholdStr != null) {
-                threshold = Long.parseLong(thresholdStr);
-            }
-        }
-    }
+//    @Override
+//    public void setProperties(Properties properties) {
+//        if (properties != null) {
+//            String thresholdStr = properties.getProperty("threshold");
+//            if (thresholdStr != null) {
+//                threshold = Long.parseLong(thresholdStr);
+//            }
+//        }
+//    }
 
 
 }
