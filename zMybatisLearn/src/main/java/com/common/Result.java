@@ -5,6 +5,7 @@ import com.enumcode.CodeEnum;
 import java.io.Serializable;
 import java.util.HashMap;
 
+@Deprecated
 public class Result extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = -1L;
 

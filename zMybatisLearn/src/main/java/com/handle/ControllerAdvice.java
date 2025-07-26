@@ -14,6 +14,7 @@ public class ControllerAdvice {
     @ResponseStatus(code = HttpStatus.BAD_GATEWAY, reason = "找不到服务")
     @ExceptionHandler(Exception.class)
     public Exception handleException(Exception e) {
+
         log.error(e.getMessage());
         return e;
 
