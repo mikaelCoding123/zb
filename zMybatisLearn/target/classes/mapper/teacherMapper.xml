@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.demo.dao.TeacherMapper">
+
+    <resultMap id="BaseResultMap" type="com.web.demo.bo.Teacher">
+        <result property="tid" column="TId" jdbcType="VARCHAR"/>
+        <result property="tname" column="Tname" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        TId
+        ,Tname,birthday
+    </sql>
+    <!--between的用法-->
+    <select id="selectList1" parameterType="String" resultType="map">
+        select *
+        from teacher
+        where birthday BETWEEN DATE (#{param1})
+          and DATE (#{param2})
+    </select>
+    <!--    like的用法-->
+    <select id="selectLike" parameterType="String" resultType="map">
+        SELECT *
+        FROM `teacher` t
+        WHERE t.Tname like concat('%', #{param1}, '%')
+    </select>
+
+</mapper>

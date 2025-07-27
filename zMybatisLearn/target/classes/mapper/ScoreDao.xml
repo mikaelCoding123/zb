@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.demo.dao.ScoreDao">
+    <resultMap id="BaseResultMap" type="com.web.demo.bo.StudentOfScore">
+
+    </resultMap>
+    <sql id="Base_Column_List">
+
+    </sql>
+
+    <sql id="CID_001">
+        WHERE CID=
+        #{CID}
+    </sql>
+
+    <select id="score" resultType="com.web.demo.bo.StudentOfScore"
+            parameterType="map"
+    >
+        select t.Sname,
+        S.CId,
+        S.score,
+        S.Cname
+        from
+        student t
+        left join
+        (
+        select
+        s.SId SId ,
+        c.CId CId ,
+        s.score score ,
+        c.Cname Cname
+        from
+        sc s
+        left join course c on
+        s.CId = c.CId
+        group by
+        c.CId ,
+        s.score ,
+        c.Cname,
+        s.SId
+        ) s
+        on
+        t.SId = s.SId
+        <if test="CID != null ">
+            <include refid="CID_001"/>
+        </if>
+        group by
+        t.Sname,
+        S.CId,
+        S.score,
+        S.Cname
+    </select>
+
+
+    <select id="selectList1" parameterType="map" resultType="map">
+        select t.Sname,
+               S.CId,
+               S.score,
+               S.Cname
+        from student t
+                 left join
+             (select s.SId   SId,
+                     c.CId   CId,
+                     s.score score,
+                     c.Cname Cname
+              from sc s
+                       left join course c on
+                  s.CId = c.CId
+              group by c.CId,
+                       s.score,
+                       c.Cname,
+                       s.SId) s
+             on
+                 t.SId = s.SId
+        where cid = #{id}
+        group by t.Sname,
+                 S.CId,
+                 S.score,
+                 S.Cname
+
+
+    </select>
+
+
+    <select id="getScoreAndCId" parameterType="map" resultType="map">
+        select t.Sname,
+        S.CId,
+        S.score,
+        S.Cname
+        from
+        student t
+        left join
+        (
+        select
+        s.SId SId ,
+        c.CId CId ,
+        s.score score ,
+        c.Cname Cname
+        from
+        sc s
+        left join course c on
+        s.CId = c.CId
+        group by
+        c.CId ,
+        s.score ,
+        c.Cname,
+        s.SId
+        ) s
+        on
+        t.SId = s.SId
+        <!--        <where>-->
+        <!--            <foreach collection="map"  item="v" index="k" separator="and">-->
+        <!--                <if test=" k = cld">-->
+        <!--                    ${k}=${v}-->
+        <!--                </if>-->
+        <!--            </foreach>-->
+        <!--        </where>-->
+        group by
+        t.Sname,
+        S.CId,
+        S.score,
+        S.Cname
+
+
+    </select>
+
+
+    <select id="selectPageVo" parameterType="map" resultType="map">
+        select t.Sname,
+               S.CId,
+               S.score,
+               S.Cname
+        from student t
+                 left join
+             (select s.SId   SId,
+                     c.CId   CId,
+                     s.score score,
+                     c.Cname Cname
+              from sc s
+                       left join course c on
+                  s.CId = c.CId
+              group by c.CId,
+                       s.score,
+                       c.Cname,
+                       s.SId) s
+             on
+                 t.SId = s.SId
+        group by t.Sname,
+                 S.CId,
+                 S.score,
+                 S.Cname
+    </select>
+
+    <insert id="insertDate" parameterType="com.web.demo.bo.Teacher">
+        inster
+        into teacher (tid,tname,birthday) values (
+        #{tid,jdbcType=VARCHAR},
+        #{tname,jdbcType=VARCHAR},
+        date
+        (
+        #{birthday,jdbcType=DATE}
+        )
+        )
+    </insert>
+
+
+</mapper>
