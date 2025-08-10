@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author
@@ -37,7 +39,13 @@ public class Test01 {
         updateWrapper.clear();
         updateWrapper.setSql("number = number+1,flag=3").eq("id", "euisk12");
         goodsMapper.update(null,updateWrapper);
-
     }
 
+    @Test
+    void test03(){
+        List<Goods> goods = goodsMapper.selectList(null);
+
+        BigDecimal reduce = goods.stream().map(good->good.getPrice()).reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+        System.out.println(reduce);
+    }
 }

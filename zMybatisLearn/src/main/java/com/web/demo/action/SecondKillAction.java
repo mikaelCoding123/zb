@@ -36,11 +36,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/kill")
 @Slf4j
 public class SecondKillAction {
-  private final static String LOCK_GOODS = "LOCK_GOODS_";
-  private final static String LUA_DEC_1 = "redis.call('DECR', KEYS[1]) ";
-  private final String teset = "local a = tonumber(ARGV[1])\n" +
-      "local b = tonumber(ARGV[2])\n" +
-      "return a + b";
+  private final String LOCK_GOODS = "LOCK_GOODS_";
 
   @Resource
   private RedissonClient redissonClient;
@@ -66,8 +62,16 @@ public class SecondKillAction {
     RLock lock = redissonClient.getLock(LOCK_GOODS + id);
     try {
       boolean b = lock.tryLock(10L, TimeUnit.MILLISECONDS);
+      //数量小且连续的，用list
+      //设当前用户系统的用户Id是long类型，现在需要存储x个用户数量，
+      // 这批用户最大的user_id为m。如果64 * x <= m，则向list中存储，如果 64*x >=m则向bitmap中存储。
+      //记录已经参加过活动了 用bitmap来记录，index必须为数字
+      //setbit key index 1/0: 设置
+      //getbit key index: 判断是否存在
+      //bitcount key: 计数统计
 
       if (!b) {
+
         return ResultUtil.success("你没有抢到");
       }
       //在redis里库存减1  stock库存
@@ -105,17 +109,18 @@ public class SecondKillAction {
     Integer number = goods.getNumber();
     redisTemplate.opsForValue().set("2", "hua");
 
-    redisTemplate.opsForValue().set("goods_" + id, number);
+    redisTemplate.opsForValue().set("goods_" + id, number, 30_000, TimeUnit.MINUTES);
 
     return ResultUtil.success();
   }
 
   /**
    * 通过LUA文件来执行redis
+   *
    * @return
    */
   @RequestMapping("/lua")
-  public com.result.Result goLUA() {
+  public Result goLUA() {
     DefaultRedisScript<String> redisScript = new DefaultRedisScript<>();
     redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("lua/KILL_GOODS.lua")));
     redisScript.setResultType(String.class);
@@ -132,6 +137,8 @@ public class SecondKillAction {
 
     redisTemplate.opsForValue().set("goods_" + id, 11);
 
+    Boolean member = redisTemplate.opsForSet().isMember("12", "2");
+    log.error("went param={}", "121212", new Exception("111"));
 
     return ResultUtil.success();
   }
